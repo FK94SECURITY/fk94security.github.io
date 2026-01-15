@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vigía - Know Your Security Score</title>
+    <meta name="description" content="Scan your Mac in 30 seconds and discover how protected you are. Free, private, open source.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-card: #18181b;
+            --text: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent: #10b981;
+            --accent-hover: #059669;
+            --border: #27272a;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 11, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 16px 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .logo svg { width: 36px; height: 36px; }
+        .logo span { font-size: 1.25rem; font-weight: 700; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--text); }
+
+        .nav-cta {
+            background: var(--accent);
+            color: var(--bg) !important;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover { background: var(--accent-hover); }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 0 60px;
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 .accent { color: var(--accent); }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: #1f1f23;
+            border-color: #3f3f46;
+        }
+
+        /* Score Preview */
+        .score-preview {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .score-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .score-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .score-badge {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .score-display {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .score-number {
+            font-size: 5rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .score-number span {
+            font-size: 2rem;
+            color: var(--text-muted);
+        }
+
+        .score-label {
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        .score-checks {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .check {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            background: var(--bg);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .check span {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        .check.pass span { background: rgba(16, 185, 129, 0.2); color: var(--accent); }
+        .check.warn span { background: rgba(234, 179, 8, 0.2); color: #eab308; }
+        .check.fail span { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* How it works */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--accent);
+            color: var(--bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin: 0 auto 20px;
+        }
+
+        .step h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+
+        .step p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Features */
+        .features {
+            background: var(--bg-secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+
+        .feature {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .feature h3 {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Tools */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s;
+        }
+
+        .tool-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .tool-card.featured {
+            border-color: var(--accent);
+            position: relative;
+        }
+
+        .tool-badge {
+            position: absolute;
+            top: -12px;
+            left: 24px;
+            background: var(--accent);
+            color: var(--bg);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .tool-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .tool-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+
+        .tool-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .tool-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .tool-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Instructions */
+        .instructions {
+            margin-top: 60px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .instructions h3 {
+            margin-bottom: 20px;
+        }
+
+        .code-block {
+            background: var(--bg);
+            border-radius: 8px;
+            padding: 24px;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+
+        .code-block .comment { color: var(--text-muted); }
+        .code-block .command { color: var(--accent); }
+
+        /* FAQ */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .faq-item h3 {
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        .faq-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), transparent);
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .cta p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 16px;
+            max-width: 300px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 60px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .footer-col a {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-col a:hover { color: var(--text); }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .powered-by {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .powered-by a {
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero .container { grid-template-columns: 1fr; text-align: center; }
+            .hero p { margin-left: auto; margin-right: auto; }
+            .hero-buttons { justify-content: center; }
+            .score-preview { max-width: 400px; margin: 0 auto; }
+            .features-grid { grid-template-columns: repeat(3, 1fr); }
+            .tools-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .steps { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .tools-grid { grid-template-columns: 1fr; }
+            .faq-grid { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; gap: 40px; }
+            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">
+                <svg viewBox="0 0 48 48" fill="none">
+                    <g transform="translate(4, 4)">
+                        <path d="M4 20C4 20 11 6 20 6C29 6 36 20 36 20C36 20 29 34 20 34C11 34 4 20 4 20Z" stroke="#10b981" stroke-width="2.5" fill="none"/>
+                        <circle cx="20" cy="20" r="8" fill="#10b981"/>
+                        <circle cx="20" cy="20" r="3.5" fill="#0a0a0b"/>
+                    </g>
+                </svg>
+                <span>VIGÍA</span>
+            </a>
+            <div class="nav-links">
+                <a href="#how-it-works">How it works</a>
+                <a href="#tools">Tools</a>
+                <a href="#faq">FAQ</a>
+                <a href="../" class="nav-cta">Pro Services</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge">100% Free & Open Source</div>
+                    <h1>How safe is<br>your <span class="accent">Mac</span>?</h1>
+                    <p>Scan your computer in 30 seconds and get a security score. No installation, no data sent, 100% private.</p>
+                    <div class="hero-buttons">
+                        <a href="#tools" class="btn btn-primary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                            </svg>
+                            Scan now
+                        </a>
+                        <a href="https://github.com/fk94security/vigia" class="btn btn-secondary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            View code
+                        </a>
+                    </div>
+                </div>
+                <div class="score-preview">
+                    <div class="score-header">
+                        <span class="score-title">Security Score</span>
+                        <span class="score-badge">Example</span>
+                    </div>
+                    <div class="score-display">
+                        <div class="score-number">80<span>/100</span></div>
+                        <div class="score-label">Well protected</div>
+                    </div>
+                    <div class="score-checks">
+                        <div class="check pass"><span>✓</span> FileVault enabled</div>
+                        <div class="check pass"><span>✓</span> Firewall enabled</div>
+                        <div class="check pass"><span>✓</span> Gatekeeper enabled</div>
+                        <div class="check warn"><span>!</span> Find My Mac disabled</div>
+                        <div class="check pass"><span>✓</span> SIP enabled</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works">
+            <div class="container">
+                <div class="section-header">
+                    <h2>How it works</h2>
+                    <p>Get your security score in 3 simple steps</p>
+                </div>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Download the script</h3>
+                        <p>It's a text file you can review. Open source, nothing hidden.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Run in Terminal</h3>
+                        <p>Open Terminal, navigate to the folder and run the script. Takes 30 seconds.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>See your score</h3>
+                        <p>Get a score from 0-100 with clear recommendations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2>What it checks</h2>
+                    <p>We analyze the most important security settings on your system</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature">
+                        <div class="feature-icon">🔐</div>
+                        <h3>FileVault</h3>
+                        <p>Disk encryption</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>Firewall</h3>
+                        <p>Network protection</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">✅</div>
+                        <h3>Gatekeeper</h3>
+                        <p>App verification</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Updates</h3>
+                        <p>Auto-updates</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">📍</div>
+                        <h3>Find My</h3>
+                        <p>Device tracking</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🔒</div>
+                        <h3>SIP</h3>
+                        <p>System integrity</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">⏱️</div>
+                        <h3>Auto-lock</h3>
+                        <p>Password on wake</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">👤</div>
+                        <h3>Guest</h3>
+                        <p>Account disabled</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🌐</div>
+                        <h3>SSH</h3>
+                        <p>Remote access</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🖥️</div>
+                        <h3>Sharing</h3>
+                        <p>Screen sharing</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Tools</h2>
+                    <p>Download for free, review the code, run with confidence</p>
+                </div>
+                <div class="tools-grid">
+                    <div class="tool-card featured">
+                        <div class="tool-badge">Popular</div>
+                        <div class="tool-icon">🔍</div>
+                        <h3>Security Scanner</h3>
+                        <p>Analyze your Mac and get a security score from 0-100 with personalized recommendations.</p>
+                        <div class="tool-meta">
+                            <span><strong>macOS</strong></span>
+                            <span>~30 sec</span>
+                        </div>
+                        <a href="../scripts/macos/scan-macos.sh" download class="btn btn-primary">Download Scanner</a>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">🛠️</div>
+                        <h3>Hardening Script</h3>
+                        <p>Automatically apply recommended security configurations to your Mac.</p>
+                        <div class="tool-meta">
+                            <span><strong>macOS</strong></span>
+                            <span>~1 min</span>
+                        </div>
+                        <a href="../scripts/macos/harden-macos.sh" download class="btn btn-secondary">Download</a>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">📋</div>
+                        <h3>Audit Tool</h3>
+                        <p>Interactive step-by-step checklist to audit your complete personal security.</p>
+                        <div class="tool-meta">
+                            <span><strong>Web</strong></span>
+                            <span>~15 min</span>
+                        </div>
+                        <a href="../audit-tool/" class="btn btn-secondary">Open Tool</a>
+                    </div>
+                    <div class="tool-card featured">
+                        <div class="tool-badge">New</div>
+                        <div class="tool-icon">🔓</div>
+                        <h3>Breach Checker</h3>
+                        <p>Check if your email was exposed in data breaches. See which passwords and personal data may be compromised.</p>
+                        <div class="tool-meta">
+                            <span><strong>Breaches</strong></span>
+                            <span>~10 sec</span>
+                        </div>
+                        <a href="tools/breach-checker.html" class="btn btn-primary">Check Now</a>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">🔎</div>
+                        <h3>Digital Footprint Analyzer</h3>
+                        <p>Complete OSINT analysis: exposure score, profile detection, account search, Google dorks, and exportable report.</p>
+                        <div class="tool-meta">
+                            <span><strong>OSINT</strong></span>
+                            <span>~2 min</span>
+                        </div>
+                        <a href="tools/footprint.html" class="btn btn-secondary">Analyze Now</a>
+                    </div>
+                </div>
+
+                <div class="instructions">
+                    <h3>Quick Instructions</h3>
+                    <div class="code-block">
+<pre><span class="comment"># 1. Open Terminal (Cmd + Space, type "Terminal")</span>
+
+<span class="comment"># 2. Navigate to where you downloaded the file</span>
+<span class="command">cd ~/Downloads</span>
+
+<span class="comment"># 3. Give it execute permissions</span>
+<span class="command">chmod +x scan-macos.sh</span>
+
+<span class="comment"># 4. Run the scanner</span>
+<span class="command">./scan-macos.sh</span></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2>FAQ</h2>
+                </div>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>Is it really free?</h3>
+                        <p>Yes, 100% free and open source. You can view the code, modify it, share it. No tricks.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Does it send my data anywhere?</h3>
+                        <p>No. Everything runs locally on your computer. Nothing is sent anywhere. Zero tracking.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Can I review the code before running?</h3>
+                        <p>Yes, it's a plain text script. Open it with any editor and review exactly what it does.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Does it work on Windows?</h3>
+                        <p>Currently macOS only. We're working on the Windows version.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <h2>Prefer professional help?</h2>
+                <p>If you don't have time or want a complete professional audit, we can help.</p>
+                <a href="../#contacto" class="btn btn-primary">Schedule free consultation</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
+                            <g transform="translate(4, 4)">
+                                <path d="M4 20C4 20 11 6 20 6C29 6 36 20 36 20C36 20 29 34 20 34C11 34 4 20 4 20Z" stroke="#10b981" stroke-width="2.5" fill="none"/>
+                                <circle cx="20" cy="20" r="8" fill="#10b981"/>
+                                <circle cx="20" cy="20" r="3.5" fill="#0a0a0b"/>
+                            </g>
+                        </svg>
+                        <span>VIGÍA</span>
+                    </a>
+                    <p>Free security tools to protect your digital life.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Tools</h4>
+                        <a href="tools/breach-checker.html">Breach Checker</a>
+                        <a href="../scripts/macos/scan-macos.sh" download>Security Scanner</a>
+                        <a href="../scripts/macos/harden-macos.sh" download>Hardening Script</a>
+                        <a href="../audit-tool/">Audit Tool</a>
+                        <a href="tools/footprint.html">Footprint Analyzer</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Resources</h4>
+                        <a href="https://github.com/fk94security/vigia">GitHub</a>
+                        <a href="#faq">FAQ</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Vigía is an open source project.</p>
+                <div class="powered-by">
+                    <span>Powered by</span>
+                    <a href="../">
+                        <svg width="16" height="20" viewBox="0 0 24 28" fill="none">
+                            <path d="M12 2L2 6V12C2 18.6 6.4 24.6 12 26C17.6 24.6 22 18.6 22 12V6L12 2Z" stroke="#10b981" stroke-width="1.5" fill="none"/>
+                            <path d="M8 13L11 16L16 11" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        FK94 Security
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FK94 Security Audit Tool</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <a href="../index.html" class="logo">
+            <svg class="logo-icon" width="24" height="28" viewBox="0 0 24 28" fill="none">
+                <path d="M12 2L2 6V12C2 18.6 6.4 24.6 12 26C17.6 24.6 22 18.6 22 12V6L12 2Z" stroke="#10b981" stroke-width="1.5" fill="none"/>
+                <path d="M8 13L11 16L16 11" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="logo-text">FK94</span>
+            <span class="logo-suffix">AUDIT TOOL</span>
+        </a>
+        <div class="header-actions">
+            <button class="btn-secondary btn-small" id="resetBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                    <path d="M3 3v5h5"/>
+                </svg>
+                Reset
+            </button>
+            <button class="btn-primary btn-small" id="exportBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Export Report
+            </button>
+        </div>
+    </header>
+
+    <main class="app-main">
+        <!-- Sidebar with sections -->
+        <aside class="sidebar">
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>Progress</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <nav class="section-nav" id="sectionNav">
+                <!-- Sections will be populated by JS -->
+            </nav>
+        </aside>
+
+        <!-- Main content area -->
+        <div class="content">
+            <!-- Section 1: OSINT -->
+            <section class="audit-section" data-section="osint">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2>¿Tu información fue filtrada?</h2>
+                        <p>Verificamos si tus datos aparecen en hackeos conocidos</p>
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <!-- Breach Check -->
+                    <div class="card">
+                        <h3>
+                            <span class="auto-badge">AUTO</span>
+                            Verificar si tu email fue hackeado
+                        </h3>
+                        <p class="card-description">Buscamos tu email en bases de datos de hackeos conocidos. Si aparece, significa que tu contraseña pudo haber sido robada.</p>
+
+                        <div class="input-group">
+                            <input type="email" id="hibpEmail" placeholder="Tu email (ej: tu@email.com)" class="input">
+                            <button class="btn-primary" id="hibpCheckBtn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                </svg>
+                                Check
+                            </button>
+                        </div>
+
+                        <div class="results-container" id="hibpResults">
+                            <!-- Results will appear here -->
+                        </div>
+                    </div>
+
+                    <!-- Manual OSINT Checks -->
+                    <div class="card">
+                        <h3>Revisá qué información tuya es pública</h3>
+                        <p class="card-description">Hacé estas búsquedas para ver qué pueden encontrar otros sobre vos en internet.</p>
+
+                        <div class="checklist">
+                            <label class="check-item" data-check="osint-google">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Buscá tu nombre en Google</span>
+                                    <span class="check-desc">Poné tu nombre entre comillas: "Juan Pérez" y mirá qué aparece</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="osint-social">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Revisá la privacidad de tus redes sociales</span>
+                                    <span class="check-desc">¿Tu perfil de LinkedIn, Facebook, Instagram es público? ¿Quién puede ver tus posts?</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="osint-usernames">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Buscá tu nombre de usuario</span>
+                                    <span class="check-desc">Si usás el mismo usuario en todos lados, es fácil conectar tus cuentas</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="osint-images">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Buscá tu foto de perfil en Google Imágenes</span>
+                                    <span class="check-desc">Arrastrá tu foto a Google Imágenes para ver dónde aparece</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: DNS Security -->
+            <section class="audit-section" data-section="dns">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2>Seguridad de tu Dominio</h2>
+                        <p>Verificamos que nadie pueda enviar emails falsos usando tu nombre</p>
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <!-- DNS Check -->
+                    <div class="card">
+                        <h3>
+                            <span class="auto-badge">AUTO</span>
+                            Domain Security Check
+                        </h3>
+                        <p class="card-description">Verificamos si tu dominio está protegido contra hackers que podrían enviar emails falsos haciéndose pasar por vos o tu empresa.</p>
+
+                        <div class="input-group">
+                            <input type="text" id="dnsDoamin" placeholder="Tu dominio (ej: tuempresa.com)" class="input">
+                            <button class="btn-primary" id="dnsCheckBtn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                </svg>
+                                Scan
+                            </button>
+                        </div>
+
+                        <div class="results-container" id="dnsResults">
+                            <!-- Results will appear here -->
+                        </div>
+                    </div>
+
+                    <!-- Manual DNS Checks -->
+                    <div class="card">
+                        <h3>Additional Email Security</h3>
+
+                        <div class="checklist">
+                            <label class="check-item" data-check="dns-review">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Review DNS records</span>
+                                    <span class="check-desc">Check for any unexpected or outdated DNS entries</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="dns-whois">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">WHOIS privacy check</span>
+                                    <span class="check-desc">Verify domain registration details are private</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Risk Assessment -->
+            <section class="audit-section" data-section="risk">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2>Evaluación de Riesgos</h2>
+                        <p>Entendé qué tan expuesto estás y qué deberías proteger</p>
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <!-- Risk Questionnaire -->
+                    <div class="card">
+                        <h3>Preguntas para entender tu situación</h3>
+                        <p class="card-description">Respondé estas preguntas pensando en tu caso particular.</p>
+
+                        <div class="checklist">
+                            <label class="check-item" data-check="risk-inventory">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Hice una lista de mis cuentas importantes</span>
+                                    <span class="check-desc">Email, banco, redes sociales, servicios de trabajo, etc.</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="risk-threats">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Pensé quién podría querer hackearme</span>
+                                    <span class="check-desc">¿Ex pareja? ¿Competencia? ¿Hackers random buscando dinero?</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="risk-incidents">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Anoté si ya me hackearon o casi</span>
+                                    <span class="check-desc">¿Alguna vez te robaron una cuenta? ¿Recibiste emails de accesos sospechosos?</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="risk-sensitive">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Identifiqué mi información más sensible</span>
+                                    <span class="check-desc">¿Qué pasaría si alguien accede a tus fotos, emails del trabajo, datos bancarios?</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="risk-backup">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Sé dónde están mis backups</span>
+                                    <span class="check-desc">Si perdés el celular o la computadora, ¿tenés copia de tus fotos y archivos importantes?</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Account Hardening -->
+            <section class="audit-section" data-section="accounts">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2>Protegé tus Cuentas</h2>
+                        <p>Contraseñas fuertes y verificación en dos pasos para que no te hackeen</p>
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <!-- Password Manager -->
+                    <div class="card">
+                        <h3>Gestor de Contraseñas</h3>
+                        <p class="card-description">Un gestor guarda todas tus contraseñas de forma segura. Solo tenés que recordar UNA contraseña maestra.</p>
+
+                        <div class="checklist">
+                            <label class="check-item" data-check="acc-pwmanager">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Instalé un gestor de contraseñas</span>
+                                    <span class="check-desc">Recomendados: 1Password, Bitwarden (gratis), o el de Apple/Google</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="acc-master">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Creé una contraseña maestra fuerte</span>
+                                    <span class="check-desc">Usá una frase larga tipo "MiPerroComePizza2024!" - fácil de recordar, difícil de adivinar</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="acc-vault2fa">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Activé la verificación en dos pasos del gestor</span>
+                                    <span class="check-desc">Así aunque adivinen tu contraseña, necesitan tu celular para entrar</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="acc-recovery">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Guardé los códigos de recuperación</span>
+                                    <span class="check-desc">Imprimí o anotá los códigos de emergencia en un lugar seguro (no digital)</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="acc-browser">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Desactivé "guardar contraseña" del navegador</span>
+                                    <span class="check-desc">Chrome y Safari guardan contraseñas, pero es menos seguro que un gestor</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- MFA Implementation -->
+                    <div class="card">
+                        <h3>Verificación en Dos Pasos (2FA)</h3>
+                        <p class="card-description">Cuando activás esto, para entrar a tu cuenta necesitás tu contraseña + un código de tu celular. Aunque alguien sepa tu contraseña, no puede entrar sin tu teléfono.</p>
+
+                        <div class="checklist">
+                            <label class="check-item" data-check="mfa-email">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Activé 2FA en mi email principal</span>
+                                    <span class="check-desc">Gmail, Outlook, etc. - Tu email es la llave de todo, protegelo primero</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="mfa-financial">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Activé 2FA en cuentas de dinero</span>
+                                    <span class="check-desc">Banco, MercadoPago, PayPal, exchanges de crypto, etc.</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="mfa-social">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Activé 2FA en redes sociales</span>
+                                    <span class="check-desc">Instagram, WhatsApp, LinkedIn, Twitter - evitá que te roben la cuenta</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="mfa-cloud">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Activé 2FA en la nube</span>
+                                    <span class="check-desc">Google Drive, iCloud, Dropbox - donde guardás tus archivos y fotos</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="mfa-codes">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Guardé los códigos de respaldo</span>
+                                    <span class="check-desc">Si perdés el celular, estos códigos te permiten recuperar tus cuentas</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Password Rotation -->
+                    <div class="card">
+                        <h3>Contraseñas Seguras</h3>
+
+                        <div class="checklist">
+                            <label class="check-item" data-check="cred-rotate">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Cambié las contraseñas filtradas</span>
+                                    <span class="check-desc">Si el check de arriba mostró que tu email fue hackeado, cambiá esas contraseñas</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="cred-unique">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Uso contraseñas diferentes en cada cuenta</span>
+                                    <span class="check-desc">Si usás la misma en todos lados, cuando hackean uno te hackean todo</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="cred-recovery">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Revisé mi email y teléfono de recuperación</span>
+                                    <span class="check-desc">¿Están actualizados? ¿Tenés acceso a ellos?</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Device Security -->
+            <section class="audit-section" data-section="devices">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2>Seguridad de tus Dispositivos</h2>
+                        <p>Configurá tu celular y computadora para que estén protegidos si los perdés o te los roban</p>
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <!-- Device tabs -->
+                    <div class="tabs">
+                        <button class="tab active" data-tab="ios">iOS / iPhone</button>
+                        <button class="tab" data-tab="macos">macOS</button>
+                        <button class="tab" data-tab="windows">Windows</button>
+                    </div>
+
+                    <!-- iOS -->
+                    <div class="card tab-content active" data-tab-content="ios">
+                        <h3>iPhone / iPad</h3>
+
+                        <div class="checklist">
+                            <label class="check-item" data-check="ios-update">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Actualicé a la última versión de iOS</span>
+                                    <span class="check-desc">Ajustes > General > Actualización de software</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="ios-faceid">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Activé Face ID o Touch ID</span>
+                                    <span class="check-desc">Desbloqueo con cara o huella para que sea más seguro y rápido</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="ios-passcode">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Mi código tiene 6 dígitos o más</span>
+                                    <span class="check-desc">Evitá códigos obvios como 123456 o tu cumpleaños</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="ios-autolock">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">La pantalla se bloquea rápido</span>
+                                    <span class="check-desc">Ajustes > Pantalla > Bloqueo automático: 1-2 minutos</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="ios-findmy">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Activé "Buscar mi iPhone"</span>
+                                    <span class="check-desc">Si te roban el celu, podés ubicarlo o borrarlo remotamente</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="ios-usb">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Desactivé accesorios USB con pantalla bloqueada</span>
+                                    <span class="check-desc">Evita que conecten dispositivos cuando el celu está bloqueado</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="ios-permissions">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Revisé qué apps tienen acceso a mi ubicación/cámara/micrófono</span>
+                                    <span class="check-desc">Ajustes > Privacidad - quitá permisos a apps que no los necesitan</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- macOS -->
+                    <div class="card tab-content" data-tab-content="macos">
+                        <h3>Mac (macOS)</h3>
+
+                        <div class="checklist">
+                            <label class="check-item" data-check="mac-update">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Actualicé macOS a la última versión</span>
+                                    <span class="check-desc">Preferencias del Sistema > General > Actualización de software</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="mac-filevault">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Activé FileVault (encriptación del disco)</span>
+                                    <span class="check-desc">Si te roban la Mac, no pueden leer tus archivos sin la contraseña</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="mac-firewall">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Activé el Firewall</span>
+                                    <span class="check-desc">Preferencias del Sistema > Red > Firewall</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="mac-password">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Pide contraseña inmediatamente al despertar</span>
+                                    <span class="check-desc">Preferencias del Sistema > Pantalla de bloqueo</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="mac-findmy">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Activé "Buscar mi Mac"</span>
+                                    <span class="check-desc">Podés ubicar o borrar tu Mac si te la roban</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="mac-sharing">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Desactivé servicios de compartir que no uso</span>
+                                    <span class="check-desc">Preferencias del Sistema > General > Compartir</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Windows -->
+                    <div class="card tab-content" data-tab-content="windows">
+                        <h3>Windows</h3>
+
+                        <div class="checklist">
+                            <label class="check-item" data-check="win-update">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Actualicé Windows</span>
+                                    <span class="check-desc">Configuración > Actualización y seguridad > Windows Update</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="win-bitlocker">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Activé BitLocker (encriptación del disco)</span>
+                                    <span class="check-desc">Si te roban la PC, no pueden leer tus archivos (solo en Windows Pro)</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="win-hello">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Configuré Windows Hello</span>
+                                    <span class="check-desc">Desbloqueo con huella, cara o PIN seguro</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="win-defender">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Seguridad de Windows está activa</span>
+                                    <span class="check-desc">Antivirus, Firewall y protección contra amenazas</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="win-rdp">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Desactivé Escritorio Remoto (si no lo uso)</span>
+                                    <span class="check-desc">Evita que alguien se conecte a tu PC desde internet</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: SIM Protection -->
+            <section class="audit-section" data-section="sim">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2>Protección de tu Número de Teléfono</h2>
+                        <p>Evitá que alguien robe tu número y lo use para hackear tus cuentas</p>
+                    </div>
+                </div>
+
+                <div class="section-content">
+                    <!-- Carrier Protection -->
+                    <div class="card">
+                        <h3>Protección con tu Compañía Telefónica</h3>
+                        <p class="card-description">Llamá a tu compañía (Movistar, Claro, Personal, etc.) y pedí que activen estas protecciones.</p>
+
+                        <div class="checklist">
+                            <label class="check-item" data-check="sim-pin">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Agregué un PIN a mi cuenta</span>
+                                    <span class="check-desc">Sin este PIN nadie puede hacer cambios en tu línea</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="sim-portout">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Activé protección de portabilidad</span>
+                                    <span class="check-desc">Evita que alguien transfiera tu número a otra compañía sin tu permiso</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="sim-notify">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Activé alertas de cambios de SIM</span>
+                                    <span class="check-desc">Te avisan si alguien intenta cambiar tu chip</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- SMS 2FA Migration -->
+                    <div class="card">
+                        <h3>¿Por qué los SMS no son seguros?</h3>
+                        <p class="card-description">Recibir códigos por SMS es mejor que nada, pero hay formas más seguras. Si roban tu número pueden recibir tus códigos.</p>
+
+                        <div class="checklist">
+                            <label class="check-item" data-check="sms-audit">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Identifiqué qué cuentas me envían códigos por SMS</span>
+                                    <span class="check-desc">Banco, redes sociales, etc. - hacé una lista</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="sms-migrate">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Cambié a una app de códigos donde se pueda</span>
+                                    <span class="check-desc">Google Authenticator, Authy o el de tu gestor de contraseñas son más seguros</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="sms-document">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Anoté cuáles siguen usando SMS</span>
+                                    <span class="check-desc">Algunos servicios solo ofrecen SMS - al menos sabé cuáles son</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Navigation buttons -->
+            <div class="nav-buttons">
+                <button class="btn-secondary" id="prevBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                    Previous
+                </button>
+                <button class="btn-primary" id="nextBtn">
+                    Next
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Export Modal -->
+    <div class="modal" id="exportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Export Audit Report</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <pre id="reportContent"></pre>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="copyReport">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    Copy to Clipboard
+                </button>
+                <button class="btn-primary" id="downloadReport">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download .txt
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

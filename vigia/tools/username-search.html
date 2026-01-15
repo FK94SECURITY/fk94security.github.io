@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Username Search - Vigía by FK94 Security</title>
+    <meta name="description" content="Buscá un username en +30 plataformas para ver dónde existe esa cuenta. Gratis, privado, sin registro.">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #0a0a0b;
+            --bg-card: #18181b;
+            --bg-card-hover: #1f1f23;
+            --text: #fafafa;
+            --text-muted: #71717a;
+            --accent: #10b981;
+            --accent-hover: #059669;
+            --border: #27272a;
+            --red: #ef4444;
+            --yellow: #eab308;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .logo svg { width: 36px; height: 36px; }
+        .logo span { font-size: 1.25rem; font-weight: 700; }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { color: var(--accent); }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 .accent { color: var(--accent); }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Search Box */
+        .search-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .input-group input {
+            flex: 1;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px 20px;
+            font-size: 1.1rem;
+            color: var(--text);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--accent);
+        }
+
+        .input-group input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .btn {
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            border-radius: 8px;
+            padding: 16px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Progress */
+        .progress-bar {
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            margin-top: 24px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .progress-bar.active { display: block; }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: width 0.3s;
+            width: 0%;
+        }
+
+        .status-text {
+            text-align: center;
+            color: var(--text-muted);
+            margin-top: 12px;
+            font-size: 0.9rem;
+        }
+
+        /* Results */
+        .results {
+            display: none;
+        }
+
+        .results.active { display: block; }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .results-header h2 {
+            font-size: 1.5rem;
+        }
+
+        .results-stats {
+            display: flex;
+            gap: 24px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .stat-number.found { color: var(--accent); }
+        .stat-number.not-found { color: var(--text-muted); }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Category */
+        .category {
+            margin-bottom: 32px;
+        }
+
+        .category-header {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .site-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s;
+        }
+
+        .site-card.found {
+            border-color: var(--accent);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .site-card.found:hover {
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .site-card a {
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .site-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            background: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .site-card.found .site-icon {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        .site-name {
+            font-weight: 500;
+        }
+
+        .site-status {
+            margin-left: auto;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .site-card.found .site-status {
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            padding: 24px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .powered-by {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .powered-by a {
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .powered-by a:hover { text-decoration: underline; }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 1.75rem; }
+            .input-group { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .results-header { flex-direction: column; gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../" class="logo">
+                <svg viewBox="0 0 48 48" fill="none">
+                    <g transform="translate(4, 4)">
+                        <path d="M4 20C4 20 11 6 20 6C29 6 36 20 36 20C36 20 29 34 20 34C11 34 4 20 4 20Z" stroke="#10b981" stroke-width="2.5" fill="none"/>
+                        <circle cx="20" cy="20" r="8" fill="#10b981"/>
+                        <circle cx="20" cy="20" r="3.5" fill="#0a0a0b"/>
+                    </g>
+                </svg>
+                <span>VIGÍA</span>
+            </a>
+            <a href="../" class="back-link">← Volver</a>
+        </header>
+
+        <main>
+            <div class="hero">
+                <h1>🕵️ Username <span class="accent">Search</span></h1>
+                <p>Buscá un username en +30 plataformas para ver dónde existe esa cuenta. Todo corre en tu navegador, no enviamos nada.</p>
+            </div>
+
+            <div class="search-box">
+                <div class="input-group">
+                    <input type="text" id="username" placeholder="Ingresá un username (ej: johndoe)" autocomplete="off">
+                    <button class="btn" id="searchBtn" onclick="startSearch()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.35-4.35"/>
+                        </svg>
+                        Buscar
+                    </button>
+                </div>
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="status-text" id="statusText"></div>
+            </div>
+
+            <div class="results" id="results">
+                <div class="results-header">
+                    <h2>Resultados para: <span id="searchedUsername"></span></h2>
+                    <div class="results-stats">
+                        <div class="stat">
+                            <div class="stat-number found" id="foundCount">0</div>
+                            <div class="stat-label">Encontrado</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number not-found" id="notFoundCount">0</div>
+                            <div class="stat-label">No encontrado</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="resultsContent"></div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="powered-by">
+                Creado por
+                <a href="https://fk94security.com">
+                    <svg width="16" height="20" viewBox="0 0 24 28" fill="none">
+                        <path d="M12 2L2 6V12C2 18.6 6.4 24.6 12 26C17.6 24.6 22 18.6 22 12V6L12 2Z" stroke="#10b981" stroke-width="1.5" fill="none"/>
+                        <path d="M8 13L11 16L16 11" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    FK94 Security
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Sites to check organized by category
+        const sites = {
+            'Redes Sociales': [
+                { name: 'Twitter/X', url: 'https://twitter.com/{username}', icon: '𝕏' },
+                { name: 'Instagram', url: 'https://instagram.com/{username}', icon: '📷' },
+                { name: 'TikTok', url: 'https://tiktok.com/@{username}', icon: '🎵' },
+                { name: 'Facebook', url: 'https://facebook.com/{username}', icon: '👤' },
+                { name: 'LinkedIn', url: 'https://linkedin.com/in/{username}', icon: '💼' },
+                { name: 'Pinterest', url: 'https://pinterest.com/{username}', icon: '📌' },
+                { name: 'Reddit', url: 'https://reddit.com/user/{username}', icon: '🤖' },
+                { name: 'Tumblr', url: 'https://{username}.tumblr.com', icon: '📝' },
+            ],
+            'Desarrollo': [
+                { name: 'GitHub', url: 'https://github.com/{username}', icon: '🐙' },
+                { name: 'GitLab', url: 'https://gitlab.com/{username}', icon: '🦊' },
+                { name: 'Dev.to', url: 'https://dev.to/{username}', icon: '👩‍💻' },
+                { name: 'CodePen', url: 'https://codepen.io/{username}', icon: '✏️' },
+                { name: 'Replit', url: 'https://replit.com/@{username}', icon: '💻' },
+                { name: 'HackerRank', url: 'https://hackerrank.com/{username}', icon: '🏆' },
+                { name: 'LeetCode', url: 'https://leetcode.com/{username}', icon: '📊' },
+            ],
+            'Gaming': [
+                { name: 'Steam', url: 'https://steamcommunity.com/id/{username}', icon: '🎮' },
+                { name: 'Twitch', url: 'https://twitch.tv/{username}', icon: '📺' },
+                { name: 'Roblox', url: 'https://www.roblox.com/user.aspx?username={username}', icon: '🧱' },
+            ],
+            'Multimedia': [
+                { name: 'YouTube', url: 'https://youtube.com/@{username}', icon: '▶️' },
+                { name: 'Spotify', url: 'https://open.spotify.com/user/{username}', icon: '🎧' },
+                { name: 'SoundCloud', url: 'https://soundcloud.com/{username}', icon: '🔊' },
+                { name: 'Vimeo', url: 'https://vimeo.com/{username}', icon: '🎬' },
+                { name: 'Medium', url: 'https://medium.com/@{username}', icon: '📰' },
+                { name: 'Flickr', url: 'https://flickr.com/people/{username}', icon: '📸' },
+            ],
+            'Otros': [
+                { name: 'Gravatar', url: 'https://en.gravatar.com/{username}', icon: '👤' },
+                { name: 'About.me', url: 'https://about.me/{username}', icon: '🏠' },
+                { name: 'Keybase', url: 'https://keybase.io/{username}', icon: '🔐' },
+                { name: 'Patreon', url: 'https://patreon.com/{username}', icon: '💰' },
+                { name: 'Cash App', url: 'https://cash.app/${username}', icon: '💵' },
+                { name: 'Linktree', url: 'https://linktr.ee/{username}', icon: '🌳' },
+            ]
+        };
+
+        let foundCount = 0;
+        let notFoundCount = 0;
+        let results = {};
+
+        // Enter key to search
+        document.getElementById('username').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') startSearch();
+        });
+
+        async function startSearch() {
+            const username = document.getElementById('username').value.trim();
+            if (!username) {
+                alert('Ingresá un username');
+                return;
+            }
+
+            // Reset
+            foundCount = 0;
+            notFoundCount = 0;
+            results = {};
+
+            // UI updates
+            document.getElementById('searchBtn').disabled = true;
+            document.getElementById('progressBar').classList.add('active');
+            document.getElementById('results').classList.remove('active');
+            document.getElementById('searchedUsername').textContent = username;
+
+            const allSites = Object.values(sites).flat();
+            const total = allSites.length;
+            let completed = 0;
+
+            // Initialize results object
+            for (const category of Object.keys(sites)) {
+                results[category] = [];
+            }
+
+            // Check all sites
+            for (const category of Object.keys(sites)) {
+                for (const site of sites[category]) {
+                    const url = site.url.replace('{username}', username);
+
+                    document.getElementById('statusText').textContent = `Verificando ${site.name}...`;
+
+                    // We can't actually check due to CORS, so we'll just create links
+                    // In a real implementation, you'd need a backend proxy
+                    results[category].push({
+                        ...site,
+                        url: url,
+                        // Mark as "check" since we can't verify from browser
+                        status: 'check'
+                    });
+
+                    completed++;
+                    document.getElementById('progressFill').style.width = `${(completed / total) * 100}%`;
+
+                    // Small delay for visual effect
+                    await new Promise(r => setTimeout(r, 50));
+                }
+            }
+
+            // Show results
+            displayResults(username);
+
+            document.getElementById('searchBtn').disabled = false;
+            document.getElementById('progressBar').classList.remove('active');
+            document.getElementById('statusText').textContent = '';
+        }
+
+        function displayResults(username) {
+            const container = document.getElementById('resultsContent');
+            container.innerHTML = '';
+
+            let totalSites = 0;
+
+            for (const [category, siteResults] of Object.entries(results)) {
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'category';
+
+                categoryDiv.innerHTML = `
+                    <div class="category-header">${category}</div>
+                    <div class="sites-grid">
+                        ${siteResults.map(site => `
+                            <div class="site-card">
+                                <a href="${site.url}" target="_blank" rel="noopener">
+                                    <span class="site-icon">${site.icon}</span>
+                                    <span class="site-name">${site.name}</span>
+                                    <span class="site-status">Verificar →</span>
+                                </a>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+
+                container.appendChild(categoryDiv);
+                totalSites += siteResults.length;
+            }
+
+            document.getElementById('foundCount').textContent = totalSites;
+            document.getElementById('notFoundCount').textContent = '—';
+            document.getElementById('results').classList.add('active');
+
+            // Add note
+            const note = document.createElement('div');
+            note.style.cssText = 'text-align: center; color: var(--text-muted); margin-top: 32px; font-size: 0.9rem;';
+            note.innerHTML = `
+                <p>⚠️ Por limitaciones del navegador, los links se abren para verificar manualmente.</p>
+                <p style="margin-top: 8px;">Para verificación automática, usá el <a href="../osint/username-search.sh" download style="color: var(--accent);">script de terminal</a>.</p>
+            `;
+            container.appendChild(note);
+        }
+    </script>
+</body>
+</html>

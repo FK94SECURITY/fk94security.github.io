@@ -1,0 +1,63 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Dependencies (if we add any later)
+node_modules/
+vendor/
+
+# Build outputs
+dist/
+build/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Secrets and credentials
+*.pem
+*.key
+credentials.json
+secrets.json
+
+# Client data (NEVER commit)
+clients/
+reports/
+audits/
+
+# Local development
+.claude/
+
+# ===== ARCHIVOS PRIVADOS (NO PUBLICAR) =====
+# Documentos internos de negocio
+BUSINESS_MODEL.md
+SALES_PLAN.md
+MODELO_HIBRIDO.md
+ESTADO_PROYECTO.md
+LANZAMIENTO.md
+BENCHMARKING_REPORT.md
+PROCESOS_OPERATIVOS.md
+POSTS_LINKEDIN.md
+INSTRUCCIONES_GITHUB.md
+
+# Templates internos de trabajo
+templates/REPORTE_AUDITORIA.md
+
+# Procedimientos operativos internos
+docs/procedures/

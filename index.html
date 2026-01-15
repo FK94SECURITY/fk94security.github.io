@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FK94 Security | OPSEC & Privacy Services</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <svg class="logo-icon" width="24" height="28" viewBox="0 0 24 28" fill="none">
+                    <path d="M12 2L2 6V12C2 18.6 6.4 24.6 12 26C17.6 24.6 22 18.6 22 12V6L12 2Z" stroke="#10b981" stroke-width="1.5" fill="none"/>
+                    <path d="M8 13L11 16L16 11" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="logo-text">FK94</span>
+                <span class="logo-suffix">SECURITY</span>
+            </a>
+            <div class="nav-links">
+                <a href="#servicios">Services</a>
+                <a href="#metodologia">Approach</a>
+                <a href="vigia/">Vigía Tools</a>
+                <a href="#contacto" class="btn-nav">Request Consultation</a>
+            </div>
+            <button class="mobile-toggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse"></span>
+                OPSEC & Privacy
+            </div>
+            <h1>
+                Security &<br>
+                <span class="gradient-text">Privacy</span>
+            </h1>
+            <p class="hero-subtitle">
+                We protect your digital security and personal privacy. From exposure analysis
+                to data removal and identity protection - practical measures that actually work.
+            </p>
+            <div class="hero-cta">
+                <a href="#contacto" class="btn-primary">
+                    <span>Schedule a Call</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#servicios" class="btn-secondary">View Services</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="terminal">
+                <div class="terminal-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="terminal-title">osint-scan</span>
+                </div>
+                <div class="terminal-body">
+                    <p><span class="prompt">$</span> <span class="cmd">Running exposure assessment...</span></p>
+                    <p class="output">Checking breach databases...</p>
+                    <p class="output warning">⚠ 3 corporate emails found in breaches</p>
+                    <p class="output warning">⚠ Credentials exposed: LinkedIn, Adobe</p>
+                    <p class="output">Analyzing attack surface...</p>
+                    <p class="output success">✓ Risk assessment complete</p>
+                    <p class="output success">✓ Remediation plan ready</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Core Services -->
+    <section class="stats">
+        <div class="container">
+            <div class="stat-item">
+                <span class="stat-icon">🔍</span>
+                <span class="stat-label">OSINT & Exposure Analysis</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">🛡️</span>
+                <span class="stat-label">Privacy Architecture</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">🔐</span>
+                <span class="stat-label">Account & Device Hardening</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">💬</span>
+                <span class="stat-label">Communications Security</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">SERVICES</span>
+                <h2>OPSEC & Privacy<br><span class="gradient-text">Solutions</span></h2>
+                <p>We protect your digital security and personal privacy. Each engagement is tailored to your specific situation and threat model.</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Service 1: OSINT -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                    <h3>OSINT & Exposure Analysis</h3>
+                    <p>Understand your digital footprint before adversaries do. We find what's exposed and prioritize what to fix.</p>
+                    <ul class="service-features">
+                        <li>Breach database analysis</li>
+                        <li>Data broker exposure scan</li>
+                        <li>Digital footprint mapping</li>
+                        <li>Doxxing vector identification</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2: Privacy Architecture -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h3>Privacy Architecture</h3>
+                    <p>Structure your digital life for maximum privacy. Address hiding, identity compartmentalization, and reducing public records exposure.</p>
+                    <ul class="service-features">
+                        <li>Privacy address strategy</li>
+                        <li>Email & phone masking</li>
+                        <li>Anonymous LLC guidance</li>
+                        <li>Identity separation</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4: Account & Device Hardening -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                    </div>
+                    <h3>Account & Device Hardening</h3>
+                    <p>Strengthen your accounts and devices against compromise. Password managers, phishing-resistant MFA, and secure configurations.</p>
+                    <ul class="service-features">
+                        <li>Password manager setup</li>
+                        <li>Passkeys & hardware keys</li>
+                        <li>Device encryption</li>
+                        <li>SIM swap protection</li>
+                    </ul>
+                </div>
+
+                <!-- Service 5: Communications Security -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                        </svg>
+                    </div>
+                    <h3>Communications Security</h3>
+                    <p>Protect your sensitive communications. Secure messaging, encrypted email, VPN configuration, and browser hardening.</p>
+                    <ul class="service-features">
+                        <li>Secure messaging setup</li>
+                        <li>Encrypted email</li>
+                        <li>VPN & DNS configuration</li>
+                        <li>Browser compartmentalization</li>
+                    </ul>
+                </div>
+
+                <!-- Service 6: Crypto/Web3 OPSEC -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3>Crypto & Web3 OPSEC</h3>
+                    <p>Specialized security for crypto holders. Wallet audits, seed phrase strategy, hardware wallet setup, and transaction OPSEC.</p>
+                    <ul class="service-features">
+                        <li>Wallet security audit</li>
+                        <li>Hardware wallet setup</li>
+                        <li>Seed phrase backup strategy</li>
+                        <li>Multisig configuration</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Who Section -->
+    <section class="individuals">
+        <div class="container">
+            <div class="individuals-content">
+                <span class="section-tag">WHO WE WORK WITH</span>
+                <h2>Privacy for<br><span class="gradient-text">Those Who Need It</span></h2>
+                <p>We work with people who understand that their personal information is valuable and worth protecting.</p>
+
+                <div class="individual-services">
+                    <div class="ind-service">
+                        <div class="ind-icon">👤</div>
+                        <div>
+                            <h4>Privacy-Conscious Individuals</h4>
+                            <p>Professionals, entrepreneurs, crypto holders, and anyone who values their digital privacy.</p>
+                        </div>
+                    </div>
+                    <div class="ind-service">
+                        <div class="ind-icon">⚠️</div>
+                        <div>
+                            <h4>People at Risk</h4>
+                            <p>Those facing stalking, harassment, doxxing threats, or heightened security concerns.</p>
+                        </div>
+                    </div>
+                    <div class="ind-service">
+                        <div class="ind-icon">💼</div>
+                        <div>
+                            <h4>Executives & Public Figures</h4>
+                            <p>High-profile individuals and their families who need comprehensive privacy protection.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="individuals-visual">
+                <div class="shield-visual">
+                    <div class="shield-ring ring-1"></div>
+                    <div class="shield-ring ring-2"></div>
+                    <div class="shield-ring ring-3"></div>
+                    <div class="shield-center">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section id="metodologia" class="methodology">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">APPROACH</span>
+                <h2>How We <span class="gradient-text">Work</span></h2>
+                <p>A structured process that delivers actionable results.</p>
+            </div>
+
+            <div class="methodology-steps">
+                <div class="method-step">
+                    <div class="step-number">01</div>
+                    <h3>Assess</h3>
+                    <p>We analyze your current exposure, identify critical assets, and understand your specific risk profile.</p>
+                </div>
+                <div class="method-connector"></div>
+                <div class="method-step">
+                    <div class="step-number">02</div>
+                    <h3>Plan</h3>
+                    <p>Based on findings, we create a prioritized action plan focusing on high-impact, practical measures.</p>
+                </div>
+                <div class="method-connector"></div>
+                <div class="method-step">
+                    <div class="step-number">03</div>
+                    <h3>Implement</h3>
+                    <p>We work alongside you to implement security measures. Hands-on, not just recommendations.</p>
+                </div>
+                <div class="method-connector"></div>
+                <div class="method-step">
+                    <div class="step-number">04</div>
+                    <h3>Document</h3>
+                    <p>You receive clear documentation of what was done and guidance for maintaining security going forward.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="nosotros" class="about">
+        <div class="container">
+            <div class="about-content">
+                <span class="section-tag">ABOUT</span>
+                <h2>Security & Privacy,<br><span class="gradient-text">Done Right</span></h2>
+                <p>Your personal information is scattered across hundreds of databases, data brokers, and public records. Most people don't realize how exposed they are until it's too late.</p>
+                <p>FK94 Security combines practical cybersecurity with personal privacy protection. We don't just tell you what to do - we work alongside you to implement real solutions.</p>
+
+                <div class="about-values">
+                    <div class="value">
+                        <span class="value-icon">🎯</span>
+                        <span>Personalized approach</span>
+                    </div>
+                    <div class="value">
+                        <span class="value-icon">🔧</span>
+                        <span>Hands-on implementation</span>
+                    </div>
+                    <div class="value">
+                        <span class="value-icon">🛡️</span>
+                        <span>Privacy-first mindset</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="founder-card">
+                    <div class="founder-image">
+                        <div class="founder-placeholder">FK</div>
+                    </div>
+                    <div class="founder-info">
+                        <h3>Francisco K.</h3>
+                        <span class="founder-role">Founder</span>
+                        <p>Focused on operational security for individuals and organizations. Helping clients understand their exposure and implement practical defenses.</p>
+                        <div class="founder-links">
+                            <a href="#" aria-label="LinkedIn">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            </a>
+                            <a href="#" aria-label="Twitter">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vigía Tools Section -->
+    <section id="vigia" class="vigia-section">
+        <div class="container">
+            <div class="vigia-content">
+                <div class="vigia-info">
+                    <span class="section-tag">FREE TOOLS</span>
+                    <div class="vigia-brand">
+                        <svg class="vigia-logo" width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <g transform="translate(4, 4)">
+                                <path d="M4 20C4 20 11 6 20 6C29 6 36 20 36 20C36 20 29 34 20 34C11 34 4 20 4 20Z" stroke="#10b981" stroke-width="2.5" fill="none"/>
+                                <circle cx="20" cy="20" r="8" fill="#10b981"/>
+                                <circle cx="20" cy="20" r="3.5" fill="#0a0a0b"/>
+                            </g>
+                        </svg>
+                        <h2>VIGÍA</h2>
+                    </div>
+                    <p class="vigia-subtitle">Free and open source security tools by FK94 Security.</p>
+                    <p>Analyze your digital exposure, scan your Mac's security, and protect your personal information - all from your browser or terminal.</p>
+                    <a href="vigia/" class="btn-primary">
+                        <span>Explorar herramientas</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="vigia-tools-grid">
+                    <a href="vigia/tools/footprint.html" class="vigia-tool-card">
+                        <span class="tool-icon">🔎</span>
+                        <h4>Footprint Analyzer</h4>
+                        <p>Complete OSINT analysis with exposure score</p>
+                    </a>
+                    <a href="vigia/#tools" class="vigia-tool-card">
+                        <span class="tool-icon">🔍</span>
+                        <h4>Security Scanner</h4>
+                        <p>Get a security score for your Mac</p>
+                    </a>
+                    <a href="audit-tool/" class="vigia-tool-card">
+                        <span class="tool-icon">📋</span>
+                        <h4>Audit Tool</h4>
+                        <p>Complete personal security checklist</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to understand<br><span class="gradient-text">your exposure?</span></h2>
+                <p>Let's discuss your security concerns and how we can help.</p>
+                <a href="#contacto" class="btn-primary btn-large">
+                    <span>Request Consultation</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <span class="section-tag">CONTACT</span>
+                    <h2>Get in<br><span class="gradient-text">Touch</span></h2>
+                    <p>Tell us about your security needs. We respond within 24 hours.</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            <div>
+                                <span>Email</span>
+                                <a href="mailto:contact@fk94security.com">contact@fk94security.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="you@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service of Interest</label>
+                        <select id="service" name="service">
+                            <option value="">Select...</option>
+                            <option value="osint">OSINT & Exposure Analysis</option>
+                            <option value="privacy">Privacy Architecture</option>
+                            <option value="hardening">Account & Device Hardening</option>
+                            <option value="comms">Communications Security</option>
+                            <option value="crypto">Crypto/Web3 OPSEC</option>
+                            <option value="full">Full Privacy & Security Review</option>
+                            <option value="other">Other / Not Sure</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Tell us about your security needs..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary btn-full">
+                        <span>Send Message</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <svg class="logo-icon" width="24" height="28" viewBox="0 0 24 28" fill="none">
+                            <path d="M12 2L2 6V12C2 18.6 6.4 24.6 12 26C17.6 24.6 22 18.6 22 12V6L12 2Z" stroke="#10b981" stroke-width="1.5" fill="none"/>
+                            <path d="M8 13L11 16L16 11" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="logo-text">FK94</span>
+                        <span class="logo-suffix">SECURITY</span>
+                    </a>
+                    <p>OPSEC & Privacy Services</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Services</h4>
+                        <a href="#servicios">OSINT Analysis</a>
+                        <a href="#servicios">Privacy Architecture</a>
+                        <a href="#servicios">Account Hardening</a>
+                        <a href="#servicios">Crypto OPSEC</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Vigía Tools</h4>
+                        <a href="vigia/">Security Scanner</a>
+                        <a href="vigia/tools/footprint.html">Footprint Analyzer</a>
+                        <a href="audit-tool/">Audit Tool</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="#nosotros">About</a>
+                        <a href="#metodologia">Approach</a>
+                        <a href="#contacto">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FK94 Security. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

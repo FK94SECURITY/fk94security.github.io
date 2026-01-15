@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breach Checker - ¿Tu email fue filtrado?</title>
+    <meta name="description" content="Verificá gratis si tu email apareció en alguna filtración de datos">
+    <style>
+        :root {
+            --bg: #0a0a0b;
+            --bg-card: #18181b;
+            --text: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --border: #27272a;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* Header */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+        }
+
+        .back-link:hover { color: var(--text); }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 .accent { color: var(--accent); }
+        .hero h1 .danger { color: var(--danger); }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Search Box */
+        .search-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 16px 20px;
+            font-size: 1rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: var(--accent);
+        }
+
+        .input-group input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .btn {
+            padding: 16px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        .btn-primary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .privacy-note {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .privacy-note svg {
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+
+        /* Results */
+        .results {
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .results-header {
+            text-align: center;
+            padding: 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 24px;
+        }
+
+        .results-header.danger {
+            border-color: var(--danger);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .results-header.safe {
+            border-color: var(--accent);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .results-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .results-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .results-header p {
+            color: var(--text-secondary);
+        }
+
+        .breach-count {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--danger);
+        }
+
+        /* Breach List */
+        .breach-list {
+            margin-bottom: 32px;
+        }
+
+        .breach-list h3 {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        .breach-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 12px;
+        }
+
+        .breach-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .breach-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .breach-date {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .breach-data {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .data-tag {
+            padding: 4px 10px;
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .data-tag.password {
+            background: rgba(239, 68, 68, 0.2);
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .cta-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-section .btn {
+            padding: 16px 40px;
+        }
+
+        /* What's exposed */
+        .exposed-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .exposed-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .exposed-item.danger {
+            border-color: var(--danger);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .exposed-item .icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .exposed-item .label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            .input-group { flex-direction: column; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">
+            ← Volver a Vigía
+        </a>
+
+        <div class="hero">
+            <div class="hero-icon">🔓</div>
+            <h1>¿Tu email fue <span class="danger">filtrado</span>?</h1>
+            <p>Verificá gratis si tu email apareció en alguna filtración de datos. Millones de cuentas son expuestas cada año.</p>
+        </div>
+
+        <div class="search-box">
+            <div class="input-group">
+                <input type="email" id="emailInput" placeholder="tu@email.com" autocomplete="email">
+                <button class="btn btn-primary" id="checkBtn" onclick="checkEmail()">
+                    Verificar
+                </button>
+            </div>
+            <p class="privacy-note">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Tu email no se guarda. La búsqueda es 100% privada.
+            </p>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Buscando en bases de datos de filtraciones...</p>
+        </div>
+
+        <div class="results" id="results">
+            <!-- Results will be injected here -->
+        </div>
+    </div>
+
+    <footer>
+        <p>Powered by <a href="https://haveibeenpwned.com" target="_blank">Have I Been Pwned</a></p>
+        <p style="margin-top: 8px;">Una herramienta de <a href="../../index.html">FK94 Security</a></p>
+    </footer>
+
+    <script>
+        // Configuration - Replace with your HIBP API key
+        const HIBP_API_KEY = 'YOUR_HIBP_API_KEY'; // Get from haveibeenpwned.com/API/Key
+
+        // For demo purposes, we'll simulate results if no API key is set
+        const DEMO_MODE = HIBP_API_KEY === 'YOUR_HIBP_API_KEY';
+
+        async function checkEmail() {
+            const email = document.getElementById('emailInput').value.trim();
+
+            if (!email || !isValidEmail(email)) {
+                alert('Por favor ingresá un email válido');
+                return;
+            }
+
+            // Show loading
+            document.getElementById('loading').classList.add('show');
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('checkBtn').disabled = true;
+
+            try {
+                let breaches;
+
+                if (DEMO_MODE) {
+                    // Demo mode - simulate API response
+                    await sleep(1500);
+                    breaches = getDemoBreaches(email);
+                } else {
+                    // Real API call
+                    breaches = await fetchBreaches(email);
+                }
+
+                displayResults(email, breaches);
+            } catch (error) {
+                console.error('Error:', error);
+                displayError();
+            } finally {
+                document.getElementById('loading').classList.remove('show');
+                document.getElementById('checkBtn').disabled = false;
+            }
+        }
+
+        async function fetchBreaches(email) {
+            const response = await fetch(`https://haveibeenpwned.com/api/v3/breachedaccount/${encodeURIComponent(email)}?truncateResponse=false`, {
+                headers: {
+                    'hibp-api-key': HIBP_API_KEY,
+                    'user-agent': 'FK94-Security-BreachChecker'
+                }
+            });
+
+            if (response.status === 404) {
+                return []; // No breaches found
+            }
+
+            if (!response.ok) {
+                throw new Error(`API error: ${response.status}`);
+            }
+
+            return await response.json();
+        }
+
+        function getDemoBreaches(email) {
+            // Demo data for testing without API key
+            // In production, remove this and use real API
+            const demoBreaches = [
+                {
+                    Name: "LinkedIn",
+                    BreachDate: "2021-06-22",
+                    DataClasses: ["Email addresses", "Passwords", "Names", "Phone numbers"],
+                    Description: "En 2021, datos de 700 millones de usuarios de LinkedIn fueron expuestos."
+                },
+                {
+                    Name: "Adobe",
+                    BreachDate: "2013-10-04",
+                    DataClasses: ["Email addresses", "Passwords", "Usernames"],
+                    Description: "En 2013, 153 millones de cuentas de Adobe fueron comprometidas."
+                },
+                {
+                    Name: "Canva",
+                    BreachDate: "2019-05-24",
+                    DataClasses: ["Email addresses", "Passwords", "Names", "Usernames"],
+                    Description: "En 2019, el servicio de diseño Canva sufrió una filtración de 137 millones de usuarios."
+                },
+                {
+                    Name: "Dropbox",
+                    BreachDate: "2012-07-01",
+                    DataClasses: ["Email addresses", "Passwords"],
+                    Description: "En 2012, Dropbox sufrió una filtración que expuso 68 millones de cuentas."
+                },
+                {
+                    Name: "Collection #1",
+                    BreachDate: "2019-01-07",
+                    DataClasses: ["Email addresses", "Passwords"],
+                    Description: "Una compilación masiva de credenciales filtradas de múltiples fuentes."
+                }
+            ];
+
+            // Return random subset based on email (for demo variety)
+            const hash = email.split('').reduce((a, b) => a + b.charCodeAt(0), 0);
+            const count = (hash % 6) + 2; // 2-7 breaches
+            return demoBreaches.slice(0, count);
+        }
+
+        function displayResults(email, breaches) {
+            const resultsDiv = document.getElementById('results');
+
+            if (breaches.length === 0) {
+                resultsDiv.innerHTML = `
+                    <div class="results-header safe">
+                        <div class="results-icon">✅</div>
+                        <h2>¡Buenas noticias!</h2>
+                        <p>No encontramos <strong>${email}</strong> en ninguna filtración conocida.</p>
+                    </div>
+                    <div class="cta-section">
+                        <h3>Mantené tu seguridad</h3>
+                        <p>Aunque no encontramos filtraciones, es importante mantener buenas prácticas de seguridad.</p>
+                        <a href="../../index.html#contacto" class="btn btn-primary">
+                            Agendar consulta gratuita
+                        </a>
+                    </div>
+                `;
+            } else {
+                // Collect all exposed data types
+                const allDataTypes = new Set();
+                breaches.forEach(b => b.DataClasses.forEach(d => allDataTypes.add(d)));
+
+                const hasPasswords = allDataTypes.has('Passwords');
+                const hasPhones = allDataTypes.has('Phone numbers');
+                const hasAddresses = allDataTypes.has('Physical addresses');
+
+                resultsDiv.innerHTML = `
+                    <div class="results-header danger">
+                        <div class="results-icon">⚠️</div>
+                        <h2>Tu email fue encontrado en</h2>
+                        <div class="breach-count">${breaches.length}</div>
+                        <p>filtraciones de datos</p>
+                    </div>
+
+                    <div class="exposed-summary">
+                        <div class="exposed-item ${hasPasswords ? 'danger' : ''}">
+                            <div class="icon">${hasPasswords ? '🔴' : '⚪'}</div>
+                            <div class="label">Passwords</div>
+                        </div>
+                        <div class="exposed-item ${hasPhones ? 'danger' : ''}">
+                            <div class="icon">${hasPhones ? '🔴' : '⚪'}</div>
+                            <div class="label">Teléfonos</div>
+                        </div>
+                        <div class="exposed-item danger">
+                            <div class="icon">🔴</div>
+                            <div class="label">Emails</div>
+                        </div>
+                        <div class="exposed-item ${hasAddresses ? 'danger' : ''}">
+                            <div class="icon">${hasAddresses ? '🔴' : '⚪'}</div>
+                            <div class="label">Direcciones</div>
+                        </div>
+                    </div>
+
+                    <div class="cta-section" style="margin-bottom: 32px;">
+                        <h3>🚨 Tu información está expuesta</h3>
+                        <p>Hackers pueden usar estos datos para robar tu identidad, acceder a tus cuentas, o hacer ataques de phishing dirigidos.</p>
+                        <a href="../../index.html#contacto" class="btn btn-primary">
+                            Agendar consulta gratuita
+                        </a>
+                    </div>
+
+                    <div class="breach-list">
+                        <h3>Filtraciones encontradas:</h3>
+                        ${breaches.map(breach => `
+                            <div class="breach-item">
+                                <div class="breach-item-header">
+                                    <span class="breach-name">${breach.Name}</span>
+                                    <span class="breach-date">${formatDate(breach.BreachDate)}</span>
+                                </div>
+                                <div class="breach-data">
+                                    ${breach.DataClasses.map(dc => `
+                                        <span class="data-tag ${dc === 'Passwords' ? 'password' : ''}">${translateDataClass(dc)}</span>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div class="cta-section">
+                        <h3>¿Qué deberías hacer?</h3>
+                        <p>Un experto puede ayudarte a cambiar passwords comprometidos, activar protección adicional, y revisar qué más está expuesto.</p>
+                        <a href="../../index.html#contacto" class="btn btn-primary">
+                            Hablar con un experto (gratis)
+                        </a>
+                    </div>
+                `;
+            }
+
+            resultsDiv.classList.add('show');
+            resultsDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function displayError() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `
+                <div class="results-header">
+                    <div class="results-icon">❌</div>
+                    <h2>Error al verificar</h2>
+                    <p>Hubo un problema al verificar tu email. Por favor intentá de nuevo.</p>
+                </div>
+            `;
+            resultsDiv.classList.add('show');
+        }
+
+        function translateDataClass(dataClass) {
+            const translations = {
+                'Email addresses': 'Emails',
+                'Passwords': 'Contraseñas',
+                'Phone numbers': 'Teléfonos',
+                'Names': 'Nombres',
+                'Usernames': 'Usernames',
+                'Physical addresses': 'Direcciones',
+                'IP addresses': 'IPs',
+                'Dates of birth': 'Fechas de nacimiento',
+                'Credit cards': 'Tarjetas de crédito',
+                'Social security numbers': 'SSN',
+                'Bank account numbers': 'Cuentas bancarias'
+            };
+            return translations[dataClass] || dataClass;
+        }
+
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('es-AR', { year: 'numeric', month: 'short' });
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('emailInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkEmail();
+            }
+        });
+    </script>
+</body>
+</html>

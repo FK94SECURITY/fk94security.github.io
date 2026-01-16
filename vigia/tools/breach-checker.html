@@ -243,20 +243,15 @@
         </div>
 
         <div class="search-box" id="formBox">
-            <form id="breachForm" action="https://formsubmit.co/info@fk94security.com" method="POST">
-                <input type="hidden" name="_subject" value="Breach Check Request">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_next" value="https://fk94security.com/vigia/tools/breach-checker.html?success=true">
-
+            <form id="breachForm" onsubmit="submitForm(event)">
                 <div class="form-group">
                     <label for="email">Email to check</label>
-                    <input type="email" id="email" name="email" placeholder="you@email.com" required>
+                    <input type="email" id="email" placeholder="you@email.com" required>
                 </div>
 
                 <div class="form-group">
                     <label for="name">Your name (optional)</label>
-                    <input type="text" id="name" name="name" placeholder="John">
+                    <input type="text" id="name" placeholder="John">
                 </div>
 
                 <button type="submit" class="btn btn-primary">
@@ -281,12 +276,19 @@
     </footer>
 
     <script>
-        // Check if returning from successful submission
-        if (window.location.search.includes('success=true')) {
+        function submitForm(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const name = document.getElementById('name').value || 'Not provided';
+
+            // Open mailto
+            const subject = encodeURIComponent('Breach Check Request');
+            const body = encodeURIComponent(`New breach check request:\n\nEmail to check: ${email}\nName: ${name}\n\nPlease check this email for breaches and respond with a report.`);
+            window.open(`mailto:info@fk94security.com?subject=${subject}&body=${body}`);
+
+            // Show success
             document.getElementById('formBox').style.display = 'none';
             document.getElementById('successMessage').classList.add('show');
-            // Clean URL
-            history.replaceState({}, '', window.location.pathname);
         }
     </script>
 </body>

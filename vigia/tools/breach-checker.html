@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Breach Checker - Was your email leaked?</title>
-    <meta name="description" content="Request a free breach check to see if your email appeared in any data breach">
+    <meta name="description" content="Check for free if your email appeared in any data breach">
     <style>
         :root {
             --bg: #0a0a0b;
@@ -14,7 +14,6 @@
             --text-muted: #71717a;
             --accent: #10b981;
             --danger: #ef4444;
-            --warning: #f59e0b;
             --border: #27272a;
         }
 
@@ -79,19 +78,13 @@
             margin-bottom: 32px;
         }
 
-        .form-group {
-            margin-bottom: 20px;
+        .input-group {
+            display: flex;
+            gap: 12px;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .form-group input {
-            width: 100%;
+        .input-group input {
+            flex: 1;
             padding: 16px 20px;
             font-size: 1rem;
             background: var(--bg);
@@ -101,16 +94,15 @@
             outline: none;
         }
 
-        .form-group input:focus {
+        .input-group input:focus {
             border-color: var(--accent);
         }
 
-        .form-group input::placeholder {
+        .input-group input::placeholder {
             color: var(--text-muted);
         }
 
         .btn {
-            width: 100%;
             padding: 16px 32px;
             font-size: 1rem;
             font-weight: 600;
@@ -128,6 +120,12 @@
         .btn-primary:hover {
             background: #059669;
             transform: translateY(-2px);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
         }
 
         .privacy-note {
@@ -167,32 +165,51 @@
             color: var(--text-muted);
         }
 
-        .success-message {
+        .loading {
             display: none;
             text-align: center;
             padding: 40px;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid var(--accent);
-            border-radius: 16px;
         }
 
-        .success-message.show {
+        .loading.show {
             display: block;
         }
 
-        .success-message .icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
         }
 
-        .success-message h2 {
-            margin-bottom: 12px;
-            color: var(--accent);
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
-        .success-message p {
+        .loading p {
             color: var(--text-secondary);
-            margin-bottom: 8px;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .cta-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
         }
 
         footer {
@@ -209,6 +226,8 @@
 
         @media (max-width: 600px) {
             .hero h1 { font-size: 1.8rem; }
+            .input-group { flex-direction: column; }
+            .btn { width: 100%; }
         }
     </style>
 </head>
@@ -221,75 +240,85 @@
         <div class="hero">
             <div class="hero-icon">🔓</div>
             <h1>Was your email <span class="danger">leaked</span>?</h1>
-            <p>Request a free breach check. We'll search multiple databases and send you a detailed report within 24 hours.</p>
+            <p>Check instantly if your email appeared in any data breach. Powered by the largest breach database.</p>
         </div>
 
         <div class="features">
             <div class="feature">
                 <div class="feature-icon">🔍</div>
-                <h3>Deep Search</h3>
-                <p>We check multiple breach databases, not just one</p>
+                <h3>700+ Breaches</h3>
+                <p>Searches across 700+ known data breaches</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">📊</div>
-                <h3>Detailed Report</h3>
-                <p>See exactly what data was exposed and where</p>
+                <div class="feature-icon">⚡</div>
+                <h3>Instant Results</h3>
+                <p>Get results in seconds, completely free</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">🛡️</div>
-                <h3>Action Plan</h3>
-                <p>Get specific steps to protect yourself</p>
+                <div class="feature-icon">🔒</div>
+                <h3>100% Private</h3>
+                <p>Your email is never stored or logged</p>
             </div>
         </div>
 
-        <div class="search-box" id="formBox">
-            <form id="breachForm" onsubmit="submitForm(event)">
-                <div class="form-group">
-                    <label for="email">Email to check</label>
-                    <input type="email" id="email" placeholder="you@email.com" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="name">Your name (optional)</label>
-                    <input type="text" id="name" placeholder="John">
-                </div>
-
-                <button type="submit" class="btn btn-primary">
-                    Request Free Check
+        <div class="search-box" id="searchBox">
+            <div class="input-group">
+                <input type="email" id="emailInput" placeholder="you@email.com" autocomplete="email">
+                <button class="btn btn-primary" id="checkBtn" onclick="checkEmail()">
+                    Check Now
                 </button>
-            </form>
+            </div>
             <p class="privacy-note">
-                🔒 Your information is only used to send you the report. We never share or sell your data.
+                🔒 We use Have I Been Pwned - the most trusted breach database
             </p>
         </div>
 
-        <div class="success-message" id="successMessage">
-            <div class="icon">✅</div>
-            <h2>Request Received!</h2>
-            <p>We'll check your email against our breach databases and send you a detailed report within 24 hours.</p>
-            <p style="margin-top: 20px; font-size: 0.9rem;">Check your inbox (and spam folder) for our response.</p>
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Searching breach databases...</p>
+            <p style="font-size: 0.85rem; margin-top: 8px;">Redirecting to results...</p>
+        </div>
+
+        <div class="cta-section">
+            <h3>Found breaches? We can help.</h3>
+            <p>Get a free consultation to secure your accounts and protect your identity.</p>
+            <a href="../../index.html#contact" class="btn btn-primary">
+                Schedule Free Consultation
+            </a>
         </div>
     </div>
 
     <footer>
-        <p>A tool by <a href="../../index.html">FK94 Security</a></p>
+        <p>Powered by <a href="https://haveibeenpwned.com" target="_blank">Have I Been Pwned</a></p>
+        <p style="margin-top: 8px;">A tool by <a href="../../index.html">FK94 Security</a></p>
     </footer>
 
     <script>
-        function submitForm(e) {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const name = document.getElementById('name').value || 'Not provided';
+        function checkEmail() {
+            const email = document.getElementById('emailInput').value.trim();
 
-            // Open mailto
-            const subject = encodeURIComponent('Breach Check Request');
-            const body = encodeURIComponent(`New breach check request:\n\nEmail to check: ${email}\nName: ${name}\n\nPlease check this email for breaches and respond with a report.`);
-            window.open(`mailto:info@fk94security.com?subject=${subject}&body=${body}`);
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email address');
+                return;
+            }
 
-            // Show success
-            document.getElementById('formBox').style.display = 'none';
-            document.getElementById('successMessage').classList.add('show');
+            // Show loading
+            document.getElementById('searchBox').style.display = 'none';
+            document.getElementById('loading').classList.add('show');
+            document.getElementById('checkBtn').disabled = true;
+
+            // Redirect to HIBP after short delay
+            setTimeout(() => {
+                window.location.href = `https://haveibeenpwned.com/account/${encodeURIComponent(email)}`;
+            }, 1500);
         }
+
+        // Enter key to submit
+        document.getElementById('emailInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkEmail();
+            }
+        });
     </script>
 </body>
 </html>

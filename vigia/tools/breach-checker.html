@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breach Checker - ¿Tu email fue filtrado?</title>
-    <meta name="description" content="Verificá gratis si tu email apareció en alguna filtración de datos">
+    <title>Breach Checker - Was your email leaked?</title>
+    <meta name="description" content="Check for free if your email appeared in any data breach">
     <style>
         :root {
             --bg: #0a0a0b;
@@ -355,20 +355,20 @@
 <body>
     <div class="container">
         <a href="../index.html" class="back-link">
-            ← Volver a Vigía
+            ← Back to Vigía
         </a>
 
         <div class="hero">
             <div class="hero-icon">🔓</div>
-            <h1>¿Tu email fue <span class="danger">filtrado</span>?</h1>
-            <p>Verificá gratis si tu email apareció en alguna filtración de datos. Millones de cuentas son expuestas cada año.</p>
+            <h1>Was your email <span class="danger">leaked</span>?</h1>
+            <p>Check for free if your email appeared in any data breach. Millions of accounts are exposed every year.</p>
         </div>
 
         <div class="search-box">
             <div class="input-group">
-                <input type="email" id="emailInput" placeholder="tu@email.com" autocomplete="email">
+                <input type="email" id="emailInput" placeholder="you@email.com" autocomplete="email">
                 <button class="btn btn-primary" id="checkBtn" onclick="checkEmail()">
-                    Verificar
+                    Check
                 </button>
             </div>
             <p class="privacy-note">
@@ -376,13 +376,13 @@
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                     <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
-                Tu email no se guarda. La búsqueda es 100% privada.
+                Your email is not stored. The search is 100% private.
             </p>
         </div>
 
         <div class="loading" id="loading">
             <div class="spinner"></div>
-            <p>Buscando en bases de datos de filtraciones...</p>
+            <p>Searching breach databases...</p>
         </div>
 
         <div class="results" id="results">
@@ -392,7 +392,7 @@
 
     <footer>
         <p>Powered by <a href="https://haveibeenpwned.com" target="_blank">Have I Been Pwned</a></p>
-        <p style="margin-top: 8px;">Una herramienta de <a href="../../index.html">FK94 Security</a></p>
+        <p style="margin-top: 8px;">A tool by <a href="../../index.html">FK94 Security</a></p>
     </footer>
 
     <script>
@@ -406,7 +406,7 @@
             const email = document.getElementById('emailInput').value.trim();
 
             if (!email || !isValidEmail(email)) {
-                alert('Por favor ingresá un email válido');
+                alert('Please enter a valid email address');
                 return;
             }
 
@@ -464,31 +464,31 @@
                     Name: "LinkedIn",
                     BreachDate: "2021-06-22",
                     DataClasses: ["Email addresses", "Passwords", "Names", "Phone numbers"],
-                    Description: "En 2021, datos de 700 millones de usuarios de LinkedIn fueron expuestos."
+                    Description: "In 2021, data from 700 million LinkedIn users was exposed."
                 },
                 {
                     Name: "Adobe",
                     BreachDate: "2013-10-04",
                     DataClasses: ["Email addresses", "Passwords", "Usernames"],
-                    Description: "En 2013, 153 millones de cuentas de Adobe fueron comprometidas."
+                    Description: "In 2013, 153 million Adobe accounts were compromised."
                 },
                 {
                     Name: "Canva",
                     BreachDate: "2019-05-24",
                     DataClasses: ["Email addresses", "Passwords", "Names", "Usernames"],
-                    Description: "En 2019, el servicio de diseño Canva sufrió una filtración de 137 millones de usuarios."
+                    Description: "In 2019, the design service Canva suffered a breach affecting 137 million users."
                 },
                 {
                     Name: "Dropbox",
                     BreachDate: "2012-07-01",
                     DataClasses: ["Email addresses", "Passwords"],
-                    Description: "En 2012, Dropbox sufrió una filtración que expuso 68 millones de cuentas."
+                    Description: "In 2012, Dropbox suffered a breach that exposed 68 million accounts."
                 },
                 {
                     Name: "Collection #1",
                     BreachDate: "2019-01-07",
                     DataClasses: ["Email addresses", "Passwords"],
-                    Description: "Una compilación masiva de credenciales filtradas de múltiples fuentes."
+                    Description: "A massive compilation of leaked credentials from multiple sources."
                 }
             ];
 
@@ -505,14 +505,14 @@
                 resultsDiv.innerHTML = `
                     <div class="results-header safe">
                         <div class="results-icon">✅</div>
-                        <h2>¡Buenas noticias!</h2>
-                        <p>No encontramos <strong>${email}</strong> en ninguna filtración conocida.</p>
+                        <h2>Good news!</h2>
+                        <p>We didn't find <strong>${email}</strong> in any known breaches.</p>
                     </div>
                     <div class="cta-section">
-                        <h3>Mantené tu seguridad</h3>
-                        <p>Aunque no encontramos filtraciones, es importante mantener buenas prácticas de seguridad.</p>
-                        <a href="../../index.html#contacto" class="btn btn-primary">
-                            Agendar consulta gratuita
+                        <h3>Stay secure</h3>
+                        <p>Even though we didn't find any breaches, it's important to maintain good security practices.</p>
+                        <a href="../../index.html#contact" class="btn btn-primary">
+                            Schedule free consultation
                         </a>
                     </div>
                 `;
@@ -528,9 +528,9 @@
                 resultsDiv.innerHTML = `
                     <div class="results-header danger">
                         <div class="results-icon">⚠️</div>
-                        <h2>Tu email fue encontrado en</h2>
+                        <h2>Your email was found in</h2>
                         <div class="breach-count">${breaches.length}</div>
-                        <p>filtraciones de datos</p>
+                        <p>data breaches</p>
                     </div>
 
                     <div class="exposed-summary">
@@ -540,7 +540,7 @@
                         </div>
                         <div class="exposed-item ${hasPhones ? 'danger' : ''}">
                             <div class="icon">${hasPhones ? '🔴' : '⚪'}</div>
-                            <div class="label">Teléfonos</div>
+                            <div class="label">Phone Numbers</div>
                         </div>
                         <div class="exposed-item danger">
                             <div class="icon">🔴</div>
@@ -548,20 +548,20 @@
                         </div>
                         <div class="exposed-item ${hasAddresses ? 'danger' : ''}">
                             <div class="icon">${hasAddresses ? '🔴' : '⚪'}</div>
-                            <div class="label">Direcciones</div>
+                            <div class="label">Addresses</div>
                         </div>
                     </div>
 
                     <div class="cta-section" style="margin-bottom: 32px;">
-                        <h3>🚨 Tu información está expuesta</h3>
-                        <p>Hackers pueden usar estos datos para robar tu identidad, acceder a tus cuentas, o hacer ataques de phishing dirigidos.</p>
-                        <a href="../../index.html#contacto" class="btn btn-primary">
-                            Agendar consulta gratuita
+                        <h3>🚨 Your information is exposed</h3>
+                        <p>Hackers can use this data to steal your identity, access your accounts, or launch targeted phishing attacks.</p>
+                        <a href="../../index.html#contact" class="btn btn-primary">
+                            Schedule free consultation
                         </a>
                     </div>
 
                     <div class="breach-list">
-                        <h3>Filtraciones encontradas:</h3>
+                        <h3>Breaches found:</h3>
                         ${breaches.map(breach => `
                             <div class="breach-item">
                                 <div class="breach-item-header">
@@ -570,7 +570,7 @@
                                 </div>
                                 <div class="breach-data">
                                     ${breach.DataClasses.map(dc => `
-                                        <span class="data-tag ${dc === 'Passwords' ? 'password' : ''}">${translateDataClass(dc)}</span>
+                                        <span class="data-tag ${dc === 'Passwords' ? 'password' : ''}">${dc}</span>
                                     `).join('')}
                                 </div>
                             </div>
@@ -578,10 +578,10 @@
                     </div>
 
                     <div class="cta-section">
-                        <h3>¿Qué deberías hacer?</h3>
-                        <p>Un experto puede ayudarte a cambiar passwords comprometidos, activar protección adicional, y revisar qué más está expuesto.</p>
-                        <a href="../../index.html#contacto" class="btn btn-primary">
-                            Hablar con un experto (gratis)
+                        <h3>What should you do?</h3>
+                        <p>An expert can help you change compromised passwords, enable additional protection, and review what else is exposed.</p>
+                        <a href="../../index.html#contact" class="btn btn-primary">
+                            Talk to an expert (free)
                         </a>
                     </div>
                 `;
@@ -596,33 +596,16 @@
             resultsDiv.innerHTML = `
                 <div class="results-header">
                     <div class="results-icon">❌</div>
-                    <h2>Error al verificar</h2>
-                    <p>Hubo un problema al verificar tu email. Por favor intentá de nuevo.</p>
+                    <h2>Error checking</h2>
+                    <p>There was a problem checking your email. Please try again.</p>
                 </div>
             `;
             resultsDiv.classList.add('show');
         }
 
-        function translateDataClass(dataClass) {
-            const translations = {
-                'Email addresses': 'Emails',
-                'Passwords': 'Contraseñas',
-                'Phone numbers': 'Teléfonos',
-                'Names': 'Nombres',
-                'Usernames': 'Usernames',
-                'Physical addresses': 'Direcciones',
-                'IP addresses': 'IPs',
-                'Dates of birth': 'Fechas de nacimiento',
-                'Credit cards': 'Tarjetas de crédito',
-                'Social security numbers': 'SSN',
-                'Bank account numbers': 'Cuentas bancarias'
-            };
-            return translations[dataClass] || dataClass;
-        }
-
         function formatDate(dateStr) {
             const date = new Date(dateStr);
-            return date.toLocaleDateString('es-AR', { year: 'numeric', month: 'short' });
+            return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
         }
 
         function isValidEmail(email) {

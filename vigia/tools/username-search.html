@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Username Search - Vigía by FK94 Security</title>
-    <meta name="description" content="Buscá un username en +30 plataformas para ver dónde existe esa cuenta. Gratis, privado, sin registro.">
+    <meta name="description" content="Search for a username across 30+ platforms to see where that account exists. Free, private, no registration.">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -342,24 +342,24 @@
                 </svg>
                 <span>VIGÍA</span>
             </a>
-            <a href="../" class="back-link">← Volver</a>
+            <a href="../" class="back-link">← Back</a>
         </header>
 
         <main>
             <div class="hero">
                 <h1>🕵️ Username <span class="accent">Search</span></h1>
-                <p>Buscá un username en +30 plataformas para ver dónde existe esa cuenta. Todo corre en tu navegador, no enviamos nada.</p>
+                <p>Search for a username across 30+ platforms to see where that account exists. Everything runs in your browser, we don't send anything.</p>
             </div>
 
             <div class="search-box">
                 <div class="input-group">
-                    <input type="text" id="username" placeholder="Ingresá un username (ej: johndoe)" autocomplete="off">
+                    <input type="text" id="username" placeholder="Enter a username (e.g. johndoe)" autocomplete="off">
                     <button class="btn" id="searchBtn" onclick="startSearch()">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="11" cy="11" r="8"/>
                             <path d="m21 21-4.35-4.35"/>
                         </svg>
-                        Buscar
+                        Search
                     </button>
                 </div>
                 <div class="progress-bar" id="progressBar">
@@ -370,15 +370,15 @@
 
             <div class="results" id="results">
                 <div class="results-header">
-                    <h2>Resultados para: <span id="searchedUsername"></span></h2>
+                    <h2>Results for: <span id="searchedUsername"></span></h2>
                     <div class="results-stats">
                         <div class="stat">
                             <div class="stat-number found" id="foundCount">0</div>
-                            <div class="stat-label">Encontrado</div>
+                            <div class="stat-label">Found</div>
                         </div>
                         <div class="stat">
                             <div class="stat-number not-found" id="notFoundCount">0</div>
-                            <div class="stat-label">No encontrado</div>
+                            <div class="stat-label">Not found</div>
                         </div>
                     </div>
                 </div>
@@ -389,7 +389,7 @@
 
         <footer>
             <div class="powered-by">
-                Creado por
+                Created by
                 <a href="https://fk94security.com">
                     <svg width="16" height="20" viewBox="0 0 24 28" fill="none">
                         <path d="M12 2L2 6V12C2 18.6 6.4 24.6 12 26C17.6 24.6 22 18.6 22 12V6L12 2Z" stroke="#10b981" stroke-width="1.5" fill="none"/>
@@ -404,7 +404,7 @@
     <script>
         // Sites to check organized by category
         const sites = {
-            'Redes Sociales': [
+            'Social Media': [
                 { name: 'Twitter/X', url: 'https://twitter.com/{username}', icon: '𝕏' },
                 { name: 'Instagram', url: 'https://instagram.com/{username}', icon: '📷' },
                 { name: 'TikTok', url: 'https://tiktok.com/@{username}', icon: '🎵' },
@@ -414,7 +414,7 @@
                 { name: 'Reddit', url: 'https://reddit.com/user/{username}', icon: '🤖' },
                 { name: 'Tumblr', url: 'https://{username}.tumblr.com', icon: '📝' },
             ],
-            'Desarrollo': [
+            'Development': [
                 { name: 'GitHub', url: 'https://github.com/{username}', icon: '🐙' },
                 { name: 'GitLab', url: 'https://gitlab.com/{username}', icon: '🦊' },
                 { name: 'Dev.to', url: 'https://dev.to/{username}', icon: '👩‍💻' },
@@ -436,7 +436,7 @@
                 { name: 'Medium', url: 'https://medium.com/@{username}', icon: '📰' },
                 { name: 'Flickr', url: 'https://flickr.com/people/{username}', icon: '📸' },
             ],
-            'Otros': [
+            'Other': [
                 { name: 'Gravatar', url: 'https://en.gravatar.com/{username}', icon: '👤' },
                 { name: 'About.me', url: 'https://about.me/{username}', icon: '🏠' },
                 { name: 'Keybase', url: 'https://keybase.io/{username}', icon: '🔐' },
@@ -458,7 +458,7 @@
         async function startSearch() {
             const username = document.getElementById('username').value.trim();
             if (!username) {
-                alert('Ingresá un username');
+                alert('Please enter a username');
                 return;
             }
 
@@ -487,7 +487,7 @@
                 for (const site of sites[category]) {
                     const url = site.url.replace('{username}', username);
 
-                    document.getElementById('statusText').textContent = `Verificando ${site.name}...`;
+                    document.getElementById('statusText').textContent = `Checking ${site.name}...`;
 
                     // We can't actually check due to CORS, so we'll just create links
                     // In a real implementation, you'd need a backend proxy
@@ -532,7 +532,7 @@
                                 <a href="${site.url}" target="_blank" rel="noopener">
                                     <span class="site-icon">${site.icon}</span>
                                     <span class="site-name">${site.name}</span>
-                                    <span class="site-status">Verificar →</span>
+                                    <span class="site-status">Check →</span>
                                 </a>
                             </div>
                         `).join('')}
@@ -551,8 +551,8 @@
             const note = document.createElement('div');
             note.style.cssText = 'text-align: center; color: var(--text-muted); margin-top: 32px; font-size: 0.9rem;';
             note.innerHTML = `
-                <p>⚠️ Por limitaciones del navegador, los links se abren para verificar manualmente.</p>
-                <p style="margin-top: 8px;">Para verificación automática, usá el <a href="../osint/username-search.sh" download style="color: var(--accent);">script de terminal</a>.</p>
+                <p>⚠️ Due to browser limitations, links open for manual verification.</p>
+                <p style="margin-top: 8px;">For automatic verification, use the <a href="../osint/username-search.sh" download style="color: var(--accent);">terminal script</a>.</p>
             `;
             container.appendChild(note);
         }

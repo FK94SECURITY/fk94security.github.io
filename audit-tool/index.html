@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,8 +69,8 @@
                         </svg>
                     </div>
                     <div>
-                        <h2>¿Tu información fue filtrada?</h2>
-                        <p>Verificamos si tus datos aparecen en hackeos conocidos</p>
+                        <h2>Was your information leaked?</h2>
+                        <p>We check if your data appears in known breaches</p>
                     </div>
                 </div>
 
@@ -79,12 +79,12 @@
                     <div class="card">
                         <h3>
                             <span class="auto-badge">AUTO</span>
-                            Verificar si tu email fue hackeado
+                            Check if your email was breached
                         </h3>
-                        <p class="card-description">Buscamos tu email en bases de datos de hackeos conocidos. Si aparece, significa que tu contraseña pudo haber sido robada.</p>
+                        <p class="card-description">We search your email in known breach databases. If it appears, your password may have been stolen.</p>
 
                         <div class="input-group">
-                            <input type="email" id="hibpEmail" placeholder="Tu email (ej: tu@email.com)" class="input">
+                            <input type="email" id="hibpEmail" placeholder="Your email (e.g. you@email.com)" class="input">
                             <button class="btn-primary" id="hibpCheckBtn">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
@@ -100,40 +100,40 @@
 
                     <!-- Manual OSINT Checks -->
                     <div class="card">
-                        <h3>Revisá qué información tuya es pública</h3>
-                        <p class="card-description">Hacé estas búsquedas para ver qué pueden encontrar otros sobre vos en internet.</p>
+                        <h3>Check what information about you is public</h3>
+                        <p class="card-description">Do these searches to see what others can find about you online.</p>
 
                         <div class="checklist">
                             <label class="check-item" data-check="osint-google">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Buscá tu nombre en Google</span>
-                                    <span class="check-desc">Poné tu nombre entre comillas: "Juan Pérez" y mirá qué aparece</span>
+                                    <span class="check-title">Search your name on Google</span>
+                                    <span class="check-desc">Put your name in quotes: "John Smith" and see what comes up</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="osint-social">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Revisá la privacidad de tus redes sociales</span>
-                                    <span class="check-desc">¿Tu perfil de LinkedIn, Facebook, Instagram es público? ¿Quién puede ver tus posts?</span>
+                                    <span class="check-title">Review your social media privacy</span>
+                                    <span class="check-desc">Is your LinkedIn, Facebook, Instagram profile public? Who can see your posts?</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="osint-usernames">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Buscá tu nombre de usuario</span>
-                                    <span class="check-desc">Si usás el mismo usuario en todos lados, es fácil conectar tus cuentas</span>
+                                    <span class="check-title">Search for your username</span>
+                                    <span class="check-desc">If you use the same username everywhere, it's easy to connect your accounts</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="osint-images">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Buscá tu foto de perfil en Google Imágenes</span>
-                                    <span class="check-desc">Arrastrá tu foto a Google Imágenes para ver dónde aparece</span>
+                                    <span class="check-title">Search your profile photo on Google Images</span>
+                                    <span class="check-desc">Drag your photo to Google Images to see where it appears</span>
                                 </div>
                             </label>
                         </div>
@@ -150,8 +150,8 @@
                         </svg>
                     </div>
                     <div>
-                        <h2>Seguridad de tu Dominio</h2>
-                        <p>Verificamos que nadie pueda enviar emails falsos usando tu nombre</p>
+                        <h2>Domain Security</h2>
+                        <p>We verify that no one can send fake emails using your name</p>
                     </div>
                 </div>
 
@@ -162,10 +162,10 @@
                             <span class="auto-badge">AUTO</span>
                             Domain Security Check
                         </h3>
-                        <p class="card-description">Verificamos si tu dominio está protegido contra hackers que podrían enviar emails falsos haciéndose pasar por vos o tu empresa.</p>
+                        <p class="card-description">We check if your domain is protected against hackers who could send fake emails impersonating you or your company.</p>
 
                         <div class="input-group">
-                            <input type="text" id="dnsDoamin" placeholder="Tu dominio (ej: tuempresa.com)" class="input">
+                            <input type="text" id="dnsDoamin" placeholder="Your domain (e.g. yourcompany.com)" class="input">
                             <button class="btn-primary" id="dnsCheckBtn">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
@@ -214,56 +214,56 @@
                         </svg>
                     </div>
                     <div>
-                        <h2>Evaluación de Riesgos</h2>
-                        <p>Entendé qué tan expuesto estás y qué deberías proteger</p>
+                        <h2>Risk Assessment</h2>
+                        <p>Understand your exposure level and what you should protect</p>
                     </div>
                 </div>
 
                 <div class="section-content">
                     <!-- Risk Questionnaire -->
                     <div class="card">
-                        <h3>Preguntas para entender tu situación</h3>
-                        <p class="card-description">Respondé estas preguntas pensando en tu caso particular.</p>
+                        <h3>Questions to understand your situation</h3>
+                        <p class="card-description">Answer these questions thinking about your specific case.</p>
 
                         <div class="checklist">
                             <label class="check-item" data-check="risk-inventory">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Hice una lista de mis cuentas importantes</span>
-                                    <span class="check-desc">Email, banco, redes sociales, servicios de trabajo, etc.</span>
+                                    <span class="check-title">I made a list of my important accounts</span>
+                                    <span class="check-desc">Email, bank, social media, work services, etc.</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="risk-threats">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Pensé quién podría querer hackearme</span>
-                                    <span class="check-desc">¿Ex pareja? ¿Competencia? ¿Hackers random buscando dinero?</span>
+                                    <span class="check-title">I thought about who might want to hack me</span>
+                                    <span class="check-desc">Ex partner? Competitors? Random hackers looking for money?</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="risk-incidents">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Anoté si ya me hackearon o casi</span>
-                                    <span class="check-desc">¿Alguna vez te robaron una cuenta? ¿Recibiste emails de accesos sospechosos?</span>
+                                    <span class="check-title">I noted if I've been hacked before (or almost)</span>
+                                    <span class="check-desc">Has anyone ever stolen your account? Received suspicious login emails?</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="risk-sensitive">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Identifiqué mi información más sensible</span>
-                                    <span class="check-desc">¿Qué pasaría si alguien accede a tus fotos, emails del trabajo, datos bancarios?</span>
+                                    <span class="check-title">I identified my most sensitive information</span>
+                                    <span class="check-desc">What would happen if someone accessed your photos, work emails, bank data?</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="risk-backup">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Sé dónde están mis backups</span>
-                                    <span class="check-desc">Si perdés el celular o la computadora, ¿tenés copia de tus fotos y archivos importantes?</span>
+                                    <span class="check-title">I know where my backups are</span>
+                                    <span class="check-desc">If you lose your phone or computer, do you have copies of your photos and important files?</span>
                                 </div>
                             </label>
                         </div>
@@ -280,56 +280,56 @@
                         </svg>
                     </div>
                     <div>
-                        <h2>Protegé tus Cuentas</h2>
-                        <p>Contraseñas fuertes y verificación en dos pasos para que no te hackeen</p>
+                        <h2>Protect Your Accounts</h2>
+                        <p>Strong passwords and two-factor authentication to prevent hacking</p>
                     </div>
                 </div>
 
                 <div class="section-content">
                     <!-- Password Manager -->
                     <div class="card">
-                        <h3>Gestor de Contraseñas</h3>
-                        <p class="card-description">Un gestor guarda todas tus contraseñas de forma segura. Solo tenés que recordar UNA contraseña maestra.</p>
+                        <h3>Password Manager</h3>
+                        <p class="card-description">A password manager stores all your passwords securely. You only need to remember ONE master password.</p>
 
                         <div class="checklist">
                             <label class="check-item" data-check="acc-pwmanager">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Instalé un gestor de contraseñas</span>
-                                    <span class="check-desc">Recomendados: 1Password, Bitwarden (gratis), o el de Apple/Google</span>
+                                    <span class="check-title">I installed a password manager</span>
+                                    <span class="check-desc">Recommended: 1Password, Bitwarden (free), or Apple/Google's built-in</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="acc-master">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Creé una contraseña maestra fuerte</span>
-                                    <span class="check-desc">Usá una frase larga tipo "MiPerroComePizza2024!" - fácil de recordar, difícil de adivinar</span>
+                                    <span class="check-title">I created a strong master password</span>
+                                    <span class="check-desc">Use a long phrase like "MyDogEatsPizza2024!" - easy to remember, hard to guess</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="acc-vault2fa">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Activé la verificación en dos pasos del gestor</span>
-                                    <span class="check-desc">Así aunque adivinen tu contraseña, necesitan tu celular para entrar</span>
+                                    <span class="check-title">I enabled 2FA on my password manager</span>
+                                    <span class="check-desc">Even if someone guesses your password, they need your phone to get in</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="acc-recovery">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Guardé los códigos de recuperación</span>
-                                    <span class="check-desc">Imprimí o anotá los códigos de emergencia en un lugar seguro (no digital)</span>
+                                    <span class="check-title">I saved my recovery codes</span>
+                                    <span class="check-desc">Print or write down emergency codes in a safe place (not digital)</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="acc-browser">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Desactivé "guardar contraseña" del navegador</span>
-                                    <span class="check-desc">Chrome y Safari guardan contraseñas, pero es menos seguro que un gestor</span>
+                                    <span class="check-title">I disabled browser password saving</span>
+                                    <span class="check-desc">Chrome and Safari save passwords, but it's less secure than a manager</span>
                                 </div>
                             </label>
                         </div>
@@ -337,48 +337,48 @@
 
                     <!-- MFA Implementation -->
                     <div class="card">
-                        <h3>Verificación en Dos Pasos (2FA)</h3>
-                        <p class="card-description">Cuando activás esto, para entrar a tu cuenta necesitás tu contraseña + un código de tu celular. Aunque alguien sepa tu contraseña, no puede entrar sin tu teléfono.</p>
+                        <h3>Two-Factor Authentication (2FA)</h3>
+                        <p class="card-description">When you enable this, logging in requires your password + a code from your phone. Even if someone knows your password, they can't get in without your phone.</p>
 
                         <div class="checklist">
                             <label class="check-item" data-check="mfa-email">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Activé 2FA en mi email principal</span>
-                                    <span class="check-desc">Gmail, Outlook, etc. - Tu email es la llave de todo, protegelo primero</span>
+                                    <span class="check-title">I enabled 2FA on my primary email</span>
+                                    <span class="check-desc">Gmail, Outlook, etc. - Your email is the key to everything, protect it first</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="mfa-financial">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Activé 2FA en cuentas de dinero</span>
-                                    <span class="check-desc">Banco, MercadoPago, PayPal, exchanges de crypto, etc.</span>
+                                    <span class="check-title">I enabled 2FA on financial accounts</span>
+                                    <span class="check-desc">Bank, PayPal, Venmo, crypto exchanges, etc.</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="mfa-social">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Activé 2FA en redes sociales</span>
-                                    <span class="check-desc">Instagram, WhatsApp, LinkedIn, Twitter - evitá que te roben la cuenta</span>
+                                    <span class="check-title">I enabled 2FA on social media</span>
+                                    <span class="check-desc">Instagram, WhatsApp, LinkedIn, Twitter - prevent account theft</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="mfa-cloud">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Activé 2FA en la nube</span>
-                                    <span class="check-desc">Google Drive, iCloud, Dropbox - donde guardás tus archivos y fotos</span>
+                                    <span class="check-title">I enabled 2FA on cloud storage</span>
+                                    <span class="check-desc">Google Drive, iCloud, Dropbox - where you store your files and photos</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="mfa-codes">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Guardé los códigos de respaldo</span>
-                                    <span class="check-desc">Si perdés el celular, estos códigos te permiten recuperar tus cuentas</span>
+                                    <span class="check-title">I saved my backup codes</span>
+                                    <span class="check-desc">If you lose your phone, these codes let you recover your accounts</span>
                                 </div>
                             </label>
                         </div>
@@ -386,31 +386,31 @@
 
                     <!-- Password Rotation -->
                     <div class="card">
-                        <h3>Contraseñas Seguras</h3>
+                        <h3>Secure Passwords</h3>
 
                         <div class="checklist">
                             <label class="check-item" data-check="cred-rotate">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Cambié las contraseñas filtradas</span>
-                                    <span class="check-desc">Si el check de arriba mostró que tu email fue hackeado, cambiá esas contraseñas</span>
+                                    <span class="check-title">I changed my leaked passwords</span>
+                                    <span class="check-desc">If the check above showed your email was breached, change those passwords</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="cred-unique">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Uso contraseñas diferentes en cada cuenta</span>
-                                    <span class="check-desc">Si usás la misma en todos lados, cuando hackean uno te hackean todo</span>
+                                    <span class="check-title">I use different passwords for each account</span>
+                                    <span class="check-desc">If you use the same one everywhere, when one gets hacked they all get hacked</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="cred-recovery">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Revisé mi email y teléfono de recuperación</span>
-                                    <span class="check-desc">¿Están actualizados? ¿Tenés acceso a ellos?</span>
+                                    <span class="check-title">I reviewed my recovery email and phone</span>
+                                    <span class="check-desc">Are they up to date? Do you have access to them?</span>
                                 </div>
                             </label>
                         </div>
@@ -427,8 +427,8 @@
                         </svg>
                     </div>
                     <div>
-                        <h2>Seguridad de tus Dispositivos</h2>
-                        <p>Configurá tu celular y computadora para que estén protegidos si los perdés o te los roban</p>
+                        <h2>Device Security</h2>
+                        <p>Configure your phone and computer to be protected if lost or stolen</p>
                     </div>
                 </div>
 
@@ -449,56 +449,56 @@
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Actualicé a la última versión de iOS</span>
-                                    <span class="check-desc">Ajustes > General > Actualización de software</span>
+                                    <span class="check-title">I updated to the latest iOS version</span>
+                                    <span class="check-desc">Settings > General > Software Update</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="ios-faceid">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Activé Face ID o Touch ID</span>
-                                    <span class="check-desc">Desbloqueo con cara o huella para que sea más seguro y rápido</span>
+                                    <span class="check-title">I enabled Face ID or Touch ID</span>
+                                    <span class="check-desc">Face or fingerprint unlock for faster and more secure access</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="ios-passcode">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Mi código tiene 6 dígitos o más</span>
-                                    <span class="check-desc">Evitá códigos obvios como 123456 o tu cumpleaños</span>
+                                    <span class="check-title">My passcode has 6+ digits</span>
+                                    <span class="check-desc">Avoid obvious codes like 123456 or your birthday</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="ios-autolock">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">La pantalla se bloquea rápido</span>
-                                    <span class="check-desc">Ajustes > Pantalla > Bloqueo automático: 1-2 minutos</span>
+                                    <span class="check-title">Screen locks quickly</span>
+                                    <span class="check-desc">Settings > Display > Auto-Lock: 1-2 minutes</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="ios-findmy">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Activé "Buscar mi iPhone"</span>
-                                    <span class="check-desc">Si te roban el celu, podés ubicarlo o borrarlo remotamente</span>
+                                    <span class="check-title">I enabled "Find My iPhone"</span>
+                                    <span class="check-desc">If your phone is stolen, you can locate or erase it remotely</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="ios-usb">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Desactivé accesorios USB con pantalla bloqueada</span>
-                                    <span class="check-desc">Evita que conecten dispositivos cuando el celu está bloqueado</span>
+                                    <span class="check-title">I disabled USB accessories when locked</span>
+                                    <span class="check-desc">Prevents devices from connecting when phone is locked</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="ios-permissions">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Revisé qué apps tienen acceso a mi ubicación/cámara/micrófono</span>
-                                    <span class="check-desc">Ajustes > Privacidad - quitá permisos a apps que no los necesitan</span>
+                                    <span class="check-title">I reviewed app permissions for location/camera/microphone</span>
+                                    <span class="check-desc">Settings > Privacy - remove permissions from apps that don't need them</span>
                                 </div>
                             </label>
                         </div>
@@ -513,48 +513,48 @@
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Actualicé macOS a la última versión</span>
-                                    <span class="check-desc">Preferencias del Sistema > General > Actualización de software</span>
+                                    <span class="check-title">I updated macOS to the latest version</span>
+                                    <span class="check-desc">System Preferences > General > Software Update</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="mac-filevault">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Activé FileVault (encriptación del disco)</span>
-                                    <span class="check-desc">Si te roban la Mac, no pueden leer tus archivos sin la contraseña</span>
+                                    <span class="check-title">I enabled FileVault (disk encryption)</span>
+                                    <span class="check-desc">If your Mac is stolen, they can't read your files without the password</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="mac-firewall">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Activé el Firewall</span>
-                                    <span class="check-desc">Preferencias del Sistema > Red > Firewall</span>
+                                    <span class="check-title">I enabled the Firewall</span>
+                                    <span class="check-desc">System Preferences > Network > Firewall</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="mac-password">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Pide contraseña inmediatamente al despertar</span>
-                                    <span class="check-desc">Preferencias del Sistema > Pantalla de bloqueo</span>
+                                    <span class="check-title">Password required immediately on wake</span>
+                                    <span class="check-desc">System Preferences > Lock Screen</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="mac-findmy">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Activé "Buscar mi Mac"</span>
-                                    <span class="check-desc">Podés ubicar o borrar tu Mac si te la roban</span>
+                                    <span class="check-title">I enabled "Find My Mac"</span>
+                                    <span class="check-desc">You can locate or erase your Mac if it's stolen</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="mac-sharing">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Desactivé servicios de compartir que no uso</span>
-                                    <span class="check-desc">Preferencias del Sistema > General > Compartir</span>
+                                    <span class="check-title">I disabled sharing services I don't use</span>
+                                    <span class="check-desc">System Preferences > General > Sharing</span>
                                 </div>
                             </label>
                         </div>
@@ -569,40 +569,40 @@
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Actualicé Windows</span>
-                                    <span class="check-desc">Configuración > Actualización y seguridad > Windows Update</span>
+                                    <span class="check-title">I updated Windows</span>
+                                    <span class="check-desc">Settings > Update & Security > Windows Update</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="win-bitlocker">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Activé BitLocker (encriptación del disco)</span>
-                                    <span class="check-desc">Si te roban la PC, no pueden leer tus archivos (solo en Windows Pro)</span>
+                                    <span class="check-title">I enabled BitLocker (disk encryption)</span>
+                                    <span class="check-desc">If your PC is stolen, they can't read your files (Windows Pro only)</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="win-hello">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Configuré Windows Hello</span>
-                                    <span class="check-desc">Desbloqueo con huella, cara o PIN seguro</span>
+                                    <span class="check-title">I configured Windows Hello</span>
+                                    <span class="check-desc">Unlock with fingerprint, face, or secure PIN</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="win-defender">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Seguridad de Windows está activa</span>
-                                    <span class="check-desc">Antivirus, Firewall y protección contra amenazas</span>
+                                    <span class="check-title">Windows Security is active</span>
+                                    <span class="check-desc">Antivirus, Firewall, and threat protection</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="win-rdp">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Desactivé Escritorio Remoto (si no lo uso)</span>
-                                    <span class="check-desc">Evita que alguien se conecte a tu PC desde internet</span>
+                                    <span class="check-title">I disabled Remote Desktop (if not using it)</span>
+                                    <span class="check-desc">Prevents someone from connecting to your PC from the internet</span>
                                 </div>
                             </label>
                         </div>
@@ -619,40 +619,40 @@
                         </svg>
                     </div>
                     <div>
-                        <h2>Protección de tu Número de Teléfono</h2>
-                        <p>Evitá que alguien robe tu número y lo use para hackear tus cuentas</p>
+                        <h2>Phone Number Protection</h2>
+                        <p>Prevent someone from stealing your number and using it to hack your accounts</p>
                     </div>
                 </div>
 
                 <div class="section-content">
                     <!-- Carrier Protection -->
                     <div class="card">
-                        <h3>Protección con tu Compañía Telefónica</h3>
-                        <p class="card-description">Llamá a tu compañía (Movistar, Claro, Personal, etc.) y pedí que activen estas protecciones.</p>
+                        <h3>Carrier Protection</h3>
+                        <p class="card-description">Call your phone carrier (Verizon, AT&T, T-Mobile, etc.) and ask them to enable these protections.</p>
 
                         <div class="checklist">
                             <label class="check-item" data-check="sim-pin">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Agregué un PIN a mi cuenta</span>
-                                    <span class="check-desc">Sin este PIN nadie puede hacer cambios en tu línea</span>
+                                    <span class="check-title">I added a PIN to my account</span>
+                                    <span class="check-desc">Without this PIN, no one can make changes to your line</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="sim-portout">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Activé protección de portabilidad</span>
-                                    <span class="check-desc">Evita que alguien transfiera tu número a otra compañía sin tu permiso</span>
+                                    <span class="check-title">I enabled port-out protection</span>
+                                    <span class="check-desc">Prevents someone from transferring your number to another carrier without permission</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="sim-notify">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Activé alertas de cambios de SIM</span>
-                                    <span class="check-desc">Te avisan si alguien intenta cambiar tu chip</span>
+                                    <span class="check-title">I enabled SIM change alerts</span>
+                                    <span class="check-desc">You'll be notified if someone tries to change your SIM card</span>
                                 </div>
                             </label>
                         </div>
@@ -660,32 +660,32 @@
 
                     <!-- SMS 2FA Migration -->
                     <div class="card">
-                        <h3>¿Por qué los SMS no son seguros?</h3>
-                        <p class="card-description">Recibir códigos por SMS es mejor que nada, pero hay formas más seguras. Si roban tu número pueden recibir tus códigos.</p>
+                        <h3>Why SMS codes aren't secure</h3>
+                        <p class="card-description">Receiving codes via SMS is better than nothing, but there are more secure options. If someone steals your number, they can receive your codes.</p>
 
                         <div class="checklist">
                             <label class="check-item" data-check="sms-audit">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Identifiqué qué cuentas me envían códigos por SMS</span>
-                                    <span class="check-desc">Banco, redes sociales, etc. - hacé una lista</span>
+                                    <span class="check-title">I identified which accounts send me SMS codes</span>
+                                    <span class="check-desc">Bank, social media, etc. - make a list</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="sms-migrate">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Cambié a una app de códigos donde se pueda</span>
-                                    <span class="check-desc">Google Authenticator, Authy o el de tu gestor de contraseñas son más seguros</span>
+                                    <span class="check-title">I switched to an authenticator app where possible</span>
+                                    <span class="check-desc">Google Authenticator, Authy, or your password manager's built-in are more secure</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="sms-document">
                                 <input type="checkbox">
                                 <span class="checkmark"></span>
                                 <div class="check-content">
-                                    <span class="check-title">Anoté cuáles siguen usando SMS</span>
-                                    <span class="check-desc">Algunos servicios solo ofrecen SMS - al menos sabé cuáles son</span>
+                                    <span class="check-title">I noted which accounts still use SMS</span>
+                                    <span class="check-desc">Some services only offer SMS - at least know which ones</span>
                                 </div>
                             </label>
                         </div>

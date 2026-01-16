@@ -391,16 +391,12 @@
     </div>
 
     <footer>
-        <p>Powered by <a href="https://haveibeenpwned.com" target="_blank">Have I Been Pwned</a></p>
+        <p>Powered by <a href="https://dehashed.com" target="_blank">Dehashed</a></p>
         <p style="margin-top: 8px;">A tool by <a href="../../index.html">FK94 Security</a></p>
     </footer>
 
     <script>
-        // Configuration - Replace with your HIBP API key
-        const HIBP_API_KEY = 'YOUR_HIBP_API_KEY'; // Get from haveibeenpwned.com/API/Key
-
-        // For demo purposes, we'll simulate results if no API key is set
-        const DEMO_MODE = HIBP_API_KEY === 'YOUR_HIBP_API_KEY';
+        const WORKER_URL = 'https://square-river-d71e.fk1994business.workers.dev/';
 
         async function checkEmail() {
             const email = document.getElementById('emailInput').value.trim();
@@ -416,17 +412,7 @@
             document.getElementById('checkBtn').disabled = true;
 
             try {
-                let breaches;
-
-                if (DEMO_MODE) {
-                    // Demo mode - simulate API response
-                    await sleep(1500);
-                    breaches = getDemoBreaches(email);
-                } else {
-                    // Real API call
-                    breaches = await fetchBreaches(email);
-                }
-
+                const breaches = await fetchBreaches(email);
                 displayResults(email, breaches);
             } catch (error) {
                 console.error('Error:', error);
@@ -438,64 +424,57 @@
         }
 
         async function fetchBreaches(email) {
-            const response = await fetch(`https://haveibeenpwned.com/api/v3/breachedaccount/${encodeURIComponent(email)}?truncateResponse=false`, {
+            const response = await fetch(WORKER_URL, {
+                method: 'POST',
                 headers: {
-                    'hibp-api-key': HIBP_API_KEY,
-                    'user-agent': 'FK94-Security-BreachChecker'
-                }
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email })
             });
-
-            if (response.status === 404) {
-                return []; // No breaches found
-            }
 
             if (!response.ok) {
                 throw new Error(`API error: ${response.status}`);
             }
 
-            return await response.json();
-        }
+            const data = await response.json();
 
-        function getDemoBreaches(email) {
-            // Demo data for testing without API key
-            // In production, remove this and use real API
-            const demoBreaches = [
-                {
-                    Name: "LinkedIn",
-                    BreachDate: "2021-06-22",
-                    DataClasses: ["Email addresses", "Passwords", "Names", "Phone numbers"],
-                    Description: "In 2021, data from 700 million LinkedIn users was exposed."
-                },
-                {
-                    Name: "Adobe",
-                    BreachDate: "2013-10-04",
-                    DataClasses: ["Email addresses", "Passwords", "Usernames"],
-                    Description: "In 2013, 153 million Adobe accounts were compromised."
-                },
-                {
-                    Name: "Canva",
-                    BreachDate: "2019-05-24",
-                    DataClasses: ["Email addresses", "Passwords", "Names", "Usernames"],
-                    Description: "In 2019, the design service Canva suffered a breach affecting 137 million users."
-                },
-                {
-                    Name: "Dropbox",
-                    BreachDate: "2012-07-01",
-                    DataClasses: ["Email addresses", "Passwords"],
-                    Description: "In 2012, Dropbox suffered a breach that exposed 68 million accounts."
-                },
-                {
-                    Name: "Collection #1",
-                    BreachDate: "2019-01-07",
-                    DataClasses: ["Email addresses", "Passwords"],
-                    Description: "A massive compilation of leaked credentials from multiple sources."
+            // Transform Dehashed response to our format
+            if (!data.entries || data.entries.length === 0) {
+                return [];
+            }
+
+            // Group by database_name to show unique breaches
+            const breachMap = new Map();
+            data.entries.forEach(entry => {
+                const dbName = entry.database_name || 'Unknown';
+                if (!breachMap.has(dbName)) {
+                    breachMap.set(dbName, {
+                        Name: dbName,
+                        BreachDate: entry.obtained_date || 'Unknown',
+                        DataClasses: new Set(),
+                        rawEntries: []
+                    });
                 }
-            ];
+                const breach = breachMap.get(dbName);
+                breach.rawEntries.push(entry);
 
-            // Return random subset based on email (for demo variety)
-            const hash = email.split('').reduce((a, b) => a + b.charCodeAt(0), 0);
-            const count = (hash % 6) + 2; // 2-7 breaches
-            return demoBreaches.slice(0, count);
+                // Detect what data was exposed
+                if (entry.email) breach.DataClasses.add('Email addresses');
+                if (entry.password) breach.DataClasses.add('Passwords');
+                if (entry.hashed_password) breach.DataClasses.add('Hashed passwords');
+                if (entry.username) breach.DataClasses.add('Usernames');
+                if (entry.name) breach.DataClasses.add('Names');
+                if (entry.phone) breach.DataClasses.add('Phone numbers');
+                if (entry.ip_address) breach.DataClasses.add('IP addresses');
+                if (entry.address) breach.DataClasses.add('Physical addresses');
+            });
+
+            // Convert to array format
+            return Array.from(breachMap.values()).map(b => ({
+                Name: b.Name,
+                BreachDate: b.BreachDate,
+                DataClasses: Array.from(b.DataClasses)
+            }));
         }
 
         function displayResults(email, breaches) {

@@ -1,197 +1,189 @@
 # FK94 Security - Hardening Scripts
 
-Automated scripts to fortify operating system security.
+[![macOS](https://img.shields.io/badge/macOS-11%2B-blue?logo=apple)](./macos/)
+[![Windows](https://img.shields.io/badge/Windows-10%2F11-blue?logo=windows)](./windows/)
+[![CIS Benchmark](https://img.shields.io/badge/CIS-Compliant-brightgreen)](https://www.cisecurity.org/)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](../LICENSE)
 
-## Contents
+Comprehensive security hardening toolkits for macOS and Windows, based on CIS Benchmarks and industry best practices.
 
-```
-scripts/
-├── macos/
-│   ├── harden-macos.sh          # Hardening script
-│   └── FACTORY-RESET-MACOS.md   # Factory reset guide
-├── windows/
-│   ├── harden-windows.ps1       # Hardening script (PowerShell)
-│   └── FACTORY-RESET-WINDOWS.md # Factory reset guide
-├── linux/
-│   ├── harden-linux.sh          # Hardening script
-│   └── FACTORY-RESET-LINUX.md   # Factory reset guide
-└── README.md
-```
+## Features
 
----
+- **Three Security Profiles**: Basic, Recommended, Paranoid
+- **Dry-Run Mode**: Preview changes before applying
+- **Audit Mode**: Check security without making changes
+- **Modular Design**: Run specific security modules
+- **CIS Compliance**: Based on industry security benchmarks
+- **Interactive & Non-Interactive**: Flexible usage options
 
-## macOS
+## Quick Start
 
-### Hardening Script
+### macOS
 
 ```bash
-# Grant execution permissions
-chmod +x harden-macos.sh
+cd scripts/macos
+chmod +x main.sh
 
-# Run (requires sudo)
-sudo ./harden-macos.sh           # Interactive mode
-sudo ./harden-macos.sh --audit   # Audit only (doesn't modify anything)
-sudo ./harden-macos.sh --all     # Apply all without prompts
+# Run with default (recommended) profile
+./main.sh
+
+# Audit only (no changes)
+./main.sh --audit
+
+# Preview changes (dry-run)
+./main.sh --dry-run
 ```
 
-#### Included modules:
-
-| Module | Description |
-|--------|-------------|
-| FileVault | Enables disk encryption |
-| Firewall | Configures firewall and stealth mode |
-| Gatekeeper | Verifies app protection |
-| SIP | Verifies System Integrity Protection |
-| Lock Screen | Configures lock screen security |
-| Services | Disables unnecessary services (SSH, Remote Events) |
-| Privacy | Reduces telemetry and tracking |
-| Safari | Browser hardening |
-| Finder | Shows extensions, warnings |
-| Updates | Configures automatic updates |
-
----
-
-## Windows
-
-### Hardening Script
+### Windows
 
 ```powershell
 # Run PowerShell as Administrator
+cd scripts\windows
 
-# Allow script execution
-Set-ExecutionPolicy Bypass -Scope Process
+# Run with default (recommended) profile
+.\main.ps1
 
-# Run
-.\harden-windows.ps1           # Interactive mode
-.\harden-windows.ps1 -Audit    # Audit only
-.\harden-windows.ps1 -All      # Apply all
+# Audit only (no changes)
+.\main.ps1 -AuditOnly
+
+# Preview changes (dry-run)
+.\main.ps1 -DryRun
 ```
 
-#### Included modules:
+## Directory Structure
+
+```
+scripts/
+├── README.md           # This file
+├── macos/
+│   ├── main.sh         # Main entry point
+│   ├── README.md       # macOS documentation
+│   ├── config/         # Profile configurations
+│   ├── modules/        # Security modules
+│   ├── checks/         # Audit & compliance
+│   └── utils/          # Helper functions
+└── windows/
+    ├── main.ps1        # Main entry point
+    ├── README.md       # Windows documentation
+    ├── modules/        # Security modules (PowerShell)
+    └── utils/          # Helper functions
+```
+
+## Security Profiles
+
+| Profile | Description | Use Case |
+|---------|-------------|----------|
+| **Basic** | Essential protections, maximum compatibility | Users who need app compatibility |
+| **Recommended** | Balanced security and usability | Most users (default) |
+| **Paranoid** | Maximum security, may affect functionality | High-risk individuals |
+
+## Modules
+
+### macOS Modules
 
 | Module | Description |
 |--------|-------------|
-| Windows Defender | Configures antivirus and protections |
-| Firewall | Enables firewall on all profiles |
-| UAC | Configures User Account Control |
-| BitLocker | Verifies disk encryption |
-| Services | Disables unnecessary services |
-| Privacy | Reduces telemetry, ads, tracking |
-| Network | Disables SMBv1, LLMNR, NetBIOS |
-| Windows Update | Configures automatic updates |
-| PowerShell | Enables script logging |
+| `system` | FileVault, Gatekeeper, SIP, Updates, Kernel |
+| `network` | Firewall, Sharing, SSH, IPv6 |
+| `access` | Lock screen, Login, Guest account, Sudo |
+| `privacy` | Analytics, Siri, Safari, Finder, Spotlight |
+| `lockdown` | Lockdown Mode, USB, Bluetooth, Firmware |
 
----
+### Windows Modules
 
-## Linux
+| Module | Description |
+|--------|-------------|
+| `system` | Defender, BitLocker, UAC, Updates, Secure Boot |
+| `network` | Firewall, Remote Desktop, SMB, Services |
+| `access` | Guest, Auto-login, Password policy, Lock screen |
+| `privacy` | Telemetry, Cortana, Advertising, Location |
 
-### Hardening Script
+## Usage Examples
+
+### Run Specific Modules
 
 ```bash
-# Grant execution permissions
-chmod +x harden-linux.sh
+# macOS - only system and network
+./main.sh --modules system,network
 
-# Run (requires sudo)
-sudo ./harden-linux.sh           # Interactive mode
-sudo ./harden-linux.sh --audit   # Audit only
-sudo ./harden-linux.sh --all     # Apply all
+# Windows - only system and privacy
+.\main.ps1 -Modules system,privacy
 ```
 
-#### Supported distributions:
-- Ubuntu / Debian
-- Fedora / CentOS / RHEL
-- Arch Linux
+### Different Profiles
 
-#### Included modules:
+```bash
+# macOS - paranoid mode
+./main.sh --profile paranoid
 
-| Module | Description |
-|--------|-------------|
-| Updates | Installs pending updates |
-| Firewall | Configures UFW or firewalld |
-| SSH | SSH configuration hardening |
-| Permissions | Verifies critical file permissions |
-| Kernel | Configures sysctl for security |
-| Services | Disables unnecessary services |
-| Auditd | Enables audit system |
-| Passwords | Configures password policy |
-| Fail2ban | Brute force protection |
+# Windows - basic mode
+.\main.ps1 -Profile basic
+```
 
----
+### Audit & Compliance
 
-## Factory Reset Guides
+```bash
+# macOS - CIS benchmark check
+./checks/audit.sh cis
 
-Each directory includes a detailed guide for system factory reset:
+# macOS - Generate full audit report
+./checks/audit.sh full
+```
 
-- [Factory Reset macOS](macos/FACTORY-RESET-MACOS.md)
-- [Factory Reset Windows](windows/FACTORY-RESET-WINDOWS.md)
-- [Factory Reset Linux](linux/FACTORY-RESET-LINUX.md)
+## Recommended Workflow
 
-Use these guides when:
-- Suspected compromise or malware
-- Selling or transferring the device
-- Want to start with a clean and secure installation
-
----
-
-## Recommended Usage
-
-### For FK94 Security Clients
-
-1. **First:** Run in audit mode to see current status
+1. **Audit First** - Run in audit mode to understand current security posture
    ```bash
-   sudo ./harden-[os].sh --audit
+   ./main.sh --audit          # macOS
+   .\main.ps1 -AuditOnly      # Windows
    ```
 
-2. **Review:** Analyze the generated report with the client
-
-3. **Apply:** Run necessary modules interactively
+2. **Preview Changes** - Use dry-run to see what would be modified
    ```bash
-   sudo ./harden-[os].sh
+   ./main.sh --dry-run        # macOS
+   .\main.ps1 -DryRun         # Windows
    ```
 
-4. **Document:** Save the logs generated on Desktop
+3. **Apply Changes** - Run interactively to apply with confirmation
+   ```bash
+   ./main.sh                  # macOS
+   .\main.ps1                 # Windows
+   ```
 
-### For Personal Use
+4. **Document** - Save the generated logs and reports
 
-Run the script in interactive mode and answer each question according to your needs.
+## Requirements
 
----
+### macOS
+- macOS 11 (Big Sur) or later
+- Administrator access for some settings
+- Terminal.app or compatible terminal
 
-## Output and Logs
+### Windows
+- Windows 10 1809+ or Windows 11
+- PowerShell 5.1 or later
+- Administrator privileges
 
-The scripts generate:
+## Documentation
 
-1. **Log file:** `~/Desktop/[os]_hardening_[timestamp].log`
-   - Record of all actions taken
+- [macOS Hardening Guide](./macos/README.md)
+- [Windows Hardening Guide](./windows/README.md)
 
-2. **Audit report:** `~/Desktop/security_audit_[timestamp].txt`
-   - Security status summary (--audit mode)
+## References
 
----
-
-## Warnings
-
-- **Backup before running** - Some changes may affect functionality
-- **Read what each module does** - Don't apply blindly
-- **Test in a test environment first** - If possible
-- **Some changes require restart** - To fully apply
-
----
+- [CIS Benchmark - macOS](https://www.cisecurity.org/benchmark/apple_os)
+- [CIS Benchmark - Windows](https://www.cisecurity.org/benchmark/microsoft_windows_desktop)
+- [Apple Platform Security Guide](https://support.apple.com/guide/security/welcome/web)
+- [Microsoft Security Baselines](https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-security-baselines)
 
 ## Contributing
 
-If you find bugs or want to add functionality:
-
-1. Fork the repository
-2. Create a branch for your feature
-3. Pull request with clear description
-
----
+Contributions are welcome! Please read our contributing guidelines and submit pull requests.
 
 ## License
 
-MIT License - See LICENSE in the main repository
+MIT License - See [LICENSE](../LICENSE) for details.
 
 ---
 
-*FK94 Security - https://github.com/fk94security/fk94_security*
+**FK94 Security** | [Website](https://fk94security.com) | [GitHub](https://github.com/fk94security)

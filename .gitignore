@@ -59,5 +59,8 @@ INSTRUCCIONES_GITHUB.md
 # Templates internos de trabajo
 templates/REPORTE_AUDITORIA.md
 
+# Contexto para Claude (interno)
+CLAUDE_CONTEXT.md
+
 # Procedimientos operativos internos
 docs/procedures/

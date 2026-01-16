@@ -1,0 +1,2135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Policy Generator - FK94 Security</title>
+    <meta name="description" content="Generate professional security policies for free. Incident Response, Access Control, Remote Work, BYOD and more. 100% private - your data never leaves your browser.">
+    <style>
+        :root {
+            --bg: #0a0a0b;
+            --bg-card: #18181b;
+            --bg-hover: #1f1f23;
+            --text: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent: #10b981;
+            --accent-dim: rgba(16, 185, 129, 0.1);
+            --border: #27272a;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover { color: var(--accent); }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span { color: var(--accent); }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+
+        .privacy-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent-dim);
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+
+        /* Policy Cards Grid */
+        .policies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .policy-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .policy-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .policy-card.selected {
+            border-color: var(--accent);
+            background: var(--accent-dim);
+        }
+
+        .policy-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .policy-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .policy-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .policy-tag {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 4px 10px;
+            background: var(--bg);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Wizard Section */
+        .wizard-section {
+            display: none;
+        }
+
+        .wizard-section.active {
+            display: block;
+        }
+
+        .wizard-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .wizard-progress::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--border);
+            z-index: 0;
+        }
+
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .progress-step.active .step-number {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg);
+        }
+
+        .progress-step.completed .step-number {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--bg);
+        }
+
+        .step-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .progress-step.active .step-label {
+            color: var(--accent);
+        }
+
+        /* Form Elements */
+        .form-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .form-card h2 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .form-card > p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--accent);
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-group small {
+            display: block;
+            margin-top: 6px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* Checkbox/Radio Options */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-item:hover {
+            border-color: var(--text-muted);
+        }
+
+        .option-item.selected {
+            border-color: var(--accent);
+            background: var(--accent-dim);
+        }
+
+        .option-item input {
+            display: none;
+        }
+
+        .option-check {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .option-item.selected .option-check {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .option-item.selected .option-check::after {
+            content: '✓';
+            color: var(--bg);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        .btn-primary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-hover);
+        }
+
+        .btn-large {
+            padding: 18px 40px;
+            font-size: 1.1rem;
+        }
+
+        .buttons-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        /* Preview Section */
+        .preview-container {
+            background: white;
+            color: #1a1a1a;
+            border-radius: 12px;
+            padding: 48px;
+            margin-bottom: 24px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .preview-container h1 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+
+        .preview-container h2 {
+            font-size: 1.3rem;
+            margin: 24px 0 12px;
+            color: #1a1a1a;
+            border-bottom: 1px solid #e5e5e5;
+            padding-bottom: 8px;
+        }
+
+        .preview-container p {
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .preview-container ul {
+            margin: 12px 0 12px 24px;
+            color: #333;
+        }
+
+        .preview-container li {
+            margin-bottom: 6px;
+        }
+
+        .preview-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .company-logo-preview {
+            max-height: 60px;
+            margin-bottom: 16px;
+        }
+
+        /* Download Options */
+        .download-options {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            padding: 24px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--accent-dim), transparent);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
+            .wizard-progress { flex-wrap: wrap; gap: 16px; }
+            .wizard-progress::before { display: none; }
+            .buttons-row { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .preview-container { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">📋</div>
+                <span>PolicyEngine</span>
+            </a>
+            <a href="../index.html" class="back-link">← Back to FK94 Security</a>
+        </header>
+
+        <!-- STEP 0: Policy Selection -->
+        <section id="step-select" class="wizard-section active">
+            <div class="hero">
+                <h1>Security <span>Policy Generator</span></h1>
+                <p>Create professional, compliance-ready security policies in minutes. Customized for your organization, completely free.</p>
+                <div class="privacy-badge">
+                    🔒 100% Private - Your data never leaves your browser
+                </div>
+            </div>
+
+            <h2 style="margin-bottom: 24px; text-align: center;">Select a policy to generate:</h2>
+
+            <div class="policies-grid" id="policiesGrid">
+                <div class="policy-card" data-policy="incident-response">
+                    <div class="policy-icon">🚨</div>
+                    <h3>Incident Response Policy</h3>
+                    <p>Define how your organization detects, responds to, and recovers from security incidents.</p>
+                    <span class="policy-tag">ISO 27001 • NIST</span>
+                </div>
+
+                <div class="policy-card" data-policy="access-control">
+                    <div class="policy-icon">🔐</div>
+                    <h3>Access Control Policy</h3>
+                    <p>Establish rules for granting, managing, and revoking access to systems and data.</p>
+                    <span class="policy-tag">SOC2 • GDPR</span>
+                </div>
+
+                <div class="policy-card" data-policy="remote-work">
+                    <div class="policy-icon">🏠</div>
+                    <h3>Remote Work Policy</h3>
+                    <p>Security guidelines for employees working from home or outside the office.</p>
+                    <span class="policy-tag">Post-COVID Essential</span>
+                </div>
+
+                <div class="policy-card" data-policy="byod">
+                    <div class="policy-icon">📱</div>
+                    <h3>BYOD Policy</h3>
+                    <p>Rules for using personal devices (phones, laptops) to access company resources.</p>
+                    <span class="policy-tag">Mobile Security</span>
+                </div>
+
+                <div class="policy-card" data-policy="password">
+                    <div class="policy-icon">🔑</div>
+                    <h3>Password Policy</h3>
+                    <p>Requirements for creating, managing, and protecting passwords across the organization.</p>
+                    <span class="policy-tag">NIST 800-63B</span>
+                </div>
+
+                <div class="policy-card" data-policy="data-classification">
+                    <div class="policy-icon">🏷️</div>
+                    <h3>Data Classification Policy</h3>
+                    <p>How to categorize and handle different types of information based on sensitivity.</p>
+                    <span class="policy-tag">Compliance Required</span>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h3>Need a custom policy?</h3>
+                <p>Our security consultants can create tailored policies for your specific industry and compliance requirements.</p>
+                <a href="../index.html#contact" class="btn btn-primary">Contact Us</a>
+            </div>
+        </section>
+
+        <!-- STEP 1: Company Information -->
+        <section id="step-company" class="wizard-section">
+            <div class="wizard-progress">
+                <div class="progress-step active">
+                    <div class="step-number">1</div>
+                    <span class="step-label">Company</span>
+                </div>
+                <div class="progress-step">
+                    <div class="step-number">2</div>
+                    <span class="step-label">Questions</span>
+                </div>
+                <div class="progress-step">
+                    <div class="step-number">3</div>
+                    <span class="step-label">Preview</span>
+                </div>
+                <div class="progress-step">
+                    <div class="step-number">4</div>
+                    <span class="step-label">Download</span>
+                </div>
+            </div>
+
+            <div class="form-card">
+                <h2>Company Information</h2>
+                <p>This information will be used to customize your policy document.</p>
+
+                <div class="form-group">
+                    <label for="companyName">Company Name *</label>
+                    <input type="text" id="companyName" placeholder="Acme Corporation" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="industry">Industry</label>
+                    <select id="industry">
+                        <option value="">Select your industry...</option>
+                        <option value="technology">Technology / Software</option>
+                        <option value="finance">Finance / Banking</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="retail">Retail / E-commerce</option>
+                        <option value="manufacturing">Manufacturing</option>
+                        <option value="legal">Legal Services</option>
+                        <option value="education">Education</option>
+                        <option value="government">Government</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="companySize">Company Size</label>
+                    <select id="companySize">
+                        <option value="small">1-50 employees</option>
+                        <option value="medium">51-200 employees</option>
+                        <option value="large">201-1000 employees</option>
+                        <option value="enterprise">1000+ employees</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="policyOwner">Policy Owner / Approver</label>
+                    <input type="text" id="policyOwner" placeholder="John Smith, CISO">
+                    <small>The person responsible for this policy</small>
+                </div>
+            </div>
+
+            <div class="buttons-row">
+                <button class="btn btn-secondary" onclick="goToStep('select')">← Back</button>
+                <button class="btn btn-primary" onclick="goToStep('questions')">Continue →</button>
+            </div>
+        </section>
+
+        <!-- STEP 2: Policy Questions -->
+        <section id="step-questions" class="wizard-section">
+            <div class="wizard-progress">
+                <div class="progress-step completed">
+                    <div class="step-number">1</div>
+                    <span class="step-label">Company</span>
+                </div>
+                <div class="progress-step active">
+                    <div class="step-number">2</div>
+                    <span class="step-label">Questions</span>
+                </div>
+                <div class="progress-step">
+                    <div class="step-number">3</div>
+                    <span class="step-label">Preview</span>
+                </div>
+                <div class="progress-step">
+                    <div class="step-number">4</div>
+                    <span class="step-label">Download</span>
+                </div>
+            </div>
+
+            <div id="questionsContainer">
+                <!-- Questions will be dynamically loaded based on selected policy -->
+            </div>
+
+            <div class="buttons-row">
+                <button class="btn btn-secondary" onclick="goToStep('company')">← Back</button>
+                <button class="btn btn-primary" onclick="generatePreview()">Generate Policy →</button>
+            </div>
+        </section>
+
+        <!-- STEP 3: Preview -->
+        <section id="step-preview" class="wizard-section">
+            <div class="wizard-progress">
+                <div class="progress-step completed">
+                    <div class="step-number">1</div>
+                    <span class="step-label">Company</span>
+                </div>
+                <div class="progress-step completed">
+                    <div class="step-number">2</div>
+                    <span class="step-label">Questions</span>
+                </div>
+                <div class="progress-step active">
+                    <div class="step-number">3</div>
+                    <span class="step-label">Preview</span>
+                </div>
+                <div class="progress-step">
+                    <div class="step-number">4</div>
+                    <span class="step-label">Download</span>
+                </div>
+            </div>
+
+            <div class="form-card">
+                <h2>Preview Your Policy</h2>
+                <p>Review the generated policy before downloading.</p>
+
+                <div class="preview-container" id="policyPreview">
+                    <!-- Policy preview will be generated here -->
+                </div>
+            </div>
+
+            <div class="buttons-row">
+                <button class="btn btn-secondary" onclick="goToStep('questions')">← Edit Answers</button>
+                <button class="btn btn-primary btn-large" onclick="goToStep('download')">Looks Good! →</button>
+            </div>
+        </section>
+
+        <!-- STEP 4: Download -->
+        <section id="step-download" class="wizard-section">
+            <div class="wizard-progress">
+                <div class="progress-step completed">
+                    <div class="step-number">1</div>
+                    <span class="step-label">Company</span>
+                </div>
+                <div class="progress-step completed">
+                    <div class="step-number">2</div>
+                    <span class="step-label">Questions</span>
+                </div>
+                <div class="progress-step completed">
+                    <div class="step-number">3</div>
+                    <span class="step-label">Preview</span>
+                </div>
+                <div class="progress-step active">
+                    <div class="step-number">4</div>
+                    <span class="step-label">Download</span>
+                </div>
+            </div>
+
+            <div class="form-card" style="text-align: center;">
+                <div style="font-size: 4rem; margin-bottom: 20px;">✅</div>
+                <h2>Your Policy is Ready!</h2>
+                <p style="margin-bottom: 32px;">Download your customized security policy document.</p>
+
+                <div class="download-options">
+                    <button class="btn btn-primary btn-large" onclick="downloadAsText()">
+                        📄 Download as TXT
+                    </button>
+                    <button class="btn btn-secondary btn-large" onclick="copyToClipboard()">
+                        📋 Copy to Clipboard
+                    </button>
+                </div>
+
+                <p style="margin-top: 24px; color: var(--text-muted); font-size: 0.85rem;">
+                    Tip: Open the TXT file in Word or Google Docs to format and add your company branding.
+                </p>
+            </div>
+
+            <div class="cta-section">
+                <h3>Need help implementing this policy?</h3>
+                <p>Our consultants can help you deploy, train staff, and ensure compliance. Get a free 30-minute consultation.</p>
+                <a href="../index.html#contact" class="btn btn-primary">Schedule Free Consultation</a>
+            </div>
+
+            <div style="text-align: center; margin-top: 24px;">
+                <button class="btn btn-secondary" onclick="startOver()">← Create Another Policy</button>
+            </div>
+        </section>
+
+        <footer>
+            <p>Generated with <a href="../index.html">FK94 Security</a> PolicyEngine</p>
+            <p style="margin-top: 8px;">Your data stays in your browser. We never see or store your information.</p>
+        </footer>
+    </div>
+
+    <script>
+        // State
+        let selectedPolicy = null;
+        let companyData = {};
+        let answers = {};
+        let generatedPolicy = '';
+
+        // Policy Templates
+        const policyTemplates = {
+            'incident-response': {
+                name: 'Incident Response Policy',
+                questions: [
+                    {
+                        id: 'ir_team',
+                        question: 'Do you have a dedicated incident response team?',
+                        type: 'choice',
+                        options: ['Yes, dedicated team', 'Part-time / shared responsibility', 'No, but planning to create one', 'Outsourced to third party']
+                    },
+                    {
+                        id: 'ir_contact',
+                        question: 'Who is the primary contact for security incidents?',
+                        type: 'text',
+                        placeholder: 'e.g., IT Manager, Security Team, security@company.com'
+                    },
+                    {
+                        id: 'ir_severity',
+                        question: 'What severity levels do you want to define?',
+                        type: 'multi',
+                        options: ['Critical (business stopping)', 'High (significant impact)', 'Medium (limited impact)', 'Low (minor issue)']
+                    },
+                    {
+                        id: 'ir_notify',
+                        question: 'Who should be notified during a critical incident?',
+                        type: 'multi',
+                        options: ['CEO / Executive Team', 'Legal Department', 'PR / Communications', 'IT Department', 'HR Department', 'External Counsel', 'Cyber Insurance Provider']
+                    },
+                    {
+                        id: 'ir_retention',
+                        question: 'How long should incident records be retained?',
+                        type: 'choice',
+                        options: ['1 year', '3 years', '5 years', '7 years', 'Indefinitely']
+                    }
+                ],
+                generate: function(company, answers) {
+                    return `
+${company.name.toUpperCase()}
+INCIDENT RESPONSE POLICY
+
+Document Control
+Version: 1.0
+Effective Date: ${new Date().toLocaleDateString()}
+Policy Owner: ${company.policyOwner || 'Information Security'}
+Last Review: ${new Date().toLocaleDateString()}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. PURPOSE
+
+This policy establishes the framework for detecting, responding to, and recovering from information security incidents at ${company.name}. The goal is to minimize damage, reduce recovery time, and prevent future incidents.
+
+2. SCOPE
+
+This policy applies to:
+• All employees, contractors, and third parties with access to ${company.name} systems
+• All information systems, networks, and data owned or managed by ${company.name}
+• All locations where ${company.name} business is conducted
+
+3. INCIDENT RESPONSE TEAM
+
+${answers.ir_team === 'Yes, dedicated team' ? `${company.name} maintains a dedicated Incident Response Team (IRT) responsible for coordinating all security incident activities.` : answers.ir_team === 'Outsourced to third party' ? `${company.name} utilizes a third-party incident response provider for security incident management, with internal coordination through designated staff.` : `Security incident response responsibilities are shared among designated personnel within ${company.name}.`}
+
+Primary Contact: ${answers.ir_contact || '[To be designated]'}
+
+4. INCIDENT SEVERITY LEVELS
+
+${answers.ir_severity?.includes('Critical (business stopping)') ? `CRITICAL (Severity 1)
+• Business operations are stopped or severely impacted
+• Confirmed data breach involving sensitive information
+• Active attack in progress
+• Response time: Immediate (within 15 minutes)
+` : ''}
+${answers.ir_severity?.includes('High (significant impact)') ? `HIGH (Severity 2)
+• Significant system compromise
+• Potential data exposure
+• Multiple users affected
+• Response time: Within 1 hour
+` : ''}
+${answers.ir_severity?.includes('Medium (limited impact)') ? `MEDIUM (Severity 3)
+• Limited system impact
+• Single user or system affected
+• No confirmed data exposure
+• Response time: Within 4 hours
+` : ''}
+${answers.ir_severity?.includes('Low (minor issue)') ? `LOW (Severity 4)
+• Minor security event
+• No business impact
+• Informational alerts
+• Response time: Within 24 hours
+` : ''}
+
+5. INCIDENT RESPONSE PHASES
+
+5.1 Preparation
+• Maintain incident response procedures and contact lists
+• Conduct regular training and tabletop exercises
+• Ensure logging and monitoring systems are operational
+
+5.2 Detection & Analysis
+• Monitor security alerts and user reports
+• Analyze and validate potential incidents
+• Determine scope and severity
+
+5.3 Containment
+• Implement immediate containment measures
+• Preserve evidence for investigation
+• Prevent further damage
+
+5.4 Eradication
+• Remove threat actors and malware
+• Patch vulnerabilities
+• Reset compromised credentials
+
+5.5 Recovery
+• Restore systems from clean backups
+• Verify system integrity
+• Monitor for re-infection
+
+5.6 Post-Incident
+• Document lessons learned
+• Update procedures as needed
+• Brief stakeholders
+
+6. NOTIFICATION REQUIREMENTS
+
+During a Critical or High severity incident, the following parties must be notified:
+${answers.ir_notify?.map(n => `• ${n}`).join('\n') || '• Executive Management\n• IT Department'}
+
+External notifications (regulators, customers) will be coordinated through Legal and Communications teams as required by law and contractual obligations.
+
+7. EVIDENCE HANDLING
+
+All evidence related to security incidents must be:
+• Collected using forensically sound methods
+• Documented with chain of custody
+• Stored securely with restricted access
+• Retained for ${answers.ir_retention || '3 years'}
+
+8. REPORTING
+
+All employees must report suspected security incidents immediately to:
+${answers.ir_contact || 'IT Security Team'}
+
+Reports should include:
+• Description of the incident
+• Systems or data affected
+• Time the incident was discovered
+• Any actions already taken
+
+9. COMPLIANCE
+
+This policy supports compliance with:
+• Industry regulations (GDPR, HIPAA, PCI-DSS as applicable)
+• Contractual obligations
+• ${company.name} information security standards
+
+10. POLICY REVIEW
+
+This policy will be reviewed annually or after any significant incident.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Generated with FK94 Security PolicyEngine
+https://fk94security.com/policy-engine
+                    `.trim();
+                }
+            },
+
+            'password': {
+                name: 'Password Policy',
+                questions: [
+                    {
+                        id: 'pw_length',
+                        question: 'Minimum password length requirement?',
+                        type: 'choice',
+                        options: ['8 characters', '12 characters (recommended)', '14 characters', '16+ characters']
+                    },
+                    {
+                        id: 'pw_complexity',
+                        question: 'Password complexity requirements?',
+                        type: 'multi',
+                        options: ['Uppercase letters', 'Lowercase letters', 'Numbers', 'Special characters', 'No complexity (passphrase encouraged)']
+                    },
+                    {
+                        id: 'pw_expiry',
+                        question: 'Password expiration policy?',
+                        type: 'choice',
+                        options: ['30 days', '60 days', '90 days', 'No expiration (NIST recommended)', 'Only on suspected compromise']
+                    },
+                    {
+                        id: 'pw_history',
+                        question: 'Password history (prevent reuse)?',
+                        type: 'choice',
+                        options: ['Last 5 passwords', 'Last 10 passwords', 'Last 24 passwords', 'No history requirement']
+                    },
+                    {
+                        id: 'pw_mfa',
+                        question: 'Multi-Factor Authentication (MFA) requirements?',
+                        type: 'multi',
+                        options: ['Required for all users', 'Required for privileged accounts only', 'Required for remote access', 'Required for sensitive systems', 'Optional']
+                    },
+                    {
+                        id: 'pw_manager',
+                        question: 'Password manager policy?',
+                        type: 'choice',
+                        options: ['Required for all employees', 'Recommended and provided', 'Allowed but not required', 'Not addressed']
+                    }
+                ],
+                generate: function(company, answers) {
+                    const minLength = answers.pw_length?.replace(' characters', '').replace(' (recommended)', '') || '12';
+                    return `
+${company.name.toUpperCase()}
+PASSWORD POLICY
+
+Document Control
+Version: 1.0
+Effective Date: ${new Date().toLocaleDateString()}
+Policy Owner: ${company.policyOwner || 'Information Security'}
+Last Review: ${new Date().toLocaleDateString()}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. PURPOSE
+
+This policy establishes requirements for creating, using, and protecting passwords at ${company.name} to prevent unauthorized access to company systems and data.
+
+2. SCOPE
+
+This policy applies to all passwords used to access ${company.name} systems, including:
+• Network and system accounts
+• Email and collaboration tools
+• Business applications
+• Remote access and VPN
+• Cloud services
+
+3. PASSWORD REQUIREMENTS
+
+3.1 Minimum Length
+All passwords must be at least ${minLength} characters long.
+
+3.2 Complexity Requirements
+${answers.pw_complexity?.includes('No complexity (passphrase encouraged)') ?
+`Passphrases are encouraged over complex passwords. A passphrase should:
+• Be at least ${minLength} characters
+• Consist of multiple words
+• Be unique and not easily guessable
+• Example format: "correct-horse-battery-staple"` :
+`Passwords must contain at least three of the following:
+${answers.pw_complexity?.includes('Uppercase letters') ? '• Uppercase letters (A-Z)' : ''}
+${answers.pw_complexity?.includes('Lowercase letters') ? '• Lowercase letters (a-z)' : ''}
+${answers.pw_complexity?.includes('Numbers') ? '• Numbers (0-9)' : ''}
+${answers.pw_complexity?.includes('Special characters') ? '• Special characters (!@#$%^&*)' : ''}`}
+
+3.3 Password Expiration
+${answers.pw_expiry === 'No expiration (NIST recommended)' ?
+`Per NIST 800-63B guidelines, passwords do not expire on a regular schedule. Passwords must be changed only when:
+• There is evidence of compromise
+• User requests a change
+• Security incident involving the account` :
+answers.pw_expiry === 'Only on suspected compromise' ?
+`Passwords must be changed when there is evidence or suspicion of compromise. Regular expiration is not required.` :
+`Passwords must be changed every ${answers.pw_expiry || '90 days'}.`}
+
+3.4 Password History
+${answers.pw_history === 'No history requirement' ?
+'Users are encouraged not to reuse recent passwords.' :
+`The system will remember the ${answers.pw_history?.replace('Last ', '').replace(' passwords', '') || '10'} previous passwords. Users cannot reuse any of these passwords.`}
+
+4. PROHIBITED PASSWORDS
+
+The following passwords are prohibited:
+• Dictionary words or common phrases
+• Personal information (names, birthdays, addresses)
+• Company name or variations
+• Sequential patterns (123456, abcdef)
+• Repeated characters (aaaaaa, 111111)
+• Passwords from known breach databases
+• Previously used passwords (per history requirements)
+
+5. MULTI-FACTOR AUTHENTICATION (MFA)
+
+${answers.pw_mfa?.map(m => {
+    if (m === 'Required for all users') return 'MFA is required for all user accounts.';
+    if (m === 'Required for privileged accounts only') return 'MFA is required for all privileged and administrative accounts.';
+    if (m === 'Required for remote access') return 'MFA is required for all remote access and VPN connections.';
+    if (m === 'Required for sensitive systems') return 'MFA is required when accessing sensitive systems and data.';
+    return '';
+}).filter(Boolean).join('\n') || 'MFA is strongly recommended for all accounts.'}
+
+Acceptable MFA methods:
+• Authenticator apps (Google Authenticator, Microsoft Authenticator)
+• Hardware security keys (YubiKey, FIDO2)
+• Push notifications from approved apps
+
+SMS-based MFA is discouraged due to known security weaknesses.
+
+6. PASSWORD MANAGERS
+
+${answers.pw_manager === 'Required for all employees' ?
+`All employees are required to use the company-approved password manager for storing work-related passwords. This ensures:
+• Unique passwords for every account
+• Secure, encrypted storage
+• Easy password generation` :
+answers.pw_manager === 'Recommended and provided' ?
+`${company.name} provides a password manager for all employees. Use is strongly recommended to:
+• Generate unique, complex passwords
+• Securely store credentials
+• Share passwords safely when needed` :
+'Employees may use password managers to securely store and generate passwords.'}
+
+7. PASSWORD PROTECTION
+
+7.1 Do Not Share
+Passwords must never be shared with anyone, including:
+• Coworkers or supervisors
+• IT support (they will never ask for your password)
+• Family members
+
+7.2 Secure Transmission
+Never send passwords via:
+• Email
+• Chat or messaging apps
+• Unencrypted channels
+
+7.3 Physical Security
+• Do not write passwords on paper
+• Do not store passwords in unencrypted files
+• Lock your screen when leaving your workstation
+
+8. COMPROMISED PASSWORDS
+
+If you suspect your password has been compromised:
+1. Change it immediately
+2. Report to IT Security
+3. Review account activity for unauthorized access
+4. Enable MFA if not already active
+
+9. ACCOUNT LOCKOUT
+
+After 5 consecutive failed login attempts:
+• Account will be locked for 30 minutes
+• User must contact IT to unlock immediately if needed
+• Multiple lockouts will trigger a security review
+
+10. COMPLIANCE
+
+Violations of this policy may result in:
+• Mandatory security training
+• Restricted system access
+• Disciplinary action
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Generated with FK94 Security PolicyEngine
+https://fk94security.com/policy-engine
+                    `.trim();
+                }
+            },
+
+            'remote-work': {
+                name: 'Remote Work Security Policy',
+                questions: [
+                    {
+                        id: 'rw_approved',
+                        question: 'Who approves remote work arrangements?',
+                        type: 'choice',
+                        options: ['Direct manager only', 'Manager + HR', 'HR Department', 'Self-service (pre-approved roles)']
+                    },
+                    {
+                        id: 'rw_devices',
+                        question: 'What devices can be used for remote work?',
+                        type: 'multi',
+                        options: ['Company-provided laptops only', 'Personal computers (with requirements)', 'Mobile devices', 'Tablets']
+                    },
+                    {
+                        id: 'rw_vpn',
+                        question: 'VPN requirements?',
+                        type: 'choice',
+                        options: ['Required for all work', 'Required for sensitive systems only', 'Recommended but not required', 'Not required (cloud-first)']
+                    },
+                    {
+                        id: 'rw_network',
+                        question: 'Approved network connections?',
+                        type: 'multi',
+                        options: ['Home WiFi (with requirements)', 'Mobile hotspot', 'Public WiFi (with VPN)', 'Coworking spaces', 'Public WiFi prohibited']
+                    },
+                    {
+                        id: 'rw_physical',
+                        question: 'Physical security requirements?',
+                        type: 'multi',
+                        options: ['Private workspace required', 'Screen privacy filter', 'Locked storage for devices', 'Clean desk policy', 'No printing at home']
+                    }
+                ],
+                generate: function(company, answers) {
+                    return `
+${company.name.toUpperCase()}
+REMOTE WORK SECURITY POLICY
+
+Document Control
+Version: 1.0
+Effective Date: ${new Date().toLocaleDateString()}
+Policy Owner: ${company.policyOwner || 'Information Security'}
+Last Review: ${new Date().toLocaleDateString()}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. PURPOSE
+
+This policy establishes security requirements for employees working remotely at ${company.name}. Remote work introduces unique security challenges that must be addressed to protect company data and systems.
+
+2. SCOPE
+
+This policy applies to all ${company.name} employees, contractors, and third parties who:
+• Work from home on a regular basis
+• Work remotely while traveling
+• Access company systems from outside the office
+• Use company devices outside company premises
+
+3. ELIGIBILITY AND APPROVAL
+
+Remote work arrangements must be approved by ${answers.rw_approved === 'Direct manager only' ? 'the employee\'s direct manager' : answers.rw_approved === 'Manager + HR' ? 'the employee\'s manager and HR department' : answers.rw_approved === 'Self-service (pre-approved roles)' ? 'self-service for pre-approved roles, with manager notification' : 'the HR department'}.
+
+Employees must:
+• Complete remote work security training
+• Sign the remote work agreement
+• Demonstrate adequate home workspace setup
+• Have reliable internet connectivity
+
+4. APPROVED DEVICES
+
+The following devices may be used for remote work:
+${answers.rw_devices?.includes('Company-provided laptops only') ? '• Company-provided laptops (required for all work)' : ''}
+${answers.rw_devices?.includes('Personal computers (with requirements)') ? '• Personal computers meeting security requirements (see Section 5)' : ''}
+${answers.rw_devices?.includes('Mobile devices') ? '• Mobile devices (company-provided or enrolled in MDM)' : ''}
+${answers.rw_devices?.includes('Tablets') ? '• Tablets (for approved applications only)' : ''}
+
+${answers.rw_devices?.includes('Personal computers (with requirements)') ? `
+5. PERSONAL DEVICE REQUIREMENTS
+
+Personal devices used for work must have:
+• Current operating system with automatic updates enabled
+• Antivirus/anti-malware software (active and updated)
+• Full disk encryption enabled
+• Screen lock after 5 minutes of inactivity
+• No jailbreaking or rooting
+• Separate user account for work activities
+` : ''}
+
+6. NETWORK SECURITY
+
+6.1 VPN Requirements
+${answers.rw_vpn === 'Required for all work' ?
+`The company VPN must be connected at all times when working remotely. This ensures:
+• Encrypted communication
+• Access to internal resources
+• Compliance with security policies` :
+answers.rw_vpn === 'Required for sensitive systems only' ?
+`VPN connection is required when accessing:
+• Internal file servers
+• Sensitive databases
+• Financial systems
+• HR systems` :
+'VPN is available for accessing internal resources and recommended for sensitive work.'}
+
+6.2 Approved Networks
+${answers.rw_network?.includes('Home WiFi (with requirements)') ? `
+Home WiFi Requirements:
+• WPA2 or WPA3 encryption (WEP is prohibited)
+• Strong, unique router password
+• Regular firmware updates
+• Guest network separated from work devices
+` : ''}
+${answers.rw_network?.includes('Mobile hotspot') ? '• Mobile hotspot connections are approved for work use' : ''}
+${answers.rw_network?.includes('Public WiFi (with VPN)') ? '• Public WiFi may be used ONLY with VPN connected' : ''}
+${answers.rw_network?.includes('Coworking spaces') ? '• Approved coworking spaces may be used with appropriate precautions' : ''}
+${answers.rw_network?.includes('Public WiFi prohibited') ? '• Public WiFi networks are PROHIBITED for work activities' : ''}
+
+7. PHYSICAL SECURITY
+
+Remote workers must maintain appropriate physical security:
+${answers.rw_physical?.includes('Private workspace required') ? '• Work in a private area where screens cannot be viewed by others' : ''}
+${answers.rw_physical?.includes('Screen privacy filter') ? '• Use privacy screens when working in shared spaces' : ''}
+${answers.rw_physical?.includes('Locked storage for devices') ? '• Store devices in locked areas when not in use' : ''}
+${answers.rw_physical?.includes('Clean desk policy') ? '• Clear workspace of sensitive documents when not working' : ''}
+${answers.rw_physical?.includes('No printing at home') ? '• Printing of company documents at home is prohibited' : ''}
+
+Additional requirements:
+• Lock screen when stepping away (Win+L or Cmd+Ctrl+Q)
+• Log out of systems at end of workday
+• Never leave devices unattended in public places
+
+8. DATA HANDLING
+
+8.1 Sensitive Data
+• Do not store sensitive data on personal devices
+• Use approved cloud storage for work files
+• Do not email sensitive documents to personal accounts
+• Dispose of physical documents securely
+
+8.2 Video Conferencing
+• Use approved platforms only
+• Enable waiting rooms for external meetings
+• Be aware of surroundings visible on camera
+• Use headphones for confidential calls
+
+9. INCIDENT REPORTING
+
+Immediately report to IT Security if:
+• Device is lost or stolen
+• Suspicious activity is observed
+• Security software is disabled
+• Unauthorized access is suspected
+
+10. TERMINATION OF REMOTE WORK
+
+Upon termination of employment or remote work privileges:
+• Return all company equipment within 5 business days
+• Delete all company data from personal devices
+• Revoke access to company systems
+• Return any physical documents or materials
+
+11. COMPLIANCE
+
+Failure to comply with this policy may result in:
+• Revocation of remote work privileges
+• Disciplinary action
+• Termination of employment
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Generated with FK94 Security PolicyEngine
+https://fk94security.com/policy-engine
+                    `.trim();
+                }
+            },
+
+            'access-control': {
+                name: 'Access Control Policy',
+                questions: [
+                    {
+                        id: 'ac_principle',
+                        question: 'Primary access control principle?',
+                        type: 'choice',
+                        options: ['Least Privilege (recommended)', 'Role-Based Access (RBAC)', 'Need-to-Know basis', 'Combination approach']
+                    },
+                    {
+                        id: 'ac_approval',
+                        question: 'Who approves access requests?',
+                        type: 'multi',
+                        options: ['Direct manager', 'Data/System owner', 'IT Security', 'HR Department', 'Automated (for standard roles)']
+                    },
+                    {
+                        id: 'ac_review',
+                        question: 'How often should access be reviewed?',
+                        type: 'choice',
+                        options: ['Quarterly', 'Semi-annually', 'Annually', 'On role change only']
+                    },
+                    {
+                        id: 'ac_privileged',
+                        question: 'Privileged access requirements?',
+                        type: 'multi',
+                        options: ['Separate admin accounts', 'MFA required', 'Session recording', 'Just-in-time access', 'Manager approval required']
+                    },
+                    {
+                        id: 'ac_termination',
+                        question: 'Access removal timeline on termination?',
+                        type: 'choice',
+                        options: ['Immediate (same day)', 'Within 24 hours', 'Within 48 hours', 'End of pay period']
+                    }
+                ],
+                generate: function(company, answers) {
+                    return `
+${company.name.toUpperCase()}
+ACCESS CONTROL POLICY
+
+Document Control
+Version: 1.0
+Effective Date: ${new Date().toLocaleDateString()}
+Policy Owner: ${company.policyOwner || 'Information Security'}
+Last Review: ${new Date().toLocaleDateString()}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. PURPOSE
+
+This policy establishes requirements for controlling access to ${company.name} information systems and data. Proper access control ensures that only authorized individuals can access resources necessary for their job functions.
+
+2. SCOPE
+
+This policy applies to:
+• All information systems owned or managed by ${company.name}
+• All data stored, processed, or transmitted by ${company.name}
+• All employees, contractors, and third parties requiring access
+• Physical and logical access controls
+
+3. ACCESS CONTROL PRINCIPLES
+
+${company.name} implements access control based on:
+${answers.ac_principle === 'Least Privilege (recommended)' ?
+`PRINCIPLE OF LEAST PRIVILEGE
+Users are granted only the minimum access necessary to perform their job functions. Access is:
+• Limited to specific systems required for the role
+• Restricted to necessary data only
+• Removed when no longer needed` :
+answers.ac_principle === 'Role-Based Access (RBAC)' ?
+`ROLE-BASED ACCESS CONTROL (RBAC)
+Access is determined by the user's role within the organization:
+• Roles are predefined with specific access rights
+• Users are assigned to roles based on job function
+• Role changes trigger access review` :
+`NEED-TO-KNOW BASIS
+Access is granted only when there is a legitimate business need:
+• Requests must justify the need for access
+• Access is limited to specific projects or timeframes
+• Regular validation of continued need`}
+
+4. ACCESS REQUEST PROCESS
+
+4.1 New Access Requests
+All access requests must:
+• Be submitted through the official request system
+• Include business justification
+• Specify the systems and level of access needed
+• Be approved by authorized personnel
+
+4.2 Approval Authority
+Access requests require approval from:
+${answers.ac_approval?.map(a => `• ${a}`).join('\n') || '• Direct manager\n• System owner'}
+
+4.3 Processing Time
+Standard access requests: 2-3 business days
+Expedited requests (with justification): Same day
+
+5. USER ACCOUNT MANAGEMENT
+
+5.1 Account Creation
+• Accounts are created only after proper approval
+• Each user receives a unique identifier
+• Shared accounts are prohibited except where technically required
+• Service accounts require documented ownership
+
+5.2 Account Types
+• Standard User: Basic access for daily work
+• Privileged User: Administrative access to systems
+• Service Account: For automated processes
+• Temporary/Guest: Time-limited access for contractors
+
+6. PRIVILEGED ACCESS
+
+Privileged accounts (administrators, root users) require additional controls:
+${answers.ac_privileged?.includes('Separate admin accounts') ? '• Administrators must use separate accounts for privileged activities' : ''}
+${answers.ac_privileged?.includes('MFA required') ? '• Multi-factor authentication is mandatory' : ''}
+${answers.ac_privileged?.includes('Session recording') ? '• All privileged sessions are recorded for audit purposes' : ''}
+${answers.ac_privileged?.includes('Just-in-time access') ? '• Access is granted just-in-time and expires automatically' : ''}
+${answers.ac_privileged?.includes('Manager approval required') ? '• Each use requires manager approval' : ''}
+
+7. ACCESS REVIEWS
+
+Access rights are reviewed ${answers.ac_review?.toLowerCase() || 'quarterly'} to ensure:
+• Users still require their current access
+• Access levels are appropriate for current roles
+• Orphaned accounts are identified and removed
+• Compliance with regulatory requirements
+
+Review responsibilities:
+• Managers: Verify team member access
+• System Owners: Validate access to their systems
+• IT Security: Overall compliance and privileged access
+
+8. ACCESS MODIFICATION
+
+Access must be modified when:
+• Employee changes roles or departments
+• Project assignments change
+• Temporary access expires
+• Business requirements change
+
+Modifications follow the same approval process as new requests.
+
+9. ACCESS TERMINATION
+
+9.1 Voluntary Termination
+Access is removed ${answers.ac_termination === 'Immediate (same day)' ? 'immediately on the last day of employment' : answers.ac_termination === 'Within 24 hours' ? 'within 24 hours of termination' : 'within 48 hours of termination'}.
+
+9.2 Involuntary Termination
+Access is removed immediately upon notification from HR.
+
+9.3 Termination Checklist
+• Disable all system accounts
+• Revoke VPN and remote access
+• Collect physical access badges
+• Remove from distribution lists
+• Transfer ownership of files and data
+
+10. MONITORING AND AUDIT
+
+${company.name} monitors access activities including:
+• Login attempts (successful and failed)
+• Privileged account usage
+• Access to sensitive data
+• Changes to access permissions
+
+Logs are retained for a minimum of 1 year.
+
+11. THIRD-PARTY ACCESS
+
+Third parties (vendors, contractors) must:
+• Sign confidentiality agreements
+• Complete security awareness training
+• Use dedicated accounts (no shared credentials)
+• Have access limited to project duration
+• Be sponsored by an internal employee
+
+12. COMPLIANCE
+
+Violations of this policy may result in:
+• Immediate access revocation
+• Disciplinary action
+• Legal action if warranted
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Generated with FK94 Security PolicyEngine
+https://fk94security.com/policy-engine
+                    `.trim();
+                }
+            },
+
+            'byod': {
+                name: 'BYOD (Bring Your Own Device) Policy',
+                questions: [
+                    {
+                        id: 'byod_devices',
+                        question: 'Which personal devices are allowed?',
+                        type: 'multi',
+                        options: ['Smartphones', 'Tablets', 'Laptops', 'Smartwatches', 'USB drives']
+                    },
+                    {
+                        id: 'byod_mdm',
+                        question: 'Mobile Device Management (MDM) requirements?',
+                        type: 'choice',
+                        options: ['Required for all BYOD devices', 'Required for phones/tablets only', 'Optional but recommended', 'Not required']
+                    },
+                    {
+                        id: 'byod_wipe',
+                        question: 'Remote wipe capabilities?',
+                        type: 'choice',
+                        options: ['Full device wipe allowed', 'Corporate data wipe only', 'No remote wipe', 'User choice at enrollment']
+                    },
+                    {
+                        id: 'byod_apps',
+                        question: 'What can be accessed from personal devices?',
+                        type: 'multi',
+                        options: ['Email', 'Calendar', 'File storage', 'Business applications', 'Sensitive/financial systems']
+                    },
+                    {
+                        id: 'byod_support',
+                        question: 'IT support for personal devices?',
+                        type: 'choice',
+                        options: ['Full support', 'Limited to company apps only', 'Self-service resources', 'No support']
+                    }
+                ],
+                generate: function(company, answers) {
+                    return `
+${company.name.toUpperCase()}
+BRING YOUR OWN DEVICE (BYOD) POLICY
+
+Document Control
+Version: 1.0
+Effective Date: ${new Date().toLocaleDateString()}
+Policy Owner: ${company.policyOwner || 'Information Security'}
+Last Review: ${new Date().toLocaleDateString()}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. PURPOSE
+
+This policy defines the rules for using personal devices to access ${company.name} resources. BYOD offers flexibility for employees while requiring appropriate security measures to protect company data.
+
+2. SCOPE
+
+This policy applies to any personally-owned device used to:
+• Access ${company.name} email or calendar
+• Connect to company networks
+• Store or process company data
+• Access business applications
+
+3. APPROVED DEVICE TYPES
+
+The following personal devices may be used for work purposes:
+${answers.byod_devices?.map(d => `• ${d}`).join('\n') || '• Smartphones\n• Tablets'}
+
+${answers.byod_devices?.includes('USB drives') ? '' : 'Note: Personal USB drives are NOT permitted for storing company data.'}
+
+4. DEVICE REQUIREMENTS
+
+Before connecting to company resources, personal devices must meet these requirements:
+
+4.1 Operating System
+• Current version or within one major version
+• Security updates applied promptly
+• No jailbroken or rooted devices
+
+4.2 Security Features
+• Screen lock enabled (PIN, password, or biometric)
+• Auto-lock after 5 minutes of inactivity
+• Full device encryption enabled
+• "Find My Device" feature activated
+
+4.3 Software
+• Antivirus/anti-malware (for laptops)
+• No pirated or unauthorized software
+• App store restrictions (no sideloading)
+
+5. MOBILE DEVICE MANAGEMENT (MDM)
+
+${answers.byod_mdm === 'Required for all BYOD devices' ?
+`All personal devices accessing company resources must be enrolled in ${company.name}'s MDM solution. MDM enrollment is required before accessing:
+• Company email
+• Internal applications
+• Sensitive data
+
+MDM allows IT to:
+• Enforce security policies
+• Deploy approved applications
+• Locate lost devices
+• Protect company data` :
+answers.byod_mdm === 'Required for phones/tablets only' ?
+`Smartphones and tablets must be enrolled in MDM. Laptops may use alternative security solutions as approved by IT.` :
+`MDM enrollment is recommended for enhanced security and device management support.`}
+
+6. REMOTE WIPE CAPABILITY
+
+${answers.byod_wipe === 'Full device wipe allowed' ?
+`By enrolling in the BYOD program, employees acknowledge that ${company.name} may perform a full device wipe in the following circumstances:
+• Device is reported lost or stolen
+• Employment is terminated
+• Security breach is detected
+• Policy violations occur
+
+Employees are responsible for backing up personal data.` :
+answers.byod_wipe === 'Corporate data wipe only' ?
+`${company.name} will only wipe corporate data and applications from personal devices. Personal data will not be affected. Corporate wipe may occur when:
+• Device is reported lost or stolen
+• Employment is terminated
+• Employee requests removal from BYOD program` :
+`Remote wipe capabilities are limited. Employees should report lost or stolen devices immediately.`}
+
+7. PERMITTED ACCESS
+
+Personal devices may be used to access:
+${answers.byod_apps?.map(a => `• ${a}`).join('\n') || '• Email\n• Calendar'}
+
+${!answers.byod_apps?.includes('Sensitive/financial systems') ? 'Note: Access to sensitive or financial systems from personal devices is NOT permitted.' : ''}
+
+8. DATA HANDLING
+
+8.1 Company Data
+• Do not save company files locally on personal devices
+• Use approved cloud storage only
+• Do not forward company email to personal accounts
+• Delete company data when access is no longer needed
+
+8.2 Separation
+• Keep personal and work data separate
+• Use work profiles or containers when available
+• Do not mix personal and company accounts
+
+9. SECURITY REQUIREMENTS
+
+9.1 Network Security
+• Use VPN when accessing company resources
+• Avoid public WiFi or use VPN
+• Do not connect to untrusted networks
+
+9.2 Application Security
+• Only install apps from official stores
+• Keep apps updated
+• Do not install apps that request excessive permissions
+
+9.3 Physical Security
+• Never leave device unattended
+• Do not lend device to others
+• Report lost/stolen devices immediately
+
+10. IT SUPPORT
+
+${answers.byod_support === 'Full support' ?
+`IT will provide full support for personal devices enrolled in the BYOD program, including:
+• Initial setup and configuration
+• Application installation
+• Troubleshooting connectivity issues
+• Security incident response` :
+answers.byod_support === 'Limited to company apps only' ?
+`IT support is limited to:
+• Company application setup
+• Email configuration
+• VPN connectivity
+Personal device issues are the employee's responsibility.` :
+`Self-service resources are available for BYOD setup. Employees are responsible for maintaining their personal devices.`}
+
+11. EMPLOYEE RESPONSIBILITIES
+
+Employees participating in BYOD must:
+• Agree to this policy in writing
+• Maintain device security
+• Report security incidents immediately
+• Allow IT to inspect device if security concerns arise
+• Remove company data upon termination
+
+12. COMPANY RIGHTS
+
+${company.name} reserves the right to:
+• Audit devices for compliance
+• Revoke BYOD privileges at any time
+• Access company data on personal devices
+• Require specific security configurations
+
+13. TERMINATION OF BYOD PRIVILEGES
+
+BYOD access will be terminated when:
+• Employment ends
+• Policy violations occur
+• Device no longer meets requirements
+• Employee requests removal
+
+Upon termination:
+• All company data must be removed
+• MDM profile must be uninstalled
+• Access to company resources will be revoked
+
+14. LIABILITY
+
+• ${company.name} is not responsible for personal data loss
+• Employees are responsible for device repair/replacement
+• Personal carrier charges are employee's responsibility
+• ${company.name} is not liable for personal app malfunctions
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Generated with FK94 Security PolicyEngine
+https://fk94security.com/policy-engine
+                    `.trim();
+                }
+            },
+
+            'data-classification': {
+                name: 'Data Classification Policy',
+                questions: [
+                    {
+                        id: 'dc_levels',
+                        question: 'How many classification levels?',
+                        type: 'choice',
+                        options: ['3 levels (Public, Internal, Confidential)', '4 levels (+ Restricted)', '5 levels (+ Top Secret)', 'Custom levels']
+                    },
+                    {
+                        id: 'dc_pii',
+                        question: 'What types of sensitive data do you handle?',
+                        type: 'multi',
+                        options: ['Personal Identifiable Information (PII)', 'Financial data', 'Health records (PHI)', 'Intellectual property', 'Customer data', 'Employee data']
+                    },
+                    {
+                        id: 'dc_labeling',
+                        question: 'How should documents be labeled?',
+                        type: 'choice',
+                        options: ['Header/footer on all documents', 'Filename prefix', 'Metadata only', 'No labeling required']
+                    },
+                    {
+                        id: 'dc_handling',
+                        question: 'Encryption requirements for confidential data?',
+                        type: 'multi',
+                        options: ['At rest (storage)', 'In transit (email/transfer)', 'On portable devices', 'In cloud storage']
+                    },
+                    {
+                        id: 'dc_retention',
+                        question: 'Default data retention period?',
+                        type: 'choice',
+                        options: ['1 year', '3 years', '5 years', '7 years', 'Defined per data type']
+                    }
+                ],
+                generate: function(company, answers) {
+                    const levels = answers.dc_levels === '3 levels (Public, Internal, Confidential)' ? 3 :
+                                   answers.dc_levels === '4 levels (+ Restricted)' ? 4 :
+                                   answers.dc_levels === '5 levels (+ Top Secret)' ? 5 : 4;
+
+                    return `
+${company.name.toUpperCase()}
+DATA CLASSIFICATION POLICY
+
+Document Control
+Version: 1.0
+Effective Date: ${new Date().toLocaleDateString()}
+Policy Owner: ${company.policyOwner || 'Information Security'}
+Last Review: ${new Date().toLocaleDateString()}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. PURPOSE
+
+This policy establishes a framework for classifying, handling, and protecting ${company.name} information based on its sensitivity and business value. Proper data classification ensures appropriate security measures are applied to protect company assets.
+
+2. SCOPE
+
+This policy applies to:
+• All data created, received, or maintained by ${company.name}
+• All formats: electronic, paper, verbal
+• All employees, contractors, and third parties handling company data
+
+3. CLASSIFICATION LEVELS
+
+${company.name} uses ${levels} classification levels:
+
+${levels >= 3 ? `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LEVEL 1: PUBLIC
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Definition: Information intended for public distribution
+Examples:
+• Marketing materials
+• Press releases
+• Published reports
+• Public website content
+
+Handling Requirements:
+• No special protections required
+• May be freely shared externally
+• No encryption required
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LEVEL 2: INTERNAL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Definition: Information for internal use only
+Examples:
+• Internal policies and procedures
+• Organizational charts
+• Internal announcements
+• Non-sensitive business documents
+
+Handling Requirements:
+• Share only with ${company.name} employees
+• Do not post publicly
+• Basic access controls required
+• Encryption optional
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LEVEL 3: CONFIDENTIAL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Definition: Sensitive business information
+Examples:
+• Financial reports
+• Business strategies
+• Customer lists
+• Contracts and agreements
+${answers.dc_pii?.includes('Personal Identifiable Information (PII)') ? '• Personal employee/customer data' : ''}
+${answers.dc_pii?.includes('Intellectual property') ? '• Trade secrets and IP' : ''}
+
+Handling Requirements:
+• Need-to-know access only
+• Encryption required for transmission
+• Secure storage required
+• No sharing without authorization
+` : ''}
+
+${levels >= 4 ? `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LEVEL 4: RESTRICTED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Definition: Highly sensitive information with legal/regulatory requirements
+Examples:
+${answers.dc_pii?.includes('Health records (PHI)') ? '• Protected Health Information (PHI)' : ''}
+${answers.dc_pii?.includes('Financial data') ? '• Payment card data (PCI)' : ''}
+• Authentication credentials
+• Security configurations
+• Legal privileged information
+
+Handling Requirements:
+• Strict need-to-know
+• Encryption required at rest and in transit
+• Access logging mandatory
+• Special handling procedures
+• May require regulatory compliance
+` : ''}
+
+${levels >= 5 ? `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LEVEL 5: TOP SECRET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Definition: Most sensitive information, disclosure causes severe harm
+Examples:
+• Critical security vulnerabilities
+• Executive strategic plans
+• M&A information
+• Critical infrastructure details
+
+Handling Requirements:
+• Named individual access only
+• Multi-person authorization
+• Air-gapped systems when possible
+• Complete audit trail
+• Physical security controls
+` : ''}
+
+4. DATA HANDLING MATRIX
+
+| Action          | Public | Internal | Confidential | ${levels >= 4 ? 'Restricted |' : ''}
+|-----------------|--------|----------|--------------|${levels >= 4 ? '------------|' : ''}
+| Email Internal  | ✓      | ✓        | ✓ Encrypted  | ${levels >= 4 ? '✓ Encrypted |' : ''}
+| Email External  | ✓      | ✗        | Approval Req | ${levels >= 4 ? '✗           |' : ''}
+| Cloud Storage   | ✓      | ✓        | Approved Only| ${levels >= 4 ? 'Prohibited  |' : ''}
+| Print           | ✓      | ✓        | Secure Print | ${levels >= 4 ? 'Prohibited  |' : ''}
+| Verbal Discuss  | ✓      | Private  | Private Only | ${levels >= 4 ? 'Secure Room |' : ''}
+
+5. ENCRYPTION REQUIREMENTS
+
+Confidential and above data must be encrypted:
+${answers.dc_handling?.includes('At rest (storage)') ? '• At rest: AES-256 encryption for stored data' : ''}
+${answers.dc_handling?.includes('In transit (email/transfer)') ? '• In transit: TLS 1.2+ for all transfers' : ''}
+${answers.dc_handling?.includes('On portable devices') ? '• Portable devices: Full disk encryption required' : ''}
+${answers.dc_handling?.includes('In cloud storage') ? '• Cloud storage: Encryption with company-controlled keys' : ''}
+
+6. LABELING REQUIREMENTS
+
+${answers.dc_labeling === 'Header/footer on all documents' ?
+`All documents must include classification in header or footer:
+• Format: "Classification: [LEVEL]"
+• Electronic documents: Metadata and visible marking
+• Paper documents: Stamped or printed marking` :
+answers.dc_labeling === 'Filename prefix' ?
+`Classification must be indicated in filename:
+• Format: "[LEVEL]_DocumentName.ext"
+• Example: "CONFIDENTIAL_Q4_Budget.xlsx"` :
+`Classification should be recorded in document metadata for tracking purposes.`}
+
+7. DATA OWNERSHIP
+
+7.1 Data Owners
+Every data set must have a designated owner responsible for:
+• Determining appropriate classification
+• Approving access requests
+• Reviewing access periodically
+• Ensuring proper handling
+
+7.2 Data Custodians
+IT and system administrators serve as custodians:
+• Implementing technical controls
+• Maintaining security measures
+• Supporting data owners
+
+8. DATA RETENTION
+
+${answers.dc_retention === 'Defined per data type' ?
+`Retention periods are defined by data type:
+• Financial records: 7 years
+• Employee records: 7 years after separation
+• Customer data: Duration of relationship + 3 years
+• Legal documents: Permanent
+• General business: 3 years` :
+`Default retention period: ${answers.dc_retention}
+Longer retention may apply based on:
+• Legal requirements
+• Regulatory compliance
+• Business needs`}
+
+9. DATA DISPOSAL
+
+When data reaches end of retention:
+• Electronic: Secure deletion using approved tools
+• Paper: Cross-cut shredding
+• Storage media: Physical destruction or degaussing
+• Cloud data: Verified deletion with certificate
+
+10. BREACH REPORTING
+
+Any suspected unauthorized access to Confidential${levels >= 4 ? ', Restricted,' : ''} or above data must be reported immediately to:
+• IT Security
+• Data Owner
+• Legal (if required)
+
+11. COMPLIANCE
+
+Violations of this policy may result in:
+• Access revocation
+• Disciplinary action
+• Legal liability
+
+Regular audits will verify compliance with classification and handling requirements.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Generated with FK94 Security PolicyEngine
+https://fk94security.com/policy-engine
+                    `.trim();
+                }
+            }
+        };
+
+        // Event Listeners
+        document.querySelectorAll('.policy-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.policy-card').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedPolicy = card.dataset.policy;
+                setTimeout(() => goToStep('company'), 300);
+            });
+        });
+
+        // Navigation
+        function goToStep(step) {
+            document.querySelectorAll('.wizard-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(`step-${step}`).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (step === 'questions') {
+                loadQuestions();
+            }
+        }
+
+        // Load Questions
+        function loadQuestions() {
+            const template = policyTemplates[selectedPolicy];
+            if (!template) return;
+
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = `
+                <div class="form-card">
+                    <h2>${template.name}</h2>
+                    <p>Answer these questions to customize your policy.</p>
+                    ${template.questions.map(q => generateQuestionHTML(q)).join('')}
+                </div>
+            `;
+
+            // Add event listeners for option items
+            container.querySelectorAll('.option-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const input = item.querySelector('input');
+                    const isMulti = input.type === 'checkbox';
+
+                    if (isMulti) {
+                        item.classList.toggle('selected');
+                        input.checked = item.classList.contains('selected');
+                    } else {
+                        item.parentElement.querySelectorAll('.option-item').forEach(i => i.classList.remove('selected'));
+                        item.classList.add('selected');
+                        input.checked = true;
+                    }
+                });
+            });
+        }
+
+        function generateQuestionHTML(q) {
+            if (q.type === 'text') {
+                return `
+                    <div class="form-group">
+                        <label>${q.question}</label>
+                        <input type="text" id="${q.id}" placeholder="${q.placeholder || ''}">
+                    </div>
+                `;
+            } else if (q.type === 'choice') {
+                return `
+                    <div class="form-group">
+                        <label>${q.question}</label>
+                        <div class="options-grid">
+                            ${q.options.map((opt, i) => `
+                                <label class="option-item">
+                                    <input type="radio" name="${q.id}" value="${opt}">
+                                    <span class="option-check"></span>
+                                    <span>${opt}</span>
+                                </label>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            } else if (q.type === 'multi') {
+                return `
+                    <div class="form-group">
+                        <label>${q.question}</label>
+                        <div class="options-grid">
+                            ${q.options.map((opt, i) => `
+                                <label class="option-item">
+                                    <input type="checkbox" name="${q.id}" value="${opt}">
+                                    <span class="option-check"></span>
+                                    <span>${opt}</span>
+                                </label>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Generate Preview
+        function generatePreview() {
+            // Collect company data
+            companyData = {
+                name: document.getElementById('companyName').value || 'Your Company',
+                industry: document.getElementById('industry').value,
+                size: document.getElementById('companySize').value,
+                policyOwner: document.getElementById('policyOwner').value
+            };
+
+            // Collect answers
+            const template = policyTemplates[selectedPolicy];
+            answers = {};
+            template.questions.forEach(q => {
+                if (q.type === 'text') {
+                    answers[q.id] = document.getElementById(q.id)?.value || '';
+                } else if (q.type === 'choice') {
+                    const selected = document.querySelector(`input[name="${q.id}"]:checked`);
+                    answers[q.id] = selected?.value || '';
+                } else if (q.type === 'multi') {
+                    const selected = document.querySelectorAll(`input[name="${q.id}"]:checked`);
+                    answers[q.id] = Array.from(selected).map(s => s.value);
+                }
+            });
+
+            // Generate policy
+            generatedPolicy = template.generate(companyData, answers);
+
+            // Show preview
+            const previewContainer = document.getElementById('policyPreview');
+            previewContainer.innerHTML = `<pre style="white-space: pre-wrap; font-family: inherit; margin: 0;">${escapeHtml(generatedPolicy)}</pre>`;
+
+            goToStep('preview');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Download Functions
+        function downloadAsText() {
+            const blob = new Blob([generatedPolicy], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${selectedPolicy}-policy-${companyData.name.replace(/\s+/g, '-').toLowerCase()}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function copyToClipboard() {
+            navigator.clipboard.writeText(generatedPolicy).then(() => {
+                alert('Policy copied to clipboard! You can now paste it into Word, Google Docs, or any document editor.');
+            });
+        }
+
+        function startOver() {
+            selectedPolicy = null;
+            companyData = {};
+            answers = {};
+            generatedPolicy = '';
+            document.querySelectorAll('.policy-card').forEach(c => c.classList.remove('selected'));
+            goToStep('select');
+        }
+    </script>
+</body>
+</html>

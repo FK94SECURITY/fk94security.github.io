@@ -1,55 +1,55 @@
-# 🔍 VIGÍA OSINT Tools
+# VIGIA OSINT Tools
 
-Herramientas de Open Source Intelligence (OSINT) para verificar tu exposición digital.
+Open Source Intelligence (OSINT) tools to check your digital exposure.
 
-## Herramientas
+## Tools
 
 ### 1. Username Search (`username-search.sh`)
 
-Busca un username en +30 plataformas para ver dónde existe esa cuenta.
+Searches for a username across 30+ platforms to see where that account exists.
 
 ```bash
 ./username-search.sh johndoe
 ```
 
-**Plataformas que verifica:**
-- Redes sociales: Twitter, Instagram, TikTok, Facebook, LinkedIn, Reddit, Pinterest
-- Desarrollo: GitHub, GitLab, Stack Overflow, CodePen, Dev.to
+**Platforms checked:**
+- Social media: Twitter, Instagram, TikTok, Facebook, LinkedIn, Reddit, Pinterest
+- Development: GitHub, GitLab, Stack Overflow, CodePen, Dev.to
 - Gaming: Steam, Twitch, Xbox, Roblox
 - Multimedia: YouTube, Spotify, SoundCloud, Vimeo, Medium
-- Otros: Gravatar, Keybase, Patreon, Telegram
+- Others: Gravatar, Keybase, Patreon, Telegram
 
 ### 2. Email Intelligence (`email-intel.sh`)
 
-Analiza la exposición de un email y crea un perfil de riesgo.
+Analyzes the exposure of an email and creates a risk profile.
 
 ```bash
-./email-intel.sh juan@gmail.com
+./email-intel.sh john@gmail.com
 ```
 
-**¿Qué hace?**
-- Verifica si tiene Gravatar (foto de perfil global)
-- Busca cuentas asociadas al username del email
-- Analiza el dominio del email
-- Genera Google Dorks para investigación manual
-- Crea un reporte con recomendaciones
+**What does it do?**
+- Checks if it has a Gravatar (global profile picture)
+- Searches for accounts associated with the email's username
+- Analyzes the email domain
+- Generates Google Dorks for manual research
+- Creates a report with recommendations
 
-## ¿Por qué es importante?
+## Why is this important?
 
-Un atacante puede usar esta información para:
+An attacker can use this information for:
 
-1. **Phishing personalizado**: Enviar emails mencionando sitios donde tenés cuenta
-2. **Ingeniería social**: Usar info de reviews/redes para ganar tu confianza
-3. **Credential stuffing**: Si un password fue filtrado, probarlo en otros sitios
+1. **Personalized phishing**: Sending emails mentioning sites where you have an account
+2. **Social engineering**: Using info from reviews/social networks to gain your trust
+3. **Credential stuffing**: If a password was leaked, trying it on other sites
 
-## Uso ético
+## Ethical Use
 
-Estas herramientas son para:
-- ✅ Verificar tu propia exposición
-- ✅ Auditorías de seguridad autorizadas
-- ✅ Investigación con consentimiento
-- ❌ NO para stalking o acoso
-- ❌ NO para acceder a cuentas ajenas
+These tools are for:
+- Checking your own exposure
+- Authorized security audits
+- Research with consent
+- NOT for stalking or harassment
+- NOT for accessing other people's accounts
 
 ## Powered by FK94 Security
 

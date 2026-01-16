@@ -1,6 +1,6 @@
 <div align="center">
 
-# 👁️ VIGÍA
+# VIGIA
 
 ### Security Scanner & Hardening Tools
 
@@ -9,28 +9,28 @@
 [![Bash](https://img.shields.io/badge/Bash-5.0+-orange.svg)](https://www.gnu.org/software/bash/)
 [![Maintained](https://img.shields.io/badge/Maintained-Yes-brightgreen.svg)](https://github.com/fk94security/vigia)
 
-**Herramientas gratuitas y open source para analizar y mejorar la seguridad de tu Mac.**
+**Free and open source tools to analyze and improve your Mac's security.**
 
-[Descargar](#-instalación) • [Documentación](#-qué-analiza) • [Contribuir](#-contribuir)
+[Download](#-installation) • [Documentation](#-what-does-it-analyze) • [Contribute](#-contributing)
 
 ---
 
 </div>
 
-## 🎯 ¿Qué es Vigía?
+## What is Vigia?
 
-Vigía es un conjunto de herramientas de seguridad para macOS que te permite:
+Vigia is a set of security tools for macOS that allows you to:
 
-- **Analizar** la configuración de seguridad de tu Mac
-- **Obtener** un score de 0 a 100 basado en mejores prácticas
-- **Mejorar** tu seguridad con un solo comando
-- **Entender** qué significa cada configuración en español simple
+- **Analyze** your Mac's security configuration
+- **Get** a score from 0 to 100 based on best practices
+- **Improve** your security with a single command
+- **Understand** what each setting means in plain language
 
-Todo 100% gratuito, open source, y sin telemetría.
+100% free, open source, and no telemetry.
 
-## 📥 Instalación
+## Installation
 
-### Opción 1: Clonar el repositorio
+### Option 1: Clone the repository
 
 ```bash
 git clone https://github.com/fk94security/vigia.git
@@ -38,7 +38,7 @@ cd vigia/scripts
 chmod +x *.sh
 ```
 
-### Opción 2: Descargar directo
+### Option 2: Direct download
 
 ```bash
 curl -O https://raw.githubusercontent.com/fk94security/vigia/main/scripts/scan-macos.sh
@@ -46,101 +46,99 @@ curl -O https://raw.githubusercontent.com/fk94security/vigia/main/scripts/harden
 chmod +x *.sh
 ```
 
-## 🚀 Uso
+## Usage
 
-### Analizar tu Mac
+### Scan your Mac
 
 ```bash
 ./scan-macos.sh
 ```
 
-Esto va a analizar 10 configuraciones de seguridad y darte un score.
+This will analyze 10 security settings and give you a score.
 
-### Mejorar tu seguridad
+### Improve your security
 
 ```bash
 ./harden-macos.sh
 ```
 
-Esto aplica automáticamente las configuraciones recomendadas.
+This automatically applies the recommended settings.
 
-## 🔍 ¿Qué analiza?
+## What does it analyze?
 
-| Check | Descripción | Impacto |
-|-------|-------------|---------|
-| **FileVault** | Encriptación del disco | Si te roban la Mac, no pueden leer tus archivos |
-| **Firewall** | Bloquea conexiones entrantes | Evita que hackers se conecten a tu Mac |
-| **Gatekeeper** | Verifica apps firmadas | Previene instalación de malware |
-| **Auto-Update** | Actualizaciones automáticas | Parches de seguridad al día |
-| **SSH** | Acceso remoto | Previene conexiones no autorizadas |
-| **Screen Sharing** | Compartir pantalla | Evita que vean tu pantalla remotamente |
-| **Find My Mac** | Ubicación del dispositivo | Encontrar o borrar Mac robada |
-| **SIP** | Protección del sistema | Previene modificaciones maliciosas |
-| **Password After Sleep** | Bloqueo automático | Protege cuando dejás la Mac sola |
-| **Guest Account** | Cuenta de invitado | Elimina vector de ataque |
+| Check | Description | Impact |
+|-------|-------------|--------|
+| **FileVault** | Disk encryption | If your Mac is stolen, they can't read your files |
+| **Firewall** | Blocks incoming connections | Prevents hackers from connecting to your Mac |
+| **Gatekeeper** | Verifies signed apps | Prevents malware installation |
+| **Auto-Update** | Automatic updates | Security patches up to date |
+| **SSH** | Remote access | Prevents unauthorized connections |
+| **Screen Sharing** | Screen sharing | Prevents remote screen viewing |
+| **Find My Mac** | Device location | Find or wipe a stolen Mac |
+| **SIP** | System protection | Prevents malicious modifications |
+| **Password After Sleep** | Auto-lock | Protects when you leave your Mac unattended |
+| **Guest Account** | Guest account | Eliminates attack vector |
 
-## 📊 Interpretación del Score
+## Score Interpretation
 
-| Score | Estado | Significado |
-|-------|--------|-------------|
-| 80-100 | 🟢 Excelente | Tu Mac está bien protegida |
-| 60-79 | 🟡 Regular | Hay cosas que deberías mejorar |
-| 0-59 | 🔴 Crítico | Tu Mac tiene problemas serios de seguridad |
+| Score | Status | Meaning |
+|-------|--------|---------|
+| 80-100 | Excellent | Your Mac is well protected |
+| 60-79 | Fair | There are things you should improve |
+| 0-59 | Critical | Your Mac has serious security issues |
 
-## 📁 Estructura del Proyecto
+## Project Structure
 
 ```
 vigia/
 ├── scripts/
-│   ├── scan-macos.sh      # Scanner de seguridad
-│   └── harden-macos.sh    # Script de hardening
-├── audit-tool/            # Web app de auditoría (próximamente)
-├── osint/                 # Herramientas OSINT (próximamente)
+│   ├── scan-macos.sh      # Security scanner
+│   └── harden-macos.sh    # Hardening script
+├── audit-tool/            # Audit web app (coming soon)
+├── osint/                 # OSINT tools (coming soon)
 ├── README.md
 └── LICENSE
 ```
 
-## 🔮 Roadmap
+## Roadmap
 
-- [x] Scanner de seguridad para macOS
-- [x] Script de hardening automático
-- [ ] Scanner para Windows
-- [ ] Scanner para Linux
-- [ ] Herramientas OSINT (username search, breach check)
-- [ ] Web app de auditoría completa
-- [ ] Reportes en PDF
+- [x] Security scanner for macOS
+- [x] Automatic hardening script
+- [ ] Scanner for Windows
+- [ ] Scanner for Linux
+- [ ] OSINT tools (username search, breach check)
+- [ ] Complete audit web app
+- [ ] PDF reports
 
-## 🤝 Contribuir
+## Contributing
 
-¡Las contribuciones son bienvenidas!
+Contributions are welcome!
 
-1. Fork el repositorio
-2. Creá tu branch (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit tus cambios (`git commit -m 'Agregar nueva funcionalidad'`)
-4. Push al branch (`git push origin feature/nueva-funcionalidad`)
-5. Abrí un Pull Request
+1. Fork the repository
+2. Create your branch (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
+5. Open a Pull Request
 
-## 📄 Licencia
+## License
 
-Este proyecto está bajo la licencia MIT. Ver [LICENSE](LICENSE) para más detalles.
+This project is under the MIT license. See [LICENSE](LICENSE) for more details.
 
-## 🏢 Sobre FK94 Security
+## About FK94 Security
 
-Vigía es desarrollado y mantenido por **FK94 Security**, una empresa de ciberseguridad especializada en:
+Vigia is developed and maintained by **FK94 Security**, a cybersecurity company specializing in:
 
-- Auditorías de seguridad personal
-- Protección contra ataques dirigidos
-- Capacitación en seguridad
-- Respuesta a incidentes
+- Personal security audits
+- Protection against targeted attacks
+- Security training
+- Incident response
 
-**¿Necesitás ayuda profesional?** Visitá [fk94security.com](https://fk94security.com)
+**Need professional help?** Visit [fk94security.com](https://fk94security.com)
 
 ---
 
 <div align="center">
 
 **Powered by [FK94 Security](https://fk94security.com)**
-
-⭐ Si te sirvió, dejanos una estrella en GitHub ⭐
 
 </div>

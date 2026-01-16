@@ -328,6 +328,62 @@ img {
     justify-content: center;
 }
 
+/* Hero Vigia Promo */
+.hero-vigia {
+    margin-top: 32px;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.vigia-badge {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.hero-vigia p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 15px;
+}
+
+.hero-vigia p strong {
+    color: var(--accent-primary);
+}
+
+.vigia-links {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+    flex-wrap: wrap;
+}
+
+.vigia-links a {
+    padding: 8px 16px;
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--accent-primary);
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: var(--transition-fast);
+}
+
+.vigia-links a:hover {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+}
+
 /* Hero Visual - Terminal */
 .hero-visual {
     flex: 1;
@@ -1341,6 +1397,22 @@ img {
     .services-grid,
     .industries-grid {
         grid-template-columns: 1fr;
+    }
+
+    .hero-vigia {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .vigia-links {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .vigia-links a {
+        flex: 1;
+        text-align: center;
     }
     
     .footer-content {

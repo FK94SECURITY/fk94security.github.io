@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email Intelligence - Vigía by FK94 Security</title>
-    <meta name="description" content="Analizá la exposición de un email: breaches, cuentas asociadas, Gravatar, y más. Gratis y privado.">
+    <meta name="description" content="Analyze email exposure: breaches, associated accounts, Gravatar, and more. Free and private.">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -393,24 +393,24 @@
                 </svg>
                 <span>VIGÍA</span>
             </a>
-            <a href="../" class="back-link">← Volver</a>
+            <a href="../" class="back-link">← Back</a>
         </header>
 
         <main>
             <div class="hero">
                 <h1>📧 Email <span class="accent">Intelligence</span></h1>
-                <p>Analizá qué información está expuesta a partir de un email. Encontrá cuentas asociadas, foto de perfil, y más.</p>
+                <p>Analyze what information is exposed from an email. Find associated accounts, profile photos, and more.</p>
             </div>
 
             <div class="search-box">
                 <div class="input-group">
-                    <input type="email" id="email" placeholder="Ingresá un email (ej: juan@gmail.com)" autocomplete="off">
+                    <input type="email" id="email" placeholder="Enter an email (e.g. john@gmail.com)" autocomplete="off">
                     <button class="btn" id="analyzeBtn" onclick="analyzeEmail()">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="11" cy="11" r="8"/>
                             <path d="m21 21-4.35-4.35"/>
                         </svg>
-                        Analizar
+                        Analyze
                     </button>
                 </div>
             </div>
@@ -422,7 +422,7 @@
                         <div class="section-icon">👤</div>
                         <div class="section-title">
                             <h3>Gravatar</h3>
-                            <p>Foto de perfil global asociada al email</p>
+                            <p>Global profile photo associated with this email</p>
                         </div>
                     </div>
                     <div class="section-content">
@@ -437,23 +437,23 @@
                     <div class="section-header">
                         <div class="section-icon">🔓</div>
                         <div class="section-title">
-                            <h3>Verificar Breaches</h3>
-                            <p>Filtraciones de datos donde aparece este email</p>
+                            <h3>Check Breaches</h3>
+                            <p>Data breaches where this email appears</p>
                         </div>
                     </div>
                     <div class="section-content">
                         <div class="links-list">
                             <a class="link-item" id="hibpLink" href="#" target="_blank">
                                 Have I Been Pwned
-                                <span>Verificar →</span>
+                                <span>Check →</span>
                             </a>
                             <a class="link-item" href="https://monitor.firefox.com/" target="_blank">
                                 Firefox Monitor
-                                <span>Verificar →</span>
+                                <span>Check →</span>
                             </a>
                             <a class="link-item" href="https://dehashed.com/" target="_blank">
                                 DeHashed
-                                <span>Verificar →</span>
+                                <span>Check →</span>
                             </a>
                         </div>
                     </div>
@@ -464,8 +464,8 @@
                     <div class="section-header">
                         <div class="section-icon">🔗</div>
                         <div class="section-title">
-                            <h3>Cuentas Posibles</h3>
-                            <p>Sitios donde podría existir una cuenta con el username del email</p>
+                            <h3>Possible Accounts</h3>
+                            <p>Sites where an account with this email's username might exist</p>
                         </div>
                     </div>
                     <div class="section-content">
@@ -481,7 +481,7 @@
                         <div class="section-icon">🔍</div>
                         <div class="section-title">
                             <h3>Google Dorks</h3>
-                            <p>Búsquedas avanzadas para encontrar más información</p>
+                            <p>Advanced searches to find more information</p>
                         </div>
                     </div>
                     <div class="section-content">
@@ -496,27 +496,27 @@
                     <div class="section-header">
                         <div class="section-icon">⚠️</div>
                         <div class="section-title">
-                            <h3>Riesgos Potenciales</h3>
-                            <p>Qué puede hacer un atacante con esta información</p>
+                            <h3>Potential Risks</h3>
+                            <p>What an attacker can do with this information</p>
                         </div>
                     </div>
                     <div class="section-content">
                         <div class="risk-grid">
                             <div class="risk-item">
-                                <h4>🎣 Phishing Personalizado</h4>
-                                <p>Emails falsos mencionando sitios donde tenés cuenta para robar credenciales.</p>
+                                <h4>🎣 Targeted Phishing</h4>
+                                <p>Fake emails mentioning sites where you have accounts to steal credentials.</p>
                             </div>
                             <div class="risk-item">
-                                <h4>🎭 Ingeniería Social</h4>
-                                <p>Usar info de reviews y redes para ganar tu confianza y manipularte.</p>
+                                <h4>🎭 Social Engineering</h4>
+                                <p>Using info from reviews and social media to gain your trust and manipulate you.</p>
                             </div>
                             <div class="risk-item">
                                 <h4>🔑 Credential Stuffing</h4>
-                                <p>Si un password fue filtrado, probarlo en todas tus otras cuentas.</p>
+                                <p>If a password was leaked, trying it on all your other accounts.</p>
                             </div>
                             <div class="risk-item">
                                 <h4>📞 Vishing/Smishing</h4>
-                                <p>Llamadas o SMS falsos con datos reales para parecer legítimos.</p>
+                                <p>Fake calls or SMS with real data to appear legitimate.</p>
                             </div>
                         </div>
                     </div>
@@ -527,31 +527,31 @@
                     <div class="section-header">
                         <div class="section-icon">✅</div>
                         <div class="section-title">
-                            <h3>Recomendaciones</h3>
-                            <p>Cómo protegerte</p>
+                            <h3>Recommendations</h3>
+                            <p>How to protect yourself</p>
                         </div>
                     </div>
                     <div class="section-content">
                         <div class="rec-list">
                             <div class="rec-item">
                                 <span class="rec-icon">🔐</span>
-                                <span class="rec-text">Usá un password único para cada sitio (password manager)</span>
+                                <span class="rec-text">Use a unique password for each site (password manager)</span>
                             </div>
                             <div class="rec-item">
                                 <span class="rec-icon">📱</span>
-                                <span class="rec-text">Activá 2FA en todas tus cuentas importantes</span>
+                                <span class="rec-text">Enable 2FA on all your important accounts</span>
                             </div>
                             <div class="rec-item">
                                 <span class="rec-icon">📧</span>
-                                <span class="rec-text">Usá email aliases para registros (SimpleLogin, Firefox Relay)</span>
+                                <span class="rec-text">Use email aliases for signups (SimpleLogin, Firefox Relay)</span>
                             </div>
                             <div class="rec-item">
                                 <span class="rec-icon">🔔</span>
-                                <span class="rec-text">Configurá alertas en haveibeenpwned.com</span>
+                                <span class="rec-text">Set up alerts at haveibeenpwned.com</span>
                             </div>
                             <div class="rec-item">
                                 <span class="rec-icon">🧹</span>
-                                <span class="rec-text">Revisá y borrá reviews que revelen patrones de vida</span>
+                                <span class="rec-text">Review and delete reviews that reveal life patterns</span>
                             </div>
                         </div>
                     </div>
@@ -561,7 +561,7 @@
 
         <footer>
             <div class="powered-by">
-                Creado por
+                Created by
                 <a href="https://fk94security.com">
                     <svg width="16" height="20" viewBox="0 0 24 28" fill="none">
                         <path d="M12 2L2 6V12C2 18.6 6.4 24.6 12 26C17.6 24.6 22 18.6 22 12V6L12 2Z" stroke="#10b981" stroke-width="1.5" fill="none"/>
@@ -694,7 +694,7 @@
         async function analyzeEmail() {
             const email = document.getElementById('email').value.trim().toLowerCase();
             if (!email || !email.includes('@')) {
-                alert('Ingresá un email válido');
+                alert('Please enter a valid email');
                 return;
             }
 
@@ -715,19 +715,19 @@
                     gravatarResult.innerHTML = `
                         <img src="https://www.gravatar.com/avatar/${emailHash}?s=200" class="gravatar-img" alt="Gravatar">
                         <div class="gravatar-info">
-                            <span class="status-badge found">Encontrado</span>
-                            <h4>Foto de perfil asociada</h4>
-                            <p>Este email tiene una foto de perfil global que se usa en WordPress, GitHub, y otros sitios.</p>
-                            <a href="https://gravatar.com/${emailHash}" target="_blank" style="color: var(--accent); font-size: 0.9rem;">Ver perfil completo →</a>
+                            <span class="status-badge found">Found</span>
+                            <h4>Associated profile photo</h4>
+                            <p>This email has a global profile photo used on WordPress, GitHub, and other sites.</p>
+                            <a href="https://gravatar.com/${emailHash}" target="_blank" style="color: var(--accent); font-size: 0.9rem;">View full profile →</a>
                         </div>
                     `;
                 } else {
                     gravatarResult.innerHTML = `
                         <div class="gravatar-img" style="display: flex; align-items: center; justify-content: center; color: var(--text-muted);">?</div>
                         <div class="gravatar-info">
-                            <span class="status-badge not-found">No encontrado</span>
-                            <h4>Sin Gravatar</h4>
-                            <p>Este email no tiene una foto de perfil global asociada.</p>
+                            <span class="status-badge not-found">Not found</span>
+                            <h4>No Gravatar</h4>
+                            <p>This email doesn't have a global profile photo associated.</p>
                         </div>
                     `;
                 }
@@ -735,7 +735,7 @@
                 gravatarResult.innerHTML = `
                     <div class="gravatar-info">
                         <span class="status-badge not-found">Error</span>
-                        <p>No se pudo verificar Gravatar. Intentá de nuevo.</p>
+                        <p>Couldn't verify Gravatar. Try again.</p>
                     </div>
                 `;
             }
@@ -753,17 +753,17 @@
             document.getElementById('accountsList').innerHTML = accounts.map(acc => `
                 <a class="link-item" href="${acc.url}" target="_blank">
                     ${acc.name} (${username})
-                    <span>Verificar →</span>
+                    <span>Check →</span>
                 </a>
             `).join('');
 
             // Generate Google Dorks
             const dorks = [
-                { query: `"${email}"`, desc: 'Busca el email exacto en toda la web' },
-                { query: `"${username}" site:tripadvisor.com`, desc: 'Reviews de viajes (revelan destinos y fechas)' },
-                { query: `"${username}" site:yelp.com OR site:google.com/maps`, desc: 'Reviews de restaurantes y negocios (ubicación)' },
-                { query: `"${email}" filetype:pdf`, desc: 'Documentos PDF con ese email' },
-                { query: `"${email}" filetype:xls OR filetype:csv`, desc: 'Listas o bases de datos filtradas' },
+                { query: `"${email}"`, desc: 'Search for the exact email across the web' },
+                { query: `"${username}" site:tripadvisor.com`, desc: 'Travel reviews (reveal destinations and dates)' },
+                { query: `"${username}" site:yelp.com OR site:google.com/maps`, desc: 'Restaurant and business reviews (location)' },
+                { query: `"${email}" filetype:pdf`, desc: 'PDF documents with this email' },
+                { query: `"${email}" filetype:xls OR filetype:csv`, desc: 'Leaked lists or databases' },
             ];
 
             document.getElementById('dorksList').innerHTML = dorks.map(dork => `
@@ -771,7 +771,7 @@
                     <div class="dork-query">${dork.query}</div>
                     <div class="dork-desc">${dork.desc}</div>
                     <button class="copy-btn" onclick="copyAndSearch('${dork.query.replace(/'/g, "\\'")}')">
-                        Buscar en Google →
+                        Search on Google →
                     </button>
                 </div>
             `).join('');

@@ -472,9 +472,9 @@ function displayDNSResults(container, results) {
         if (status === 'found') return '';
         switch (type) {
             case 'spf':
-                return '<div class="result-desc" style="margin-top: 8px; padding: 10px; background: var(--bg-primary); border-radius: 6px;"><strong>¿Qué hacer?</strong> Pedile a tu proveedor de hosting o IT que configure el registro SPF. Es una configuración técnica que ellos sabrán hacer.</div>';
+                return '<div class="result-desc" style="margin-top: 8px; padding: 10px; background: var(--bg-primary); border-radius: 6px;"><strong>What to do?</strong> Ask your hosting provider or IT team to configure the SPF record. It\'s a technical configuration they\'ll know how to do.</div>';
             case 'dmarc':
-                return '<div class="result-desc" style="margin-top: 8px; padding: 10px; background: var(--bg-primary); border-radius: 6px;"><strong>¿Qué hacer?</strong> Pedile a tu proveedor de hosting o IT que configure DMARC. Es una protección adicional contra emails falsos.</div>';
+                return '<div class="result-desc" style="margin-top: 8px; padding: 10px; background: var(--bg-primary); border-radius: 6px;"><strong>What to do?</strong> Ask your hosting provider or IT team to configure DMARC. It\'s additional protection against fake emails.</div>';
             default:
                 return '';
         }
@@ -484,10 +484,10 @@ function displayDNSResults(container, results) {
         <div class="result-item">
             ${getStatusIcon(results.spf.status)}
             <div class="result-content">
-                <div class="result-title">Protección contra suplantación de email (SPF)</div>
+                <div class="result-title">Email Spoofing Protection (SPF)</div>
                 ${results.spf.status === 'found'
-                    ? `<div class="result-desc" style="color: var(--success);">¡Bien! Tu dominio tiene protección SPF configurada.</div><div class="result-code">${results.spf.record}</div>`
-                    : '<div class="result-desc" style="color: var(--danger);">⚠️ Sin protección - Alguien podría enviar emails falsos haciéndose pasar por tu dominio</div>'
+                    ? `<div class="result-desc" style="color: var(--success);">Great! Your domain has SPF protection configured.</div><div class="result-code">${results.spf.record}</div>`
+                    : '<div class="result-desc" style="color: var(--danger);">⚠️ No protection - Someone could send fake emails pretending to be from your domain</div>'
                 }
                 ${getRecommendation('spf', results.spf.status)}
             </div>
@@ -496,10 +496,10 @@ function displayDNSResults(container, results) {
         <div class="result-item">
             ${getStatusIcon(results.dmarc.status)}
             <div class="result-content">
-                <div class="result-title">Política de autenticación de emails (DMARC)</div>
+                <div class="result-title">Email Authentication Policy (DMARC)</div>
                 ${results.dmarc.status === 'found'
-                    ? `<div class="result-desc" style="color: var(--success);">¡Bien! Tu dominio tiene política DMARC configurada.</div><div class="result-code">${results.dmarc.record}</div>`
-                    : '<div class="result-desc" style="color: var(--danger);">⚠️ Sin política - Los servidores de email no saben qué hacer con emails sospechosos de tu dominio</div>'
+                    ? `<div class="result-desc" style="color: var(--success);">Great! Your domain has DMARC policy configured.</div><div class="result-code">${results.dmarc.record}</div>`
+                    : '<div class="result-desc" style="color: var(--danger);">⚠️ No policy - Email servers don\'t know what to do with suspicious emails from your domain</div>'
                 }
                 ${getRecommendation('dmarc', results.dmarc.status)}
             </div>
@@ -508,10 +508,10 @@ function displayDNSResults(container, results) {
         <div class="result-item">
             ${getStatusIcon(results.mx.status)}
             <div class="result-content">
-                <div class="result-title">Servidor de correo (MX)</div>
+                <div class="result-title">Mail Server (MX)</div>
                 ${results.mx.status === 'found'
-                    ? `<div class="result-desc" style="color: var(--success);">Tu dominio está configurado para recibir emails.</div><div class="result-code">${results.mx.records.join('\n')}</div>`
-                    : '<div class="result-desc">No se encontró servidor de correo configurado</div>'
+                    ? `<div class="result-desc" style="color: var(--success);">Your domain is configured to receive emails.</div><div class="result-code">${results.mx.records.join('\n')}</div>`
+                    : '<div class="result-desc">No mail server configured</div>'
                 }
             </div>
         </div>

@@ -1,20 +1,20 @@
-# FK94 Security - Scripts de Hardening
+# FK94 Security - Hardening Scripts
 
-Scripts automatizados para fortificar la seguridad de sistemas operativos.
+Automated scripts to fortify operating system security.
 
-## Contenido
+## Contents
 
 ```
 scripts/
 ├── macos/
-│   ├── harden-macos.sh          # Script de hardening
-│   └── FACTORY-RESET-MACOS.md   # Guía de factory reset
+│   ├── harden-macos.sh          # Hardening script
+│   └── FACTORY-RESET-MACOS.md   # Factory reset guide
 ├── windows/
-│   ├── harden-windows.ps1       # Script de hardening (PowerShell)
-│   └── FACTORY-RESET-WINDOWS.md # Guía de factory reset
+│   ├── harden-windows.ps1       # Hardening script (PowerShell)
+│   └── FACTORY-RESET-WINDOWS.md # Factory reset guide
 ├── linux/
-│   ├── harden-linux.sh          # Script de hardening
-│   └── FACTORY-RESET-LINUX.md   # Guía de factory reset
+│   ├── harden-linux.sh          # Hardening script
+│   └── FACTORY-RESET-LINUX.md   # Factory reset guide
 └── README.md
 ```
 
@@ -25,29 +25,29 @@ scripts/
 ### Hardening Script
 
 ```bash
-# Dar permisos de ejecución
+# Grant execution permissions
 chmod +x harden-macos.sh
 
-# Ejecutar (requiere sudo)
-sudo ./harden-macos.sh           # Modo interactivo
-sudo ./harden-macos.sh --audit   # Solo auditoría (no modifica nada)
-sudo ./harden-macos.sh --all     # Aplicar todo sin preguntar
+# Run (requires sudo)
+sudo ./harden-macos.sh           # Interactive mode
+sudo ./harden-macos.sh --audit   # Audit only (doesn't modify anything)
+sudo ./harden-macos.sh --all     # Apply all without prompts
 ```
 
-#### Módulos incluidos:
+#### Included modules:
 
-| Módulo | Descripción |
+| Module | Description |
 |--------|-------------|
-| FileVault | Habilita encriptación de disco |
-| Firewall | Configura firewall y stealth mode |
-| Gatekeeper | Verifica protección de apps |
-| SIP | Verifica System Integrity Protection |
-| Lock Screen | Configura seguridad de pantalla de bloqueo |
-| Services | Deshabilita servicios innecesarios (SSH, Remote Events) |
-| Privacy | Reduce telemetría y tracking |
-| Safari | Hardening del navegador |
-| Finder | Muestra extensiones, warnings |
-| Updates | Configura actualizaciones automáticas |
+| FileVault | Enables disk encryption |
+| Firewall | Configures firewall and stealth mode |
+| Gatekeeper | Verifies app protection |
+| SIP | Verifies System Integrity Protection |
+| Lock Screen | Configures lock screen security |
+| Services | Disables unnecessary services (SSH, Remote Events) |
+| Privacy | Reduces telemetry and tracking |
+| Safari | Browser hardening |
+| Finder | Shows extensions, warnings |
+| Updates | Configures automatic updates |
 
 ---
 
@@ -56,30 +56,30 @@ sudo ./harden-macos.sh --all     # Aplicar todo sin preguntar
 ### Hardening Script
 
 ```powershell
-# Ejecutar PowerShell como Administrador
+# Run PowerShell as Administrator
 
-# Permitir ejecución del script
+# Allow script execution
 Set-ExecutionPolicy Bypass -Scope Process
 
-# Ejecutar
-.\harden-windows.ps1           # Modo interactivo
-.\harden-windows.ps1 -Audit    # Solo auditoría
-.\harden-windows.ps1 -All      # Aplicar todo
+# Run
+.\harden-windows.ps1           # Interactive mode
+.\harden-windows.ps1 -Audit    # Audit only
+.\harden-windows.ps1 -All      # Apply all
 ```
 
-#### Módulos incluidos:
+#### Included modules:
 
-| Módulo | Descripción |
+| Module | Description |
 |--------|-------------|
-| Windows Defender | Configura antivirus y protecciones |
-| Firewall | Habilita firewall en todos los perfiles |
-| UAC | Configura User Account Control |
-| BitLocker | Verifica encriptación de disco |
-| Services | Deshabilita servicios innecesarios |
-| Privacy | Reduce telemetría, ads, tracking |
-| Network | Deshabilita SMBv1, LLMNR, NetBIOS |
-| Windows Update | Configura actualizaciones automáticas |
-| PowerShell | Habilita logging de scripts |
+| Windows Defender | Configures antivirus and protections |
+| Firewall | Enables firewall on all profiles |
+| UAC | Configures User Account Control |
+| BitLocker | Verifies disk encryption |
+| Services | Disables unnecessary services |
+| Privacy | Reduces telemetry, ads, tracking |
+| Network | Disables SMBv1, LLMNR, NetBIOS |
+| Windows Update | Configures automatic updates |
+| PowerShell | Enables script logging |
 
 ---
 
@@ -88,109 +88,109 @@ Set-ExecutionPolicy Bypass -Scope Process
 ### Hardening Script
 
 ```bash
-# Dar permisos de ejecución
+# Grant execution permissions
 chmod +x harden-linux.sh
 
-# Ejecutar (requiere sudo)
-sudo ./harden-linux.sh           # Modo interactivo
-sudo ./harden-linux.sh --audit   # Solo auditoría
-sudo ./harden-linux.sh --all     # Aplicar todo
+# Run (requires sudo)
+sudo ./harden-linux.sh           # Interactive mode
+sudo ./harden-linux.sh --audit   # Audit only
+sudo ./harden-linux.sh --all     # Apply all
 ```
 
-#### Distribuciones soportadas:
+#### Supported distributions:
 - Ubuntu / Debian
 - Fedora / CentOS / RHEL
 - Arch Linux
 
-#### Módulos incluidos:
+#### Included modules:
 
-| Módulo | Descripción |
+| Module | Description |
 |--------|-------------|
-| Updates | Instala actualizaciones pendientes |
-| Firewall | Configura UFW o firewalld |
-| SSH | Hardening de configuración SSH |
-| Permissions | Verifica permisos de archivos críticos |
-| Kernel | Configura sysctl para seguridad |
-| Services | Deshabilita servicios innecesarios |
-| Auditd | Habilita sistema de auditoría |
-| Passwords | Configura política de contraseñas |
-| Fail2ban | Protección contra brute force |
+| Updates | Installs pending updates |
+| Firewall | Configures UFW or firewalld |
+| SSH | SSH configuration hardening |
+| Permissions | Verifies critical file permissions |
+| Kernel | Configures sysctl for security |
+| Services | Disables unnecessary services |
+| Auditd | Enables audit system |
+| Passwords | Configures password policy |
+| Fail2ban | Brute force protection |
 
 ---
 
-## Guías de Factory Reset
+## Factory Reset Guides
 
-Cada directorio incluye una guía detallada para hacer factory reset del sistema:
+Each directory includes a detailed guide for system factory reset:
 
 - [Factory Reset macOS](macos/FACTORY-RESET-MACOS.md)
 - [Factory Reset Windows](windows/FACTORY-RESET-WINDOWS.md)
 - [Factory Reset Linux](linux/FACTORY-RESET-LINUX.md)
 
-Usar estas guías cuando:
-- Sospecha de compromiso o malware
-- Venta o transferencia del equipo
-- Desea empezar con instalación limpia y segura
+Use these guides when:
+- Suspected compromise or malware
+- Selling or transferring the device
+- Want to start with a clean and secure installation
 
 ---
 
-## Uso Recomendado
+## Recommended Usage
 
-### Para Clientes de FK94 Security
+### For FK94 Security Clients
 
-1. **Primero:** Ejecutar en modo auditoría para ver estado actual
+1. **First:** Run in audit mode to see current status
    ```bash
    sudo ./harden-[os].sh --audit
    ```
 
-2. **Revisar:** Analizar el reporte generado con el cliente
+2. **Review:** Analyze the generated report with the client
 
-3. **Aplicar:** Ejecutar módulos necesarios de forma interactiva
+3. **Apply:** Run necessary modules interactively
    ```bash
    sudo ./harden-[os].sh
    ```
 
-4. **Documentar:** Guardar los logs generados en el Desktop
+4. **Document:** Save the logs generated on Desktop
 
-### Para Uso Personal
+### For Personal Use
 
-Ejecutar el script en modo interactivo y responder a cada pregunta según tus necesidades.
+Run the script in interactive mode and answer each question according to your needs.
 
 ---
 
-## Output y Logs
+## Output and Logs
 
-Los scripts generan:
+The scripts generate:
 
 1. **Log file:** `~/Desktop/[os]_hardening_[timestamp].log`
-   - Registro de todas las acciones tomadas
+   - Record of all actions taken
 
 2. **Audit report:** `~/Desktop/security_audit_[timestamp].txt`
-   - Resumen del estado de seguridad (modo --audit)
+   - Security status summary (--audit mode)
 
 ---
 
-## Advertencias
+## Warnings
 
-- **Hacer backup antes de ejecutar** - Algunos cambios pueden afectar funcionalidad
-- **Leer lo que hace cada módulo** - No aplicar ciegamente
-- **Probar en entorno de test primero** - Si es posible
-- **Algunos cambios requieren reinicio** - Para aplicarse completamente
-
----
-
-## Contribuir
-
-Si encontrás bugs o querés agregar funcionalidad:
-
-1. Fork del repositorio
-2. Crear branch para tu feature
-3. Pull request con descripción clara
+- **Backup before running** - Some changes may affect functionality
+- **Read what each module does** - Don't apply blindly
+- **Test in a test environment first** - If possible
+- **Some changes require restart** - To fully apply
 
 ---
 
-## Licencia
+## Contributing
 
-MIT License - Ver LICENSE en el repositorio principal
+If you find bugs or want to add functionality:
+
+1. Fork the repository
+2. Create a branch for your feature
+3. Pull request with clear description
+
+---
+
+## License
+
+MIT License - See LICENSE in the main repository
 
 ---
 

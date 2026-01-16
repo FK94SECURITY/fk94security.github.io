@@ -2,23 +2,23 @@
 
 **OPSEC & Privacy Services**
 
-Servicios de seguridad operativa y privacidad personal para individuos y organizaciones.
+Operational security and personal privacy services for individuals and organizations.
 
-## Servicios
+## Services
 
-- **OSINT & Exposure Analysis** - Análisis de huella digital y exposición
-- **Privacy Architecture** - Diseño de estrategia de privacidad personal
-- **Account & Device Hardening** - Fortificación de cuentas y dispositivos
-- **Communications Security** - Seguridad en comunicaciones
-- **Crypto/Web3 OPSEC** - Seguridad para holders de crypto
+- **OSINT & Exposure Analysis** - Digital footprint and exposure analysis
+- **Privacy Architecture** - Personal privacy strategy design
+- **Account & Device Hardening** - Account and device fortification
+- **Communications Security** - Secure communications
+- **Crypto/Web3 OPSEC** - Security for crypto holders
 
 ## Open Source Tools
 
-### Scripts de Hardening
+### Hardening Scripts
 
-Scripts automatizados para fortificar sistemas operativos:
+Automated scripts to fortify operating systems:
 
-| OS | Script | Descripción |
+| OS | Script | Description |
 |----|--------|-------------|
 | **macOS** | `scripts/macos/harden-macos.sh` | FileVault, Firewall, Gatekeeper, Privacy |
 | **Windows** | `scripts/windows/harden-windows.ps1` | Defender, Firewall, BitLocker, Privacy |
@@ -35,29 +35,29 @@ sudo ./scripts/macos/harden-macos.sh --audit
 sudo ./scripts/linux/harden-linux.sh --audit
 ```
 
-### Guías de Factory Reset
+### Factory Reset Guides
 
 - [macOS Factory Reset](scripts/macos/FACTORY-RESET-MACOS.md)
 - [Windows Factory Reset](scripts/windows/FACTORY-RESET-WINDOWS.md)
 - [Linux Factory Reset](scripts/linux/FACTORY-RESET-LINUX.md)
 
-### Vigía - Web Tools
+### Vigia - Web Tools
 
-Suite de herramientas gratuitas basadas en web:
+Free web-based tools suite:
 
-- **Security Scanner** - Score de seguridad para dispositivos
-- **Digital Footprint Analyzer** - Análisis OSINT de exposición
-- **Audit Tool** - Checklist interactivo de seguridad
+- **Security Scanner** - Security score for devices
+- **Digital Footprint Analyzer** - OSINT exposure analysis
+- **Audit Tool** - Interactive security checklist
 
-## Estructura del Proyecto
+## Project Structure
 
 ```
 fk94_security/
-├── index.html              # Website principal
-├── styles.css              # Estilos
+├── index.html              # Main website
+├── styles.css              # Styles
 ├── script.js               # JavaScript
 │
-├── scripts/                # Scripts de hardening
+├── scripts/                # Hardening scripts
 │   ├── macos/
 │   │   ├── harden-macos.sh
 │   │   └── FACTORY-RESET-MACOS.md
@@ -68,9 +68,9 @@ fk94_security/
 │       ├── harden-linux.sh
 │       └── FACTORY-RESET-LINUX.md
 │
-├── docs/                   # Documentación
+├── docs/                   # Documentation
 │   ├── README.md
-│   └── procedures/         # Procedimientos operativos
+│   └── procedures/         # Operational procedures
 │       ├── 01-OSINT-ANALYSIS.md
 │       ├── 02-PRIVACY-ARCHITECTURE.md
 │       ├── 03-ACCOUNT-HARDENING.md
@@ -87,29 +87,29 @@ fk94_security/
 ## Development
 
 ```bash
-# Clonar repositorio
+# Clone repository
 git clone https://github.com/fk94security/fk94_security.git
 cd fk94_security
 
-# Correr servidor local
+# Run local server
 python3 -m http.server 8888
 
-# Abrir en browser
+# Open in browser
 open http://localhost:8888
 ```
 
-## Contribuir
+## Contributing
 
-1. Fork del repositorio
-2. Crear branch para tu feature (`git checkout -b feature/nueva-feature`)
-3. Commit de cambios (`git commit -m 'Add nueva feature'`)
-4. Push al branch (`git push origin feature/nueva-feature`)
-5. Abrir Pull Request
+1. Fork the repository
+2. Create a branch for your feature (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
+5. Open a Pull Request
 
-## Licencia
+## License
 
-- **Scripts de hardening y guías:** MIT License
-- **Servicios profesionales:** Propiedad de FK94 Security
+- **Hardening scripts and guides:** MIT License
+- **Professional services:** Property of FK94 Security
 
 ---
 

@@ -1,49 +1,49 @@
-# FK94 Security - Documentación
+# FK94 Security - Documentation
 
-## Procedimientos Operativos
+## Operational Procedures
 
-Guías paso a paso para ejecutar cada servicio:
+Step-by-step guides to execute each service:
 
-| # | Procedimiento | Tiempo Est. | Descripción |
-|---|---------------|-------------|-------------|
-| 01 | [OSINT Analysis](procedures/01-OSINT-ANALYSIS.md) | 2-6 horas | Análisis de exposición pública del cliente |
-| 02 | [Privacy Architecture](procedures/02-PRIVACY-ARCHITECTURE.md) | 3-5 horas | Diseño de estrategia de privacidad personal |
-| 03 | [Account Hardening](procedures/03-ACCOUNT-HARDENING.md) | 4-5 horas | Fortificación de cuentas y dispositivos |
-| 04 | [Communications Security](procedures/04-COMMUNICATIONS-SECURITY.md) | 2-3 horas | Mensajería segura, email cifrado, VPN |
-| 05 | [Crypto OPSEC](procedures/05-CRYPTO-OPSEC.md) | 4-6 horas | Seguridad de wallets y exchanges |
+| # | Procedure | Est. Time | Description |
+|---|-----------|-----------|-------------|
+| 01 | [OSINT Analysis](procedures/01-OSINT-ANALYSIS.md) | 2-6 hours | Client's public exposure analysis |
+| 02 | [Privacy Architecture](procedures/02-PRIVACY-ARCHITECTURE.md) | 3-5 hours | Personal privacy strategy design |
+| 03 | [Account Hardening](procedures/03-ACCOUNT-HARDENING.md) | 4-5 hours | Account and device fortification |
+| 04 | [Communications Security](procedures/04-COMMUNICATIONS-SECURITY.md) | 2-3 hours | Secure messaging, encrypted email, VPN |
+| 05 | [Crypto OPSEC](procedures/05-CRYPTO-OPSEC.md) | 4-6 hours | Wallet and exchange security |
 
-## Estructura de Cada Procedimiento
+## Structure of Each Procedure
 
-Cada documento incluye:
+Each document includes:
 
-1. **Objetivo** - Qué se busca lograr
-2. **Información Requerida** - Qué pedir al cliente antes de empezar
-3. **Fases detalladas** - Paso a paso con herramientas específicas
-4. **Deliverables** - Qué entregar al cliente
-5. **Tiempo estimado** - Cuánto toma cada fase
-6. **Checklist final** - Verificación de completitud
+1. **Objective** - What we aim to achieve
+2. **Required Information** - What to ask the client before starting
+3. **Detailed Phases** - Step by step with specific tools
+4. **Deliverables** - What to deliver to the client
+5. **Estimated Time** - How long each phase takes
+6. **Final Checklist** - Completeness verification
 
-## Herramientas Utilizadas
+## Tools Used
 
 ### OSINT & Breach Analysis
-- Have I Been Pwned (gratis)
-- DeHashed (pago)
+- Have I Been Pwned (free)
+- DeHashed (paid)
 - Intelligence X (freemium)
-- Sherlock (CLI, gratis)
+- Sherlock (CLI, free)
 
 ### People Search / Data Brokers
-- TruePeopleSearch (gratis)
-- Spokeo, WhitePages, BeenVerified (pagos)
+- TruePeopleSearch (free)
+- Spokeo, WhitePages, BeenVerified (paid)
 
 ### Privacy Tools
 - SimpleLogin / AnonAddy (email aliases)
 - MySudo / Google Voice (phone privacy)
-- Privacy.com (tarjetas virtuales)
+- Privacy.com (virtual cards)
 
 ### Security Tools
 - 1Password / Bitwarden (password managers)
-- Signal (mensajería)
-- ProtonMail (email cifrado)
+- Signal (messaging)
+- ProtonMail (encrypted email)
 - Mullvad / ProtonVPN (VPN)
 
 ### Crypto Tools
@@ -51,27 +51,27 @@ Cada documento incluye:
 - Gnosis Safe (multisig)
 - Revoke.cash (approval management)
 
-## Flujo de Trabajo Típico
+## Typical Workflow
 
 ```
-1. Consulta inicial (entender necesidades)
+1. Initial consultation (understand needs)
          ↓
-2. OSINT Analysis (evaluar exposición actual)
+2. OSINT Analysis (assess current exposure)
          ↓
-3. Privacy Architecture (diseñar estrategia)
+3. Privacy Architecture (design strategy)
          ↓
-4. Account Hardening (implementar seguridad)
+4. Account Hardening (implement security)
          ↓
-5. Communications Security (asegurar comunicaciones)
+5. Communications Security (secure communications)
          ↓
-6. Crypto OPSEC (si aplica)
+6. Crypto OPSEC (if applicable)
          ↓
-7. Reporte final y recomendaciones
+7. Final report and recommendations
 ```
 
-## Notas Importantes
+## Important Notes
 
-- **Cada caso es único** - Los procedimientos son guías, adaptar según el cliente
-- **Documentar todo** - Screenshots, fechas, acciones tomadas
-- **No guardar datos sensibles** - Seeds, passwords del cliente nunca en nuestros sistemas
-- **Consultar profesionales** - Para LLCs, temas legales/fiscales, referir a abogados/contadores
+- **Each case is unique** - Procedures are guides, adapt according to the client
+- **Document everything** - Screenshots, dates, actions taken
+- **Don't store sensitive data** - Client seeds, passwords never on our systems
+- **Consult professionals** - For LLCs, legal/tax matters, refer to lawyers/accountants

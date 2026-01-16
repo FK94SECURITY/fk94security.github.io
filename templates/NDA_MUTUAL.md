@@ -13,7 +13,7 @@ This Mutual Non-Disclosure Agreement ("Agreement") is entered into by and betwee
 **Party A:**
 - **Name:** FK94 Security LLC
 - **Address:** [ADDRESS]
-- **Contact:** contact@fk94security.com
+- **Contact:** info@fk94security.com
 
 **Party B:**
 - **Name:** [CLIENT COMPANY NAME]

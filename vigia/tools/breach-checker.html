@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Breach Checker - Was your email leaked?</title>
-    <meta name="description" content="Check for free if your email appeared in any data breach">
+    <meta name="description" content="Request a free breach check to see if your email appeared in any data breach">
     <style>
         :root {
             --bg: #0a0a0b;
@@ -34,7 +34,6 @@
             padding: 40px 24px;
         }
 
-        /* Header */
         .back-link {
             display: inline-flex;
             align-items: center;
@@ -47,7 +46,6 @@
 
         .back-link:hover { color: var(--text); }
 
-        /* Hero */
         .hero {
             text-align: center;
             margin-bottom: 40px;
@@ -64,7 +62,6 @@
             margin-bottom: 16px;
         }
 
-        .hero h1 .accent { color: var(--accent); }
         .hero h1 .danger { color: var(--danger); }
 
         .hero p {
@@ -74,7 +71,6 @@
             margin: 0 auto;
         }
 
-        /* Search Box */
         .search-box {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -83,13 +79,19 @@
             margin-bottom: 32px;
         }
 
-        .input-group {
-            display: flex;
-            gap: 12px;
+        .form-group {
+            margin-bottom: 20px;
         }
 
-        .input-group input {
-            flex: 1;
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
             padding: 16px 20px;
             font-size: 1rem;
             background: var(--bg);
@@ -99,15 +101,16 @@
             outline: none;
         }
 
-        .input-group input:focus {
+        .form-group input:focus {
             border-color: var(--accent);
         }
 
-        .input-group input::placeholder {
+        .form-group input::placeholder {
             color: var(--text-muted);
         }
 
         .btn {
+            width: 100%;
             padding: 16px 32px;
             font-size: 1rem;
             font-weight: 600;
@@ -127,12 +130,6 @@
             transform: translateY(-2px);
         }
 
-        .btn-primary:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
         .privacy-note {
             text-align: center;
             margin-top: 16px;
@@ -140,198 +137,64 @@
             color: var(--text-muted);
         }
 
-        .privacy-note svg {
-            vertical-align: middle;
-            margin-right: 4px;
-        }
-
-        /* Results */
-        .results {
-            display: none;
-        }
-
-        .results.show {
-            display: block;
-        }
-
-        .results-header {
-            text-align: center;
-            padding: 32px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            margin-bottom: 24px;
-        }
-
-        .results-header.danger {
-            border-color: var(--danger);
-            background: rgba(239, 68, 68, 0.1);
-        }
-
-        .results-header.safe {
-            border-color: var(--accent);
-            background: rgba(16, 185, 129, 0.1);
-        }
-
-        .results-icon {
-            font-size: 3rem;
-            margin-bottom: 16px;
-        }
-
-        .results-header h2 {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
-        }
-
-        .results-header p {
-            color: var(--text-secondary);
-        }
-
-        .breach-count {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--danger);
-        }
-
-        /* Breach List */
-        .breach-list {
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
             margin-bottom: 32px;
         }
 
-        .breach-list h3 {
-            font-size: 1.1rem;
-            margin-bottom: 16px;
-            color: var(--text-secondary);
-        }
-
-        .breach-item {
+        .feature {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 20px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
             margin-bottom: 12px;
         }
 
-        .breach-item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .feature h3 {
+            font-size: 1rem;
             margin-bottom: 8px;
         }
 
-        .breach-name {
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .breach-date {
+        .feature p {
+            font-size: 0.85rem;
             color: var(--text-muted);
-            font-size: 0.85rem;
         }
 
-        .breach-data {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 12px;
-        }
-
-        .data-tag {
-            padding: 4px 10px;
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--danger);
-            border-radius: 4px;
-            font-size: 0.8rem;
-        }
-
-        .data-tag.password {
-            background: rgba(239, 68, 68, 0.2);
-            font-weight: 600;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            border-radius: 16px;
-            padding: 32px;
-            text-align: center;
-        }
-
-        .cta-section h3 {
-            font-size: 1.5rem;
-            margin-bottom: 12px;
-        }
-
-        .cta-section p {
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-section .btn {
-            padding: 16px 40px;
-        }
-
-        /* What's exposed */
-        .exposed-summary {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 12px;
-            margin: 24px 0;
-        }
-
-        .exposed-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 16px;
-            text-align: center;
-        }
-
-        .exposed-item.danger {
-            border-color: var(--danger);
-            background: rgba(239, 68, 68, 0.1);
-        }
-
-        .exposed-item .icon {
-            font-size: 1.5rem;
-            margin-bottom: 8px;
-        }
-
-        .exposed-item .label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        /* Loading */
-        .loading {
+        .success-message {
             display: none;
             text-align: center;
             padding: 40px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--accent);
+            border-radius: 16px;
         }
 
-        .loading.show {
+        .success-message.show {
             display: block;
         }
 
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid var(--border);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 16px;
+        .success-message .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .success-message h2 {
+            margin-bottom: 12px;
+            color: var(--accent);
         }
 
-        /* Footer */
+        .success-message p {
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
         footer {
             text-align: center;
             padding: 40px 0;
@@ -344,263 +207,87 @@
             text-decoration: none;
         }
 
-        /* Responsive */
         @media (max-width: 600px) {
             .hero h1 { font-size: 1.8rem; }
-            .input-group { flex-direction: column; }
-            .btn { width: 100%; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <a href="../index.html" class="back-link">
-            ← Back to Vigía
+            ← Back to Vigia
         </a>
 
         <div class="hero">
             <div class="hero-icon">🔓</div>
             <h1>Was your email <span class="danger">leaked</span>?</h1>
-            <p>Check for free if your email appeared in any data breach. Millions of accounts are exposed every year.</p>
+            <p>Request a free breach check. We'll search multiple databases and send you a detailed report within 24 hours.</p>
         </div>
 
-        <div class="search-box">
-            <div class="input-group">
-                <input type="email" id="emailInput" placeholder="you@email.com" autocomplete="email">
-                <button class="btn btn-primary" id="checkBtn" onclick="checkEmail()">
-                    Check
-                </button>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🔍</div>
+                <h3>Deep Search</h3>
+                <p>We check multiple breach databases, not just one</p>
             </div>
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <h3>Detailed Report</h3>
+                <p>See exactly what data was exposed and where</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🛡️</div>
+                <h3>Action Plan</h3>
+                <p>Get specific steps to protect yourself</p>
+            </div>
+        </div>
+
+        <div class="search-box" id="formBox">
+            <form id="breachForm" action="https://formsubmit.co/info@fk94security.com" method="POST">
+                <input type="hidden" name="_subject" value="Breach Check Request">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="https://fk94security.com/vigia/tools/breach-checker.html?success=true">
+
+                <div class="form-group">
+                    <label for="email">Email to check</label>
+                    <input type="email" id="email" name="email" placeholder="you@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Your name (optional)</label>
+                    <input type="text" id="name" name="name" placeholder="John">
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    Request Free Check
+                </button>
+            </form>
             <p class="privacy-note">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                </svg>
-                Your email is not stored. The search is 100% private.
+                🔒 Your information is only used to send you the report. We never share or sell your data.
             </p>
         </div>
 
-        <div class="loading" id="loading">
-            <div class="spinner"></div>
-            <p>Searching breach databases...</p>
-        </div>
-
-        <div class="results" id="results">
-            <!-- Results will be injected here -->
+        <div class="success-message" id="successMessage">
+            <div class="icon">✅</div>
+            <h2>Request Received!</h2>
+            <p>We'll check your email against our breach databases and send you a detailed report within 24 hours.</p>
+            <p style="margin-top: 20px; font-size: 0.9rem;">Check your inbox (and spam folder) for our response.</p>
         </div>
     </div>
 
     <footer>
-        <p>Powered by <a href="https://dehashed.com" target="_blank">Dehashed</a></p>
-        <p style="margin-top: 8px;">A tool by <a href="../../index.html">FK94 Security</a></p>
+        <p>A tool by <a href="../../index.html">FK94 Security</a></p>
     </footer>
 
     <script>
-        const WORKER_URL = 'https://square-river-d71e.fk1994business.workers.dev/';
-
-        async function checkEmail() {
-            const email = document.getElementById('emailInput').value.trim();
-
-            if (!email || !isValidEmail(email)) {
-                alert('Please enter a valid email address');
-                return;
-            }
-
-            // Show loading
-            document.getElementById('loading').classList.add('show');
-            document.getElementById('results').classList.remove('show');
-            document.getElementById('checkBtn').disabled = true;
-
-            try {
-                const breaches = await fetchBreaches(email);
-                displayResults(email, breaches);
-            } catch (error) {
-                console.error('Error:', error);
-                displayError();
-            } finally {
-                document.getElementById('loading').classList.remove('show');
-                document.getElementById('checkBtn').disabled = false;
-            }
+        // Check if returning from successful submission
+        if (window.location.search.includes('success=true')) {
+            document.getElementById('formBox').style.display = 'none';
+            document.getElementById('successMessage').classList.add('show');
+            // Clean URL
+            history.replaceState({}, '', window.location.pathname);
         }
-
-        async function fetchBreaches(email) {
-            const response = await fetch(WORKER_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email })
-            });
-
-            if (!response.ok) {
-                throw new Error(`API error: ${response.status}`);
-            }
-
-            const data = await response.json();
-
-            // Transform Dehashed response to our format
-            if (!data.entries || data.entries.length === 0) {
-                return [];
-            }
-
-            // Group by database_name to show unique breaches
-            const breachMap = new Map();
-            data.entries.forEach(entry => {
-                const dbName = entry.database_name || 'Unknown';
-                if (!breachMap.has(dbName)) {
-                    breachMap.set(dbName, {
-                        Name: dbName,
-                        BreachDate: entry.obtained_date || 'Unknown',
-                        DataClasses: new Set(),
-                        rawEntries: []
-                    });
-                }
-                const breach = breachMap.get(dbName);
-                breach.rawEntries.push(entry);
-
-                // Detect what data was exposed
-                if (entry.email) breach.DataClasses.add('Email addresses');
-                if (entry.password) breach.DataClasses.add('Passwords');
-                if (entry.hashed_password) breach.DataClasses.add('Hashed passwords');
-                if (entry.username) breach.DataClasses.add('Usernames');
-                if (entry.name) breach.DataClasses.add('Names');
-                if (entry.phone) breach.DataClasses.add('Phone numbers');
-                if (entry.ip_address) breach.DataClasses.add('IP addresses');
-                if (entry.address) breach.DataClasses.add('Physical addresses');
-            });
-
-            // Convert to array format
-            return Array.from(breachMap.values()).map(b => ({
-                Name: b.Name,
-                BreachDate: b.BreachDate,
-                DataClasses: Array.from(b.DataClasses)
-            }));
-        }
-
-        function displayResults(email, breaches) {
-            const resultsDiv = document.getElementById('results');
-
-            if (breaches.length === 0) {
-                resultsDiv.innerHTML = `
-                    <div class="results-header safe">
-                        <div class="results-icon">✅</div>
-                        <h2>Good news!</h2>
-                        <p>We didn't find <strong>${email}</strong> in any known breaches.</p>
-                    </div>
-                    <div class="cta-section">
-                        <h3>Stay secure</h3>
-                        <p>Even though we didn't find any breaches, it's important to maintain good security practices.</p>
-                        <a href="../../index.html#contact" class="btn btn-primary">
-                            Schedule free consultation
-                        </a>
-                    </div>
-                `;
-            } else {
-                // Collect all exposed data types
-                const allDataTypes = new Set();
-                breaches.forEach(b => b.DataClasses.forEach(d => allDataTypes.add(d)));
-
-                const hasPasswords = allDataTypes.has('Passwords');
-                const hasPhones = allDataTypes.has('Phone numbers');
-                const hasAddresses = allDataTypes.has('Physical addresses');
-
-                resultsDiv.innerHTML = `
-                    <div class="results-header danger">
-                        <div class="results-icon">⚠️</div>
-                        <h2>Your email was found in</h2>
-                        <div class="breach-count">${breaches.length}</div>
-                        <p>data breaches</p>
-                    </div>
-
-                    <div class="exposed-summary">
-                        <div class="exposed-item ${hasPasswords ? 'danger' : ''}">
-                            <div class="icon">${hasPasswords ? '🔴' : '⚪'}</div>
-                            <div class="label">Passwords</div>
-                        </div>
-                        <div class="exposed-item ${hasPhones ? 'danger' : ''}">
-                            <div class="icon">${hasPhones ? '🔴' : '⚪'}</div>
-                            <div class="label">Phone Numbers</div>
-                        </div>
-                        <div class="exposed-item danger">
-                            <div class="icon">🔴</div>
-                            <div class="label">Emails</div>
-                        </div>
-                        <div class="exposed-item ${hasAddresses ? 'danger' : ''}">
-                            <div class="icon">${hasAddresses ? '🔴' : '⚪'}</div>
-                            <div class="label">Addresses</div>
-                        </div>
-                    </div>
-
-                    <div class="cta-section" style="margin-bottom: 32px;">
-                        <h3>🚨 Your information is exposed</h3>
-                        <p>Hackers can use this data to steal your identity, access your accounts, or launch targeted phishing attacks.</p>
-                        <a href="../../index.html#contact" class="btn btn-primary">
-                            Schedule free consultation
-                        </a>
-                    </div>
-
-                    <div class="breach-list">
-                        <h3>Breaches found:</h3>
-                        ${breaches.map(breach => `
-                            <div class="breach-item">
-                                <div class="breach-item-header">
-                                    <span class="breach-name">${breach.Name}</span>
-                                    <span class="breach-date">${formatDate(breach.BreachDate)}</span>
-                                </div>
-                                <div class="breach-data">
-                                    ${breach.DataClasses.map(dc => `
-                                        <span class="data-tag ${dc === 'Passwords' ? 'password' : ''}">${dc}</span>
-                                    `).join('')}
-                                </div>
-                            </div>
-                        `).join('')}
-                    </div>
-
-                    <div class="cta-section">
-                        <h3>What should you do?</h3>
-                        <p>An expert can help you change compromised passwords, enable additional protection, and review what else is exposed.</p>
-                        <a href="../../index.html#contact" class="btn btn-primary">
-                            Talk to an expert (free)
-                        </a>
-                    </div>
-                `;
-            }
-
-            resultsDiv.classList.add('show');
-            resultsDiv.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function displayError() {
-            const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = `
-                <div class="results-header">
-                    <div class="results-icon">❌</div>
-                    <h2>Error checking</h2>
-                    <p>There was a problem checking your email. Please try again.</p>
-                </div>
-            `;
-            resultsDiv.classList.add('show');
-        }
-
-        function formatDate(dateStr) {
-            const date = new Date(dateStr);
-            return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
-        }
-
-        function isValidEmail(email) {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        }
-
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
-
-        // Allow Enter key to submit
-        document.getElementById('emailInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                checkEmail();
-            }
-        });
     </script>
 </body>
 </html>

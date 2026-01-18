@@ -775,6 +775,93 @@ img {
 }
 
 /* ========================================
+   Testimonials Section
+   ======================================== */
+.testimonials {
+    padding: var(--section-padding) 0;
+    background: var(--bg-secondary);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+}
+
+.testimonial-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 32px;
+    transition: var(--transition-medium);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.testimonial-card:hover {
+    border-color: var(--border-light);
+    transform: translateY(-2px);
+}
+
+.testimonial-content {
+    margin-bottom: 24px;
+}
+
+.quote-icon {
+    width: 32px;
+    height: 32px;
+    fill: var(--accent-primary);
+    opacity: 0.4;
+    margin-bottom: 16px;
+}
+
+.testimonial-content p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.author-avatar {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--bg-primary);
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.author-role {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* ========================================
    Methodology Section
    ======================================== */
 .methodology {
@@ -1351,6 +1438,10 @@ img {
         order: -1;
     }
 
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .methodology-steps {
         flex-direction: column;
     }
@@ -1395,8 +1486,13 @@ img {
     }
     
     .services-grid,
-    .industries-grid {
+    .industries-grid,
+    .testimonials-grid {
         grid-template-columns: 1fr;
+    }
+
+    .testimonial-card {
+        padding: 24px;
     }
 
     .hero-vigia {

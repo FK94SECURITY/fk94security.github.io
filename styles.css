@@ -1217,7 +1217,7 @@ img {
     text-align: center;
 }
 
-.stat-number {
+.founder-stat-value {
     display: block;
     font-size: 20px;
     font-weight: 700;
@@ -1620,10 +1620,16 @@ img {
     }
 
     .pricing-grid {
-        grid-template-columns: 1fr;
-        max-width: 400px;
-        margin-left: auto;
-        margin-right: auto;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    .pricing-card {
+        padding: 24px;
+    }
+
+    .price-amount {
+        font-size: 36px;
     }
 
     .methodology-steps {
@@ -1671,12 +1677,24 @@ img {
     
     .services-grid,
     .industries-grid,
-    .testimonials-grid {
+    .testimonials-grid,
+    .pricing-grid {
         grid-template-columns: 1fr;
     }
 
-    .testimonial-card {
+    .pricing-grid {
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .testimonial-card,
+    .pricing-card {
         padding: 24px;
+    }
+
+    .price-amount {
+        font-size: 40px;
     }
 
     .hero-vigia {

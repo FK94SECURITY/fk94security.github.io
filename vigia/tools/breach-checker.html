@@ -239,50 +239,48 @@
 
         <div class="hero">
             <div class="hero-icon">🔓</div>
-            <h1>Was your email <span class="danger">leaked</span>?</h1>
-            <p>Check instantly if your email appeared in any data breach. Powered by the largest breach database.</p>
+            <h1>Check your email <span class="danger">safely</span></h1>
+            <p>We open the trusted Have I Been Pwned site in a new tab so you can search there. We don’t send or store your email.</p>
         </div>
 
         <div class="features">
             <div class="feature">
                 <div class="feature-icon">🔍</div>
-                <h3>700+ Breaches</h3>
-                <p>Searches across 700+ known data breaches</p>
+                <h3>Trusted Database</h3>
+                <p>Uses Have I Been Pwned for breach lookups</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">⚡</div>
-                <h3>Instant Results</h3>
-                <p>Get results in seconds, completely free</p>
+                <h3>External Check</h3>
+                <p>Your browser connects directly to HIBP</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">🔒</div>
-                <h3>100% Private</h3>
-                <p>Your email is never stored or logged</p>
+                <h3>No FK94 Storage</h3>
+                <p>We don’t store or log your email</p>
             </div>
         </div>
 
         <div class="search-box" id="searchBox">
             <div class="input-group">
-                <input type="email" id="emailInput" placeholder="you@email.com" autocomplete="email">
-                <button class="btn btn-primary" id="checkBtn" onclick="checkEmail()">
-                    Check Now
+                <button class="btn btn-primary" id="checkBtn" onclick="openHIBP()">
+                    Open Have I Been Pwned
                 </button>
             </div>
             <p class="privacy-note">
-                🔒 We use Have I Been Pwned - the most trusted breach database
+                🔒 You’ll enter your email on the HIBP site, not here
             </p>
         </div>
 
         <div class="loading" id="loading">
             <div class="spinner"></div>
-            <p>Searching breach databases...</p>
-            <p style="font-size: 0.85rem; margin-top: 8px;">Redirecting to results...</p>
+            <p>Opening Have I Been Pwned...</p>
         </div>
 
         <div class="cta-section">
             <h3>Found breaches? We can help.</h3>
             <p>Get a free consultation to secure your accounts and protect your identity.</p>
-            <a href="../../index.html#contact" class="btn btn-primary">
+            <a href="../../index.html#contacto" class="btn btn-primary">
                 Schedule Free Consultation
             </a>
         </div>
@@ -294,31 +292,15 @@
     </footer>
 
     <script>
-        function checkEmail() {
-            const email = document.getElementById('emailInput').value.trim();
-
-            if (!email || !email.includes('@')) {
-                alert('Please enter a valid email address');
-                return;
-            }
-
-            // Show loading
+        function openHIBP() {
             document.getElementById('searchBox').style.display = 'none';
             document.getElementById('loading').classList.add('show');
             document.getElementById('checkBtn').disabled = true;
 
-            // Redirect to HIBP after short delay
             setTimeout(() => {
-                window.location.href = `https://haveibeenpwned.com/account/${encodeURIComponent(email)}`;
-            }, 1500);
+                window.open('https://haveibeenpwned.com', '_blank', 'noopener,noreferrer');
+            }, 600);
         }
-
-        // Enter key to submit
-        document.getElementById('emailInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                checkEmail();
-            }
-        });
     </script>
 </body>
 </html>

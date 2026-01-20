@@ -78,23 +78,25 @@
                     <!-- Breach Check -->
                     <div class="card">
                         <h3>
-                            <span class="auto-badge">AUTO</span>
-                            Check if your email was breached
+                            <span class="auto-badge">EXTERNAL</span>
+                            Check your email on Have I Been Pwned
                         </h3>
-                        <p class="card-description">We search your email in known breach databases. If it appears, your password may have been stolen.</p>
+                        <p class="card-description">We don't query breach databases directly from this tool. Click below to open the trusted HIBP site in a new tab and check your email there.</p>
 
                         <div class="input-group">
-                            <input type="email" id="hibpEmail" placeholder="Your email (e.g. you@email.com)" class="input">
-                            <button class="btn-primary" id="hibpCheckBtn">
+                            <button class="btn-primary" id="hibpOpenBtn">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                    <path d="M14 3h7v7"/>
+                                    <path d="M10 14L21 3"/>
+                                    <path d="M21 14v7h-7"/>
+                                    <path d="M3 10V3h7"/>
                                 </svg>
-                                Check
+                                Open Have I Been Pwned
                             </button>
                         </div>
 
                         <div class="results-container" id="hibpResults">
-                            <!-- Results will appear here -->
+                            <!-- Status will appear here -->
                         </div>
                     </div>
 
@@ -118,6 +120,14 @@
                                 <div class="check-content">
                                     <span class="check-title">Review your social media privacy</span>
                                     <span class="check-desc">Is your LinkedIn, Facebook, Instagram profile public? Who can see your posts?</span>
+                                </div>
+                            </label>
+                            <label class="check-item" data-check="osint-hibp">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                                <div class="check-content">
+                                    <span class="check-title">Checked my email on Have I Been Pwned</span>
+                                    <span class="check-desc">Use the external HIBP site to verify if your email appears in breaches</span>
                                 </div>
                             </label>
                             <label class="check-item" data-check="osint-usernames">
@@ -162,7 +172,7 @@
                             <span class="auto-badge">AUTO</span>
                             Domain Security Check
                         </h3>
-                        <p class="card-description">We check if your domain is protected against hackers who could send fake emails impersonating you or your company.</p>
+                        <p class="card-description">We check if your domain is protected against hackers who could send fake emails impersonating you or your company. This uses Google DNS over HTTPS.</p>
 
                         <div class="input-group">
                             <input type="text" id="dnsDoamin" placeholder="Your domain (e.g. yourcompany.com)" class="input">

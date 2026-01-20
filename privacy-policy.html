@@ -138,7 +138,7 @@
 
         <div class="policy-content">
             <div class="highlight-box">
-                <p><strong>Our Commitment:</strong> As a privacy and security consulting firm, we practice what we preach. We collect minimal data and our free tools process everything locally in your browser — your data never leaves your device.</p>
+                <p><strong>Our Commitment:</strong> We collect minimal data. Our tools prioritize local processing, and when a check requires a third-party service, your browser connects directly to that provider (not to us).</p>
             </div>
 
             <h2>1. Who We Are</h2>
@@ -146,7 +146,7 @@
 
             <h2>2. Information We Collect</h2>
 
-            <p><strong>Contact Form Submissions:</strong> When you contact us through our website, we receive your email address and message content. This is used solely to respond to your inquiry.</p>
+            <p><strong>Contact Form Submissions:</strong> When you contact us through our website, we receive your email address and message content via Formspree. This is used solely to respond to your inquiry.</p>
 
             <p><strong>Consultation Requests:</strong> If you request our services, we may collect:</p>
             <ul>
@@ -156,14 +156,16 @@
             </ul>
 
             <p><strong>Technical Data:</strong> Our hosting provider (GitHub Pages) may collect standard server logs including IP addresses and browser information. We do not have direct access to this data.</p>
+            <p><strong>Local Storage:</strong> The Audit Tool saves progress in your browser using localStorage. This stays on your device and is not sent to our servers.</p>
 
             <h2>3. Our Free Tools — Privacy by Design</h2>
-            <p>Our free security tools (Vigía Scanner, Footprint Analyzer, Policy Generator, etc.) are designed with privacy as a core principle:</p>
+            <p>Our free security tools (Vigía Scanner, Footprint Analyzer, Policy Generator, Audit Tool, etc.) are designed with privacy as a core principle:</p>
             <ul>
-                <li><strong>100% Client-Side Processing:</strong> All analysis happens in your browser</li>
-                <li><strong>No Data Transmission:</strong> Your inputs are never sent to our servers</li>
-                <li><strong>No Storage:</strong> We don't store any data you enter into our tools</li>
-                <li><strong>No Tracking:</strong> Our tools don't track your usage or results</li>
+                <li><strong>Client-Side Processing:</strong> Most analysis happens in your browser</li>
+                <li><strong>Direct Third-Party Checks:</strong> Some tools query third-party services (e.g., DNS checks or breach lookups) directly from your browser</li>
+                <li><strong>No FK94 Storage:</strong> We do not store tool inputs on our servers</li>
+                <li><strong>Local Progress:</strong> The Audit Tool stores progress locally in your browser</li>
+                <li><strong>No Tracking:</strong> We don’t run analytics or advertising trackers</li>
             </ul>
             <p>When you use tools like the Breach Checker, you may be redirected to third-party services (such as Have I Been Pwned) which have their own privacy policies.</p>
 
@@ -198,6 +200,8 @@
             <ul>
                 <li><strong>GitHub Pages:</strong> Website hosting</li>
                 <li><strong>Cloudflare:</strong> DNS and security services</li>
+                <li><strong>Formspree:</strong> Contact form handling</li>
+                <li><strong>Google DNS (DoH):</strong> DNS security checks in the Audit Tool</li>
                 <li><strong>Have I Been Pwned:</strong> Breach checking (when you choose to use this feature)</li>
             </ul>
             <p>Each service has its own privacy policy governing their data practices.</p>

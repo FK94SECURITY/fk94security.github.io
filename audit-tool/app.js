@@ -16,7 +16,6 @@ const STORAGE_KEY = 'fk94_audit_progress';
 let currentSection = 0;
 let auditData = {
     checks: {},
-    hibpResults: null,
     dnsResults: null,
     startedAt: null,
     completedAt: null
@@ -223,130 +222,20 @@ function initTabs() {
 // ========================================
 
 function initHIBP() {
-    const emailInput = document.getElementById('hibpEmail');
-    const checkBtn = document.getElementById('hibpCheckBtn');
+    const openBtn = document.getElementById('hibpOpenBtn');
     const resultsContainer = document.getElementById('hibpResults');
 
-    checkBtn.addEventListener('click', async () => {
-        const email = emailInput.value.trim();
-        if (!email || !isValidEmail(email)) {
-            showResult(resultsContainer, 'warning', 'Invalid email', 'Please enter a valid email address.');
-            return;
-        }
+    if (!openBtn) return;
 
-        resultsContainer.innerHTML = `
-            <div class="loading">
-                <div class="spinner"></div>
-                <span>Checking breach databases...</span>
-            </div>
-        `;
-
-        try {
-            const breaches = await checkHIBP(email);
-            auditData.hibpResults = { email, breaches, checkedAt: new Date().toISOString() };
-            saveProgress();
-            displayHIBPResults(resultsContainer, breaches);
-        } catch (error) {
-            console.error('HIBP check failed:', error);
-            showResult(resultsContainer, 'danger', 'Check failed', error.message || 'Unable to check breach databases. Try again later.');
-        }
+    openBtn.addEventListener('click', () => {
+        window.open('https://haveibeenpwned.com', '_blank', 'noopener,noreferrer');
+        showResult(
+            resultsContainer,
+            'info',
+            'Opened Have I Been Pwned',
+            'Check your email there. We do not send or store your email from this tool.'
+        );
     });
-
-    // Restore previous results
-    if (auditData.hibpResults) {
-        emailInput.value = auditData.hibpResults.email || '';
-        displayHIBPResults(resultsContainer, auditData.hibpResults.breaches);
-    }
-}
-
-async function checkHIBP(email) {
-    // Using the k-anonymity API (free, no API key required)
-    // We hash the email and check the password breach database
-    // For full breach data, you'd need the paid API
-
-    // For demo/local use, we'll use a CORS proxy approach or direct API
-    // In production, you'd want your own backend
-
-    const sha1 = await hashSHA1(email.toLowerCase());
-    const prefix = sha1.substring(0, 5);
-    const suffix = sha1.substring(5).toUpperCase();
-
-    // Check pwned passwords API (works without CORS issues)
-    // This checks if the email's hash appears in breached password lists
-    const response = await fetch(`https://api.pwnedpasswords.com/range/${prefix}`, {
-        headers: { 'Add-Padding': 'true' }
-    });
-
-    if (!response.ok) {
-        throw new Error('API request failed');
-    }
-
-    const text = await response.text();
-    const lines = text.split('\n');
-
-    // Check if our hash suffix is in the results
-    const found = lines.some(line => line.split(':')[0] === suffix);
-
-    // For a more complete check, we simulate breach data
-    // In production, you'd use the HIBP API with an API key
-    if (found) {
-        return [{
-            name: 'Password Found in Breach Database',
-            date: 'Multiple breaches',
-            dataTypes: ['Passwords'],
-            description: 'This email/password combination has appeared in known data breaches.'
-        }];
-    }
-
-    // Check public breach info (simulated for demo)
-    // Real implementation would use HIBP breachedaccount API
-    return [];
-}
-
-async function hashSHA1(str) {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(str);
-    const hash = await crypto.subtle.digest('SHA-1', data);
-    return Array.from(new Uint8Array(hash))
-        .map(b => b.toString(16).padStart(2, '0'))
-        .join('');
-}
-
-function displayHIBPResults(container, breaches) {
-    if (!breaches || breaches.length === 0) {
-        container.innerHTML = `
-            <div class="no-breaches">
-                <span style="font-size: 20px;">✓</span>
-                <div>
-                    <strong>No breaches found</strong>
-                    <p style="font-size: 13px; margin: 0; opacity: 0.8;">
-                        This email was not found in known breach databases.
-                    </p>
-                </div>
-            </div>
-        `;
-    } else {
-        container.innerHTML = `
-            <div class="result-item">
-                <div class="result-icon danger">!</div>
-                <div class="result-content">
-                    <div class="result-title">Found in ${breaches.length} breach(es)</div>
-                    <div class="result-desc">This email has been exposed in data breaches. Change your passwords immediately.</div>
-                </div>
-            </div>
-            <div class="breach-list">
-                ${breaches.map(b => `
-                    <div class="breach-item">
-                        <div>
-                            <div class="breach-name">${b.name}</div>
-                            <div class="breach-date">${b.date}</div>
-                            <div class="breach-data">Exposed data: ${b.dataTypes.join(', ')}</div>
-                        </div>
-                    </div>
-                `).join('')}
-            </div>
-        `;
-    }
 }
 
 // ========================================
@@ -602,27 +491,11 @@ Progress: ${completedCount}/${totalCount} items completed (${Math.round((complet
 ═══════════════════════════════════════════════════════════
 `;
 
-    // HIBP Results
-    if (auditData.hibpResults) {
-        report += `
+    // Email breach check
+    report += `
 --- EMAIL BREACH CHECK ---
-Email: ${auditData.hibpResults.email}
-Checked: ${new Date(auditData.hibpResults.checkedAt).toLocaleString()}
+Status: ${auditData.checks['osint-hibp'] ? 'Completed on external HIBP site' : 'Not performed'}
 `;
-        if (auditData.hibpResults.breaches && auditData.hibpResults.breaches.length > 0) {
-            report += `Status: EXPOSED in ${auditData.hibpResults.breaches.length} breach(es)\n`;
-            auditData.hibpResults.breaches.forEach(b => {
-                report += `  - ${b.name} (${b.date}): ${b.dataTypes.join(', ')}\n`;
-            });
-        } else {
-            report += `Status: No breaches found\n`;
-        }
-    } else {
-        report += `
---- EMAIL BREACH CHECK ---
-Status: Not performed
-`;
-    }
 
     // DNS Results
     if (auditData.dnsResults) {
@@ -693,6 +566,10 @@ Status: Not performed
         recommendations.push('Configure DMARC record for email authentication');
     }
 
+    if (!auditData.checks['osint-hibp']) {
+        recommendations.push('Check your email on Have I Been Pwned for breach exposure');
+    }
+
     if (!auditData.checks['acc-pwmanager']) {
         recommendations.push('Set up a password manager (1Password or Bitwarden recommended)');
     }
@@ -734,13 +611,12 @@ function initReset() {
     document.getElementById('resetBtn').addEventListener('click', () => {
         if (confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
             localStorage.removeItem(STORAGE_KEY);
-            auditData = {
-                checks: {},
-                hibpResults: null,
-                dnsResults: null,
-                startedAt: new Date().toISOString(),
-                completedAt: null
-            };
+        auditData = {
+            checks: {},
+            dnsResults: null,
+            startedAt: new Date().toISOString(),
+            completedAt: null
+        };
 
             // Reset all checkboxes
             document.querySelectorAll('.check-item input').forEach(cb => {
@@ -753,7 +629,10 @@ function initReset() {
             // Clear results
             document.getElementById('hibpResults').innerHTML = '';
             document.getElementById('dnsResults').innerHTML = '';
-            document.getElementById('hibpEmail').value = '';
+        const hibpResults = document.getElementById('hibpResults');
+        if (hibpResults) {
+            hibpResults.innerHTML = '';
+        }
             document.getElementById('dnsDoamin').value = '';
 
             saveProgress();
@@ -767,18 +646,22 @@ function initReset() {
 // Utilities
 // ========================================
 
-function isValidEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
 function isValidDomain(domain) {
     return /^[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$/.test(domain);
 }
 
 function showResult(container, type, title, description) {
+    const icon = type === 'success'
+        ? '✓'
+        : type === 'warning'
+            ? '!'
+            : type === 'info'
+                ? 'i'
+                : '✗';
+
     container.innerHTML = `
         <div class="result-item">
-            <div class="result-icon ${type}">${type === 'success' ? '✓' : type === 'warning' ? '!' : '✗'}</div>
+            <div class="result-icon ${type}">${icon}</div>
             <div class="result-content">
                 <div class="result-title">${title}</div>
                 <div class="result-desc">${description}</div>

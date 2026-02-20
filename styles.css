@@ -653,6 +653,11 @@ img {
 /* ========================================
    Pricing Section
    ======================================== */
+.monitoring {
+    padding: var(--section-padding) 0;
+    background: var(--bg-secondary);
+}
+
 .pricing {
     padding: var(--section-padding) 0;
     background: var(--bg-secondary);

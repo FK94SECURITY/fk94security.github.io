@@ -23,8 +23,8 @@
                 <span class="logo-suffix">SECURITY</span>
             </a>
             <div class="nav-links">
+                <a href="#monitoring">Monitoring</a>
                 <a href="#servicios">Services</a>
-                <a href="#pricing">Pricing</a>
                 <a href="vigia/">Vigía Tools</a>
                 <a href="#contacto" class="btn-nav">Request Consultation</a>
             </div>
@@ -42,28 +42,28 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="pulse"></span>
-                OPSEC & Privacy
+                Continuous Monitoring
             </div>
             <h1>
-                Security &<br>
-                <span class="gradient-text">Privacy</span>
+                Security & Privacy<br>
+                <span class="gradient-text">Monitoring</span>
             </h1>
             <p class="hero-subtitle">
-                We protect your digital security and personal privacy. From exposure analysis
-                to data removal and identity protection - practical measures that actually work.
+                Stop guessing. Get ongoing alerts when your data is exposed, your domain is misconfigured,
+                or your risk profile changes.
             </p>
             <div class="hero-cta">
-                <a href="#contacto" class="btn-primary">
-                    <span>Schedule a Call</span>
+                <a href="saas-mvp/" class="btn-primary">
+                    <span>Start Monitoring</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
                 </a>
-                <a href="#servicios" class="btn-secondary">View Services</a>
+                <a href="#servicios" class="btn-secondary">Done-for-you Services</a>
             </div>
             <div class="hero-vigia">
                 <span class="vigia-badge">🛡️ FREE TOOLS</span>
-                <p>Try <strong>VIGÍA</strong> — Security Scanner + OSINT Tools</p>
+                <p>Try <strong>VIGÍA</strong> — Free scanners, then upgrade to alerts</p>
                 <div class="vigia-links">
                     <a href="vigia/">Scan Your Mac</a>
                     <a href="vigia/tools/footprint.html">Check Your Exposure</a>
@@ -81,13 +81,12 @@
                     <span class="terminal-title">osint-scan</span>
                 </div>
                 <div class="terminal-body">
-                    <p><span class="prompt">$</span> <span class="cmd">Running exposure assessment...</span></p>
-                    <p class="output">Checking breach databases...</p>
-                    <p class="output warning">⚠ 3 corporate emails found in breaches</p>
-                    <p class="output warning">⚠ Credentials exposed: LinkedIn, Adobe</p>
-                    <p class="output">Analyzing attack surface...</p>
-                    <p class="output success">✓ Risk assessment complete</p>
-                    <p class="output success">✓ Remediation plan ready</p>
+                    <p><span class="prompt">$</span> <span class="cmd">monitor --daily</span></p>
+                    <p class="output">Checking breach intelligence...</p>
+                    <p class="output warning">⚠ New breach detected: 2 accounts</p>
+                    <p class="output">Validating SPF/DMARC...</p>
+                    <p class="output warning">⚠ DMARC missing on fk94security.com</p>
+                    <p class="output success">✓ Alert sent to your inbox</p>
                 </div>
             </div>
         </div>
@@ -97,21 +96,94 @@
     <section class="stats">
         <div class="container">
             <div class="stat-item">
-                <span class="stat-icon">🔍</span>
-                <span class="stat-label">OSINT & Exposure Analysis</span>
+                <span class="stat-icon">🔔</span>
+                <span class="stat-label">Continuous Alerts</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">🧭</span>
+                <span class="stat-label">Actionable Guidance</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-icon">📈</span>
+                <span class="stat-label">Monthly Reports</span>
             </div>
             <div class="stat-item">
                 <span class="stat-icon">🛡️</span>
-                <span class="stat-label">Privacy Architecture</span>
+                <span class="stat-label">Done-for-you Support</span>
             </div>
-            <div class="stat-item">
-                <span class="stat-icon">🔐</span>
-                <span class="stat-label">Account & Device Hardening</span>
+        </div>
+    </section>
+
+    <!-- Monitoring Plans -->
+    <section id="monitoring" class="monitoring">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">MONITORING</span>
+                <h2>Ongoing <span class="gradient-text">Protection</span></h2>
+                <p>Free scans are a snapshot. Monitoring keeps you safe every week, every month.</p>
             </div>
-            <div class="stat-item">
-                <span class="stat-icon">💬</span>
-                <span class="stat-label">Communications Security</span>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <span class="pricing-tier">PERSONAL MONITOR</span>
+                        <div class="pricing-price">
+                            <span class="price-amount">$19</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <p class="pricing-desc">For individuals & founders</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Monthly exposure score</li>
+                        <li>Breach alerts (email)</li>
+                        <li>OSINT watchlist checks</li>
+                        <li>Actionable checklist</li>
+                        <li>Monthly PDF report</li>
+                    </ul>
+                    <a href="saas-mvp/" class="btn-pricing">Start Monitoring</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Best Value</div>
+                    <div class="pricing-header">
+                        <span class="pricing-tier">BUSINESS MONITOR</span>
+                        <div class="pricing-price">
+                            <span class="price-amount">$199</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <p class="pricing-desc">For SMBs and teams</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Domain SPF/DMARC/MX monitoring</li>
+                        <li>Employee breach alerts</li>
+                        <li>Policy & access checklist</li>
+                        <li>Executive summary report</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="saas-mvp/" class="btn-pricing btn-pricing-featured">Start Monitoring</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <span class="pricing-tier">DONE-FOR-YOU</span>
+                        <div class="pricing-price">
+                            <span class="price-amount">$800</span>
+                            <span class="price-period">starting</span>
+                        </div>
+                        <p class="pricing-desc">Hands-on implementation</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Full audit + remediation</li>
+                        <li>Account & device hardening</li>
+                        <li>Privacy architecture setup</li>
+                        <li>Secure communications</li>
+                        <li>Personalized documentation</li>
+                    </ul>
+                    <a href="#contacto" class="btn-pricing">Request Consultation</a>
+                </div>
             </div>
+
+            <p class="pricing-note">Prefer a one-time audit? <a href="#servicios">See services</a> or <a href="#contacto">contact us</a>.</p>
         </div>
     </section>
 
@@ -264,83 +336,64 @@
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing">
+    <!-- Why Monitoring -->
+    <section id="why-monitoring" class="services">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">PRICING</span>
-                <h2>Simple <span class="gradient-text">Packages</span></h2>
-                <p>Transparent pricing. No hidden fees. Choose what fits your needs.</p>
+                <span class="section-tag">WHY MONITORING</span>
+                <h2>Why paid <span class="gradient-text">beats free</span></h2>
+                <p>Free tools are a snapshot. Monitoring turns security into an ongoing system.</p>
             </div>
 
-            <div class="pricing-grid">
-                <!-- Tier 1: SCAN -->
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <span class="pricing-tier">SCAN</span>
-                        <div class="pricing-price">
-                            <span class="price-amount">$350</span>
-                            <span class="price-period">one-time</span>
-                        </div>
-                        <p class="pricing-desc">Understand your digital exposure</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 8v4l3 3"/>
+                            <circle cx="12" cy="12" r="9"/>
+                        </svg>
                     </div>
-                    <ul class="pricing-features">
-                        <li>OSINT exposure analysis</li>
-                        <li>Breach database check</li>
-                        <li>Data broker scan</li>
-                        <li>Detailed report with findings</li>
-                        <li>Prioritized recommendations</li>
-                        <li>30-min review call</li>
+                    <h3>Continuous Alerts</h3>
+                    <p>We notify you when exposure changes — not months later.</p>
+                    <ul class="service-features">
+                        <li>Breach alerts</li>
+                        <li>Domain changes</li>
+                        <li>Risk score updates</li>
                     </ul>
-                    <a href="#contacto" class="btn-pricing">Get Started</a>
                 </div>
 
-                <!-- Tier 2: SHIELD -->
-                <div class="pricing-card featured">
-                    <div class="pricing-badge">Most Popular</div>
-                    <div class="pricing-header">
-                        <span class="pricing-tier">SHIELD</span>
-                        <div class="pricing-price">
-                            <span class="price-amount">$800</span>
-                            <span class="price-period">one-time</span>
-                        </div>
-                        <p class="pricing-desc">Full security implementation</p>
+                <div class="service-card featured">
+                    <div class="featured-badge">Most Valuable</div>
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 20l9-5-9-5-9 5 9 5z"/>
+                            <path d="M12 12l9-5-9-5-9 5 9 5z"/>
+                        </svg>
                     </div>
-                    <ul class="pricing-features">
-                        <li>Everything in SCAN</li>
-                        <li>Device hardening (Mac/Windows)</li>
-                        <li>Account security setup</li>
-                        <li>Password manager migration</li>
-                        <li>2FA/Passkeys configuration</li>
-                        <li>Secure communications setup</li>
-                        <li>1-hour implementation call</li>
+                    <h3>Actionable Guidance</h3>
+                    <p>Not just “you’re exposed” — we show what to fix and in what order.</p>
+                    <ul class="service-features">
+                        <li>Prioritized tasks</li>
+                        <li>Monthly reports</li>
+                        <li>Clear remediation steps</li>
                     </ul>
-                    <a href="#contacto" class="btn-pricing btn-pricing-featured">Get Started</a>
                 </div>
 
-                <!-- Tier 3: SECURE -->
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <span class="pricing-tier">SECURE</span>
-                        <div class="pricing-price">
-                            <span class="price-amount">$250</span>
-                            <span class="price-period">/month</span>
-                        </div>
-                        <p class="pricing-desc">Ongoing protection & support</p>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
                     </div>
-                    <ul class="pricing-features">
-                        <li>Everything in SHIELD (included)</li>
-                        <li>Continuous breach monitoring</li>
-                        <li>Monthly security check-ins</li>
-                        <li>Priority support via Signal</li>
-                        <li>Incident response assistance</li>
-                        <li>Quarterly exposure re-scan</li>
+                    <h3>Built for Teams</h3>
+                    <p>Share reports internally and track improvements over time.</p>
+                    <ul class="service-features">
+                        <li>Business-ready reports</li>
+                        <li>Audit history</li>
+                        <li>Priority support</li>
                     </ul>
-                    <a href="#contacto" class="btn-pricing">Get Started</a>
                 </div>
             </div>
-
-            <p class="pricing-note">Need something custom? <a href="#contacto">Contact us</a> for business audits and team packages.</p>
         </div>
     </section>
 
@@ -671,6 +724,8 @@
                         <label for="service">Service of Interest</label>
                         <select id="service" name="service">
                             <option value="">Select...</option>
+                            <option value="monitor-personal">Monitoring — Personal</option>
+                            <option value="monitor-business">Monitoring — Business</option>
                             <option value="osint">OSINT & Exposure Analysis</option>
                             <option value="privacy">Privacy Architecture</option>
                             <option value="hardening">Account & Device Hardening</option>

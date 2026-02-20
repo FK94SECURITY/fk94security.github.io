@@ -1,0 +1,20 @@
+{
+  "name": "fk94-monitor-simple",
+  "version": "1.0.0",
+  "description": "Simple backend for FK94 Monitor - works out of the box",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0",
+    "dotenv": "^16.3.1",
+    "axios": "^1.6.7"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

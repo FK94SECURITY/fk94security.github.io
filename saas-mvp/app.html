@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FK94 Monitor | Demo App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="loginView" class="login-panel">
+        <h2>FK94 Monitor</h2>
+        <p>Demo access for the SaaS MVP.</p>
+        <div class="input-row">
+            <input type="text" id="loginName" placeholder="Name">
+            <input type="email" id="loginEmail" placeholder="Email">
+            <select id="loginPlan">
+                <option value="personal">Personal Monitor</option>
+                <option value="business">Business Monitor</option>
+            </select>
+            <button class="btn btn-primary" id="loginBtn">Enter Dashboard</button>
+        </div>
+    </div>
+
+    <div id="appView" class="app-shell" style="display:none;">
+        <aside class="sidebar">
+            <h2>FK94 Monitor</h2>
+            <div class="nav-list">
+                <div class="nav-item active" data-panel="overview">Overview</div>
+                <div class="nav-item" data-panel="assets">Assets</div>
+                <div class="nav-item" data-panel="alerts">Alerts</div>
+                <div class="nav-item" data-panel="reports">Reports</div>
+                <div class="nav-item" data-panel="billing">Billing</div>
+                <div class="nav-item" data-panel="settings">Settings</div>
+            </div>
+            <div class="input-row">
+                <button class="btn btn-secondary" id="logoutBtn">Sign out</button>
+            </div>
+        </aside>
+
+        <main class="app-main">
+            <section class="panel active" id="panel-overview">
+                <h3>Overview</h3>
+                <div class="panel-grid">
+                    <div class="card">
+                        <p class="tag">Exposure Score</p>
+                        <p class="price" id="scoreValue">72<span>/100</span></p>
+                        <p class="text-muted">Updated daily</p>
+                    </div>
+                    <div class="card">
+                        <p class="tag warning">Active Alerts</p>
+                        <p class="price" id="alertCount">2<span> alerts</span></p>
+                        <p class="text-muted">Last checked: today</p>
+                    </div>
+                    <div class="card">
+                        <p class="tag">Coverage</p>
+                        <p class="price" id="assetCount">3<span> assets</span></p>
+                        <p class="text-muted">Domains + emails</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" id="panel-assets">
+                <h3>Assets</h3>
+                <p class="text-muted">Track emails and domains to monitor.</p>
+                <div class="input-row">
+                    <input type="text" id="assetName" placeholder="Asset name (e.g. FK94 Security)">
+                    <input type="text" id="assetValue" placeholder="Email or domain (e.g. fk94security.com)">
+                    <button class="btn btn-primary" id="addAssetBtn">Add Asset</button>
+                </div>
+                <table class="table" id="assetsTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Value</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+
+            <section class="panel" id="panel-alerts">
+                <h3>Alerts</h3>
+                <p class="text-muted">Latest monitoring findings.</p>
+                <table class="table" id="alertsTable">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Severity</th>
+                            <th>Summary</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+
+            <section class="panel" id="panel-reports">
+                <h3>Reports</h3>
+                <p class="text-muted">Generate a monthly summary for clients or leadership.</p>
+                <div class="input-row">
+                    <button class="btn btn-primary" id="generateReportBtn">Generate Report</button>
+                    <textarea id="reportOutput" rows="10" placeholder="Report output..."></textarea>
+                </div>
+            </section>
+
+            <section class="panel" id="panel-billing">
+                <h3>Billing</h3>
+                <div class="card">
+                    <p>Current Plan: <strong id="planLabel">Personal Monitor</strong></p>
+                    <p>Status: <span class="tag">Active</span></p>
+                    <div class="input-row">
+                        <select id="planSelect">
+                            <option value="personal">Personal Monitor � $19/mo</option>
+                            <option value="business">Business Monitor � $199/mo</option>
+                        </select>
+                        <button class="btn btn-primary" id="updatePlanBtn">Update Plan</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" id="panel-settings">
+                <h3>Settings</h3>
+                <div class="card">
+                    <p>Account</p>
+                    <div class="input-row">
+                        <input type="text" id="settingsName" placeholder="Name">
+                        <input type="email" id="settingsEmail" placeholder="Email">
+                        <button class="btn btn-primary" id="saveSettingsBtn">Save Settings</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

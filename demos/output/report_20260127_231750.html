@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FK94 Security OSINT Report</title>
+    <style>
+        :root { --bg: #0a0a0a; --text: #e0e0e0; --accent: #10b981; --danger: #ef4444; --warning: #f59e0b; --muted: #6b7280; --border: #1a1a1a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'JetBrains Mono', monospace; background: var(--bg); color: var(--text); line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        .header { text-align: center; border-bottom: 2px solid var(--accent); padding-bottom: 30px; margin-bottom: 40px; }
+        .header h1 { font-size: 2.5em; font-weight: 700; margin-bottom: 10px; }
+        .header .subtitle { color: var(--muted); font-size: 1.1em; }
+        .alert-bar { background: linear-gradient(90deg, var(--danger), var(--warning)); padding: 15px; text-align: center; margin: 30px 0; border-radius: 8px; font-weight: 600; }
+        .finding { background: #111; padding: 25px; margin: 20px 0; border-radius: 12px; border-left: 4px solid var(--accent); transition: transform 0.2s; }
+        .finding:hover { transform: translateY(-2px); }
+        .severity-critical { border-left-color: var(--danger); }
+        .severity-high { border-left-color: var(--warning); }
+        .severity-medium { border-left-color: var(--muted); }
+        .finding h3 { font-size: 1.3em; margin-bottom: 15px; color: var(--text); }
+        .finding p { margin: 8px 0; }
+        .metadata { color: var(--muted); font-size: 0.85em; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border); }
+        .cta { background: linear-gradient(135deg, var(--danger), #dc2626); padding: 40px; text-align: center; margin: 40px 0; border-radius: 12px; }
+        .cta h2 { font-size: 2em; margin-bottom: 20px; }
+        .cta p { font-size: 1.2em; margin: 15px 0; }
+        .btn { display: inline-block; background: var(--accent); color: white; padding: 15px 40px; text-decoration: none; border-radius: 8px; font-weight: 600; margin-top: 20px; transition: background 0.3s; }
+        .btn:hover { background: #059669; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔒 FK94 SECURITY REPORT</h1>
+            <div class="subtitle">Confidential OSINT Analysis</div>
+        </div>
+        <div class=alert-bar>📧 ANALISIS COMPLETO: cliente@ejemplo.com</div>
+        <div class=finding severity-critical>
+            <h3>🚨 BREACHES DETECTADAS</h3>
+            <p>Tu email <strong>cliente@ejemplo.com</strong> aparece en <strong>3</strong> breaches confirmados:</p>
+            <ul>
+                <li>LinkedIn (2012) - 164M cuentas comprometidas</li>
+                <li>Dubsmash (2019) - 162M cuentas comprometidas</li>
+                <li>MyFitnessPal (2018) - 150M cuentas comprometidas</li>
+            </ul>
+        </div>
+        <div class=finding severity-high>
+            <h3>🕵️ EXPOSICIÓN EN DATA BROKERS</h3>
+            <p>Encontrada información personal en <strong>7</strong> sitios de data brokers:</p>
+            <ul>
+                <li>Whitepages (teléfono, dirección antigua)</li>
+                <li>Spokeo (redes sociales vinculadas)</li>
+                <li>TruePeopleSearch (datos públicos)</li>
+            </ul>
+        </div>
+        <div class="cta">
+            <h2>🛡️ ACCIONES INMEDIATAS REQUERIDAS</h2>
+            <p>1. Cambiar contraseñas de cuentas afectadas</p>
+            <p>2. Habilitar 2FA en todas las cuentas críticas</p>
+            <p>3. Remover datos de data brokers</p>
+            <p>4. Monitorear continuamente</p>
+            
+            <div style="margin-top: 30px;">
+                <a href="#" class="btn">CONTACTAR FK94 SECURITY</a>
+            </div>
+        </div>
+        
+        <div class="metadata">
+            <p>Reporte generado el: $(date)</p>
+            <p>Tipo de análisis: OSINT automatizado</p>
+        </div>
+    </div>
+</body>
+</html>

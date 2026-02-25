@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OSINT: Qué saben de vos en Internet y Cómo Reducir tu Huella Digital - FK94 Security</title>
+<meta name="description" content="En el mundo digital actual, la cantidad de información que compartimos en línea es asombrosa. Pero, ¿alguna vez te detuviste a pensar en cuánta de esa info...">
+<meta property="og:title" content="OSINT: Qué saben de vos en Internet y Cómo Reducir tu Huella Digital - FK94 Security">
+<meta property="og:description" content="En el mundo digital actual, la cantidad de información que compartimos en línea es asombrosa. Pero, ¿alguna vez te detuviste a pensar en cuánta de esa info...">
+<meta property="og:url" content="https://fk94.security/docs/blog/2026-02-25-osint-que-saben-de-vos-en-internet-y-como-reducir-tu-huella.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OSINT: Qué saben de vos en Internet y Cómo Reducir tu Huella Digital - FK94 Security">
+<meta name="twitter:description" content="En el mundo digital actual, la cantidad de información que compartimos en línea es asombrosa. Pero, ¿alguna vez te detuviste a pensar en cuánta de esa info...">
+<link rel="canonical" href="https://fk94.security/docs/blog/2026-02-25-osint-que-saben-de-vos-en-internet-y-como-reducir-tu-huella.html">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { background: #0a0a0a; color: #e0e0e0; font-family: 'Instrument Sans', sans-serif; }
+  main { max-width: 800px; margin: 0 auto; padding: 2rem; }
+  h1 { color: #fff; font-size: 2rem; margin-bottom: 0.5rem; }
+  h2 { color: #00ff88; font-size: 1.4rem; margin-top: 2rem; }
+  h3 { color: #10b981; font-size: 1.1rem; margin-top: 1.5rem; }
+  p { line-height: 1.8; margin-bottom: 1rem; }
+  ul, ol { padding-left: 1.5rem; line-height: 1.8; }
+  li { margin-bottom: 0.5rem; }
+  code { background: #1a1a1a; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace; color: #00ff88; }
+  pre { background: #111; padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid #1a1a1a; }
+  blockquote { border-left: 3px solid #00ff88; padding-left: 1rem; color: #aaa; margin: 1rem 0; }
+  a { color: #00ff88; }
+  .meta { color: #888; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<nav style="padding:1rem 2rem;background:#0a0a0a;border-bottom:1px solid #1a1a1a;position:sticky;top:0;z-index:100">
+  <a href="/" style="color:#00ff88;text-decoration:none;font-weight:600">← FK94 Security</a>
+  <span style="color:#444;margin:0 1rem">|</span>
+  <a href="/docs/blog/" style="color:#888;text-decoration:none;font-size:0.9rem">Blog</a>
+</nav>
+<main>
+<article>
+<h1>OSINT: Qué saben de vos en Internet y Cómo Reducir tu Huella Digital</h1>
+<p class="meta" style="color:#888;font-size:0.9rem">Octubre 26, 2023 · FK94 Security</p>
+
+<p>En el mundo digital actual, la cantidad de información que compartimos en línea es asombrosa. Pero, ¿alguna vez te detuviste a pensar en cuánta de esa información es pública y accesible para cualquiera? Eso es lo que abordamos hoy: OSINT (Open Source Intelligence), la inteligencia de fuentes abiertas, y cómo impacta en tu privacidad y seguridad.</p>
+
+<h2>¿Qué es OSINT y por qué debería importarte?</h2>
+
+<p>OSINT se refiere a la recopilación y análisis de información disponible públicamente para obtener inteligencia. Esto significa que cualquier dato que puedas encontrar en Internet, desde redes sociales hasta registros públicos, puede ser utilizado para crear un perfil sobre vos o tu empresa. Y no nos engañemos, en Argentina, como en cualquier otro lugar, esta información se usa y se usa mucho.</p>
+
+<p>¿Por qué es importante? Porque esta información puede ser utilizada para una variedad de propósitos, tanto benignos como maliciosos.  Desde investigaciones de mercado y verificación de antecedentes hasta doxing (revelar información personal de alguien en línea sin su consentimiento) y ataques dirigidos.  Imaginá que alguien quiere estafarte o robar tu identidad: la información que encuentran online les facilita enormemente la tarea.</p>
+
+<h3>Ejemplos de información OSINT sobre vos</h3>
+
+<p>La cantidad de información que se puede encontrar públicamente sobre vos puede ser alarmante. Algunos ejemplos comunes incluyen:</p>
+
+<ul>
+    <li><strong>Redes Sociales:</strong> Perfiles de Facebook, Instagram, Twitter, LinkedIn. Fotos, publicaciones, amigos, intereses.  ¿Te acordás de ese posteo que hiciste hace años criticando a tu jefe?  Quizás siga ahí...</li>
+    <li><strong>Registros Públicos:</strong>  Boletín Oficial, registros de propiedad (automotor, inmuebles), juicios, información de empresas en la Inspección General de Justicia (IGJ).  En Argentina, la accesibilidad a estos registros puede variar, pero mucha información está disponible online.</li>
+    <li><strong>Sitios Web y Blogs:</strong> Comentarios que hayas hecho en foros, reseñas de productos, artículos que hayas escrito.</li>
+    <li><strong>Datos de Contacto:</strong>  Tu email, número de teléfono, dirección.  Muchas veces, estos datos quedan expuestos en directorios online, perfiles de empresas, o incluso en viejas bases de datos filtradas.</li>
+    <li><strong>Geolocalización:</strong>  Si tenés activado el GPS en tu teléfono, tus fotos y publicaciones pueden revelar tu ubicación.</li>
+</ul>
+
+<h2>Herramientas de OSINT que cualquiera puede usar</h2>
+
+<p>La buena noticia es que no necesitás ser un hacker para realizar OSINT. Hay muchas herramientas gratuitas y accesibles que te permiten buscar información sobre vos mismo y sobre los demás:</p>
+
+<ul>
+    <li><strong>Motores de búsqueda:</strong> Google, DuckDuckGo, Bing.  Usá operadores de búsqueda avanzados para refinar tus resultados (ej. "site:linkedin.com 'nombre apellido'").</li>
+    <li><strong>Buscadores de personas:</strong> Pipl, PeekYou, WhitePages.  Estos sitios agregan información de diferentes fuentes y te permiten encontrar personas por nombre, email, o número de teléfono.</li>
+    <li><strong>Herramientas de redes sociales:</strong>  Los propios buscadores internos de cada plataforma (Facebook, Instagram, Twitter) son herramientas de OSINT.</li>
+    <li><strong>Google Maps y Street View:</strong>  Permiten obtener información sobre la ubicación de una persona o empresa.</li>
+    <li><strong>Whois:</strong>  Permite encontrar información sobre el propietario de un dominio web.</li>
+</ul>
+
+<h3>Ejemplo práctico: buscando información en el Boletín Oficial</h3>
+
+<p>Supongamos que querés saber si una persona está involucrada en alguna empresa. Podés ir al sitio web del Boletín Oficial de la República Argentina y buscar por nombre. Si encontrás una publicación donde esa persona figura como socio o director de una empresa, ya tenés información valiosa.</p>
+
+<h2>Cómo reducir tu huella digital: Consejos prácticos para argentinos</h2>
+
+<p>Si te preocupa la cantidad de información que hay sobre vos en Internet, acá te damos algunos consejos para reducir tu huella digital:</p>
+
+<ul>
+    <li><strong>Revisá tu configuración de privacidad en redes sociales:</strong>  Asegurate de que tu perfil sea visible solo para tus amigos y familiares.  Limitá quién puede ver tus publicaciones y etiquetarte.  Desactivá la geolocalización.</li>
+    <li><strong>Buscate en Google y otros buscadores:</strong>  Identificá la información que querés eliminar y contactá a los sitios web para solicitar su eliminación.  Si la información está en un sitio que no controlás (ej. un diario online), podés solicitar la desindexación a Google.</li>
+    <li><strong>Usá contraseñas seguras y diferentes para cada cuenta:</strong>  Un gestor de contraseñas es una excelente herramienta para esto.</li>
+    <li><strong>Activá la autenticación de dos factores (2FA):</strong>  Esto añade una capa extra de seguridad a tus cuentas.</li>
+    <li><strong>Sé consciente de lo que compartís online:</strong>  Antes de publicar algo, preguntate si querés que esa información sea pública para siempre.</li>
+    <li><strong>Usá una VPN (Red Privada Virtual):</strong>  Una VPN encripta tu tráfico de Internet y oculta tu dirección IP, lo que dificulta el rastreo de tu actividad online.</li>
+    <li><strong>Considerá usar un motor de búsqueda enfocado en la privacidad, como DuckDuckGo:</strong>  Estos motores de búsqueda no rastrean tu actividad ni personalizan los resultados en función de tu historial.</li>
+    <li><strong>Eliminá cuentas antiguas que ya no usás:</strong>  Cerrá esas cuentas de redes sociales o foros que tenés abandonadas.</li>
+</ul>
+
+<h3>El caso de las guías telefónicas online</h3>
+
+<p>En Argentina, todavía existen guías telefónicas online que muestran tu nombre, dirección y número de teléfono. Si no querés aparecer en estas guías, podés contactar a la empresa que las gestiona y solicitar tu eliminación.</p>
+
+<h2>Conclusión</h2>
+
+<p>La OSINT es una realidad que afecta a todos.  Entender qué información hay disponible sobre vos en Internet y cómo se puede utilizar es el primer paso para proteger tu privacidad y seguridad.  Reducir tu huella digital no es una tarea fácil, pero con un poco de esfuerzo y conciencia, podés tomar el control de tu información online.</p>
+
+<p>Si te preocupa la seguridad de tu información personal o la de tu empresa, en FK94 Security podemos ayudarte a evaluar tu exposición a OSINT y a implementar medidas para protegerte.  Contactanos para una consulta personalizada y descubrí cómo podemos fortalecer tu seguridad digital.</p>
+</article>
+
+<hr style="border-color:#1a1a1a;margin:3rem 0">
+<p style="color:#888">¿Querés proteger tu identidad digital? <a href="/" style="color:#00ff88">Consultá con FK94 Security</a> — primera consulta gratis. Mail: info@fk94security.com</p>
+</main>
+</body>
+</html>

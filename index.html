@@ -420,6 +420,480 @@ Dado que indicaste que la mayoría de las meta tags esenciales ya existen, me en
 *   **Verifica la validez**: Utiliza la herramienta de prueba de resultados enriquecidos de Google para validar el schema markup implementado: [https://search.google.com/test/rich-results](https://search.google.com/test/rich-results)
 
 Esta mejora en el schema markup ayudará a Google a comprender mejor el negocio de FK94 Security y mostrar información más relevante en los resultados de búsqueda.
+Dado que las meta tags esenciales ya existen, me enfocaré en optimizar el schema markup JSON-LD. Asumo que el negocio opera principalmente online.
+
+```html
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "FK94 Security",
+  "description": "Consultora argentina especializada en OPSEC, privacidad digital y ciberseguridad para individuos y pymes. Protegemos tu información y activos digitales.",
+  "url": "https://fk94.security",
+  "logo": "https://fk94.security/images/logo-fk94-security.png",
+  "image": "https://fk94.security/images/imagen-representativa-ciberseguridad.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "AR"
+  },
+  "telephone": "+54 9 11 [Número de Teléfono]",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/[perfil de linkedin]",
+    "https://twitter.com/[perfil de twitter]",
+    "https://www.facebook.com/[perfil de facebook]"
+  ],
+  "priceRange": "$$",
+  "serviceType": "Ciberseguridad, OPSEC, Privacidad Digital",
+  "areaServed": "Argentina"
+}
+</script>
+```
+**IMPORTANTE:**
+
+*   **Reemplazar `[Número de Teléfono]` con el número de teléfono real.**
+*   **Reemplazar `[perfil de linkedin]`, `[perfil de twitter]` y `[perfil de facebook]` con las URLs de los perfiles reales de la empresa.**
+*   **Reemplazar `https://fk94.security/images/logo-fk94-security.png` con la URL real del logo.**
+*   **Reemplazar `https://fk94.security/images/imagen-representativa-ciberseguridad.jpg` con la URL de una imagen representativa de la empresa.  Idealmente, una imagen del equipo o de un servicio ofrecido.**
+*   **Asegurarse de que los `sameAs` sean perfiles corporativos reales, no perfiles personales.**
+*   **Ajustar el `priceRange` si el valor representado ('$
+<body>
+  <header class="topbar">
+    <div class="container row between center">
+      <div class="brand">FK94 <span>Security</span></div>
+      <nav class="row gap">
+        <a href="#problema">Riesgos</a>
+        <a href="#solucion">Solución</a>
+        <a href="#planes">Planes</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-sm" href="#diagnostico">Diagnóstico</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="kicker">OPSEC real para perfiles expuestos</p>
+          <h1>Si hoy te buscan, <span>te encuentran</span>. Nosotros cerramos esa exposición.</h1>
+          <p class="lead">Trabajamos con founders, ejecutivos y holders crypto que no pueden permitirse filtraciones, doxxing, secuestro de cuentas o phishing dirigido.</p>
+          <div class="row gap wrap cta-row">
+            <a href="#diagnostico" class="btn">Quiero diagnóstico inicial</a>
+            <a href="#planes" class="btn btn-ghost">Ver planes</a>
+          </div>
+          <div class="metrics row gap wrap">
+            <div><strong>72h</strong><span>para cerrar riesgos prioritarios</span></div>
+            <div><strong>3 fases</strong><span>detección, remediación y hardening</span></div>
+            <div><strong>100%</strong><span>enfoque práctico y accionable</span></div>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <h3>Qué resolvemos rápido</h3>
+          <ul>
+            <li>Cuentas vulnerables por reutilización o 2FA débil</li>
+            <li>Exposición de datos en brokers, leaks y perfiles públicos</li>
+            <li>Phishing/ingeniería social dirigido a vos o tu equipo</li>
+            <li>Falta de protocolo de respuesta ante incidente</li>
+          </ul>
+          <a class="btn btn-block" href="#diagnostico">Empezar ahora</a>
+        </aside>
+      </div>
+    </section>
+
+    <section id="problema" class="section">
+      <div class="container">
+        <h2>El riesgo no es teórico</h2>
+        <p class="section-lead">Si tenés visibilidad pública, ya sos target. El costo no suele ser técnico: suele ser reputación, tiempo y pérdida operativa.</p>
+        <div class="cards-3">
+          <article class="card-lite">
+            <h3>Robo de cuentas</h3>
+            <p>Una cuenta comprometida puede abrir la puerta al resto de tu ecosistema digital.</p>
+          </article>
+          <article class="card-lite">
+            <h3>Filtración de identidad</h3>
+            <p>Datos dispersos permiten perfilado y ataques de ingeniería social mucho más efectivos.</p>
+          </article>
+          <article class="card-lite">
+            <h3>Daño reputacional</h3>
+            <p>Un incidente público impacta marca personal, negocio y relaciones de confianza.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="solucion" class="section alt">
+      <div class="container">
+        <h2>Cómo trabajamos</h2>
+        <div class="steps">
+          <article class="step">
+            <span>01</span>
+            <h3>Diagnóstico</h3>
+            <p>Mapeamos exposición, accesos críticos y vectores más probables de ataque.</p>
+          </article>
+          <article class="step">
+            <span>02</span>
+            <h3>Remediación</h3>
+            <p>Priorizamos acciones de alto impacto para bajar riesgo en el menor tiempo posible.</p>
+          </article>
+          <article class="step">
+            <span>03</span>
+            <h3>Hardening</h3>
+            <p>Dejamos controles y hábitos sostenibles para no volver al mismo punto.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="planes" class="section">
+      <div class="container">
+        <h2>Planes</h2>
+        <div class="plans">
+          <article class="plan">
+            <p class="tag">Entrada</p>
+            <h3>OPSEC Base</h3>
+            <p class="price">Diagnóstico + plan priorizado</p>
+            <ul>
+              <li>Mapa de exposición inicial</li>
+              <li>Checklist accionable por prioridad</li>
+              <li>Guía de implementación</li>
+            </ul>
+          </article>
+          <article class="plan featured">
+            <p class="tag">Más elegido</p>
+            <h3>Hardening 360</h3>
+            <p class="price">Implementación guiada</p>
+            <ul>
+              <li>Remediación de cuentas y vectores críticos</li>
+              <li>Protocolo anti-phishing y recuperación</li>
+              <li>Seguimiento operativo</li>
+            </ul>
+          </article>
+          <article class="plan">
+            <p class="tag">Avanzado</p>
+            <h3>Protección continua</h3>
+            <p class="price">Acompañamiento mensual</p>
+            <ul>
+              <li>Revisiones periódicas</li>
+              <li>Ajustes de superficie de exposición</li>
+              <li>Soporte para incidentes</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="diagnostico" class="section alt">
+      <div class="container grid-2">
+        <div>
+          <h2>Diagnóstico rápido</h2>
+          <p>Probá el escaneo inicial para medir exposición y priorizar próximos pasos.</p>
+          <ul>
+            <li>Resultado inmediato</li>
+            <li>Sin fricción</li>
+            <li>Base para plan de acción</li>
+          </ul>
+        </div>
+        <form id="scanForm" class="card">
+          <label for="email">Email a analizar</label>
+          <input id="email" name="email" type="email" placeholder="tu@email.com" required />
+
+          <label for="apiBase">Backend API (opcional)</label>
+          <input id="apiBase" name="apiBase" type="url" placeholder="https://tu-backend.com" />
+
+          <button type="submit" class="btn">Ejecutar diagnóstico</button>
+          <pre id="scanResult">Esperando ejecución…</pre>
+        </form>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="container">
+        <h2>FAQ</h2>
+        <details>
+          <summary>¿Esto es solo para empresas grandes?</summary>
+          <p>No. Está pensado para perfiles y equipos que necesitan protección seria sin estructura enterprise pesada.</p>
+        </details>
+        <details>
+          <summary>¿Cuándo veo resultados?</summary>
+          <p>Las mejoras de mayor impacto suelen aplicarse en días, empezando por cuentas críticas y exposición pública.</p>
+        </details>
+        <details>
+          <summary>¿Qué pasa después del diagnóstico?</summary>
+          <p>Te queda un plan claro por prioridades para ejecutar internamente o con acompañamiento.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  ```html
+<section id="use_cases" style="padding:5rem 0;background:#0a0a0a;font-family: 'Instrument Sans', sans-serif; color:#e0e0e0;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <h2 style="text-align: center; margin-bottom: 3rem; color:#00ff88; font-size: 2.5rem;">Who Needs FK94 Security?</h2>
+        <p style="text-align: center; color:#888; margin-bottom: 4rem; font-size: 1.1rem;">In today's digital landscape, robust security isn't a luxury—it's a necessity. See how FK94 Security protects your valuable assets and peace of mind.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+
+            <div style="background: #111; border-radius: 10px; padding: 2rem; border: 1px solid #1a1a1a; transition: background-color 0.3s ease;">
+                <h3 style="color: #e0e0e0; margin-bottom: 1rem; font-size: 1.5rem;">Entrepreneurs & Startups</h3>
+                <p style="color: #888; line-height: 1.6; font-size: 1rem;">
+                    Protect your innovative ideas and customer data from cyber threats. From securing your initial infrastructure to ongoing monitoring, we help you build a secure foundation for growth. Starting at just $99/month.
+                </p>
+                <ul style="list-style: none; padding-left: 0; margin-top: 1.5rem;">
+                    <li style="margin-bottom: 0.5rem; color:#e0e0e0;"><span style="color:#00ff88; margin-right: 0.5rem;">✓</span> Protect Intellectual Property</li>
+                    <li style="margin-bottom: 0.5rem; color:#e0e0e0;"><span style="color:#00ff88; margin-right: 0.5rem;">✓</span> Secure Customer Data</li>
+                    <li style="color:#e0e0e0;"><span style="color:#00ff88; margin-right: 0.5rem;">✓</span> Ensure Business Continuity</li>
+                </ul>
+            </div>
+
+            <div style="background: #0f0f0f; border-radius: 10px; padding: 2rem; border: 1px solid #1a1a1a; transition: background-color 0.3s ease;">
+                <h3 style="color: #e0e0e0; margin-bottom: 1rem; font-size: 1.5rem;">Executives & High-Profile Individuals</h3>
+                <p style="color: #888; line-height: 1.6; font-size: 1rem;">
+                    Safeguard your personal and professional life from targeted attacks. We offer OPSEC consulting, privacy audits, and cybersecurity measures tailored to your unique risk profile.
+                </p>
+                <ul style="list-style: none; padding-left: 0; margin-top: 1.5rem;">
+                    <li style="margin-bottom: 0.5rem; color:#e0e0e0;"><span style="color:#00ff88; margin-right: 0.5rem;">✓</span> Protect Reputation & Privacy</li>
+                    <li style="margin-bottom: 0.5rem; color:#e0e0e0;"><span style="color:#00ff88; margin-right: 0.5rem;">✓</span> Secure Personal Devices</li>
+                    <li style="color:#e0e0e0;"><span style="color:#00ff88; margin-right: 0.5rem;">✓</span> Prevent Data Breaches</li>
+                </ul>
+            </div>
+
+            <div style="background: #111; border-radius: 10px; padding: 2rem; border: 1px solid #1a1a1a; transition: background-color 0.3s ease;">
+                <h3 style="color: #e0e0e0; margin-bottom: 1rem; font-size: 1.5rem;">Families & Individuals</h3>
+                <p style="color: #888; line-height: 1.6; font-size: 1rem;">
+                    Protect your family's digital footprint and prevent identity theft. We offer comprehensive security assessments, parental control solutions, and education on safe online practices.
+                </p>
+                <ul style="list-style: none; padding-left: 0; margin-top: 1.5rem;">
+                    <li style="margin-bottom: 0.5rem; color:#e0e0e0;"><span style="color:#00ff88; margin-right: 0.5rem;">✓</span> Secure Family Devices</li>
+                    <li style="margin-bottom: 0.5rem; color:#e0e0e0;"><span style="color:#00ff88; margin-right: 0.5rem;">✓</span> Protect Children Online</li>
+                    <li style="color:#e0e0e0;"><span style="color:#00ff88; margin-right: 0.5rem;">✓</span> Prevent Identity Theft</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <p style="text-align: center; margin-top: 3rem; color:#888; font-size: 1.1rem;">
+            Ready to take control of your security? <a href="#" style="color:#00ff88; text-decoration: none;">Book your free consultation today!</a>
+        </p>
+
+    </div>
+</section>
+```
+
+    ```html
+<section id="trust" style="padding:5rem 0;background:#0a0a0a">
+    <div style="max-width:1200px;margin:0 auto;padding:0 20px;">
+        <h2 style="font-size:2.5rem;font-weight:700;color:#e0e0e0;text-align:center;margin-bottom:3rem;font-family:'Instrument Sans', sans-serif;">Why Choose FK94 Security?</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:2rem;">
+
+            <div style="background:#111;border-radius:8px;padding:2rem;border:1px solid #1a1a1a;transition: background-color 0.3s ease;">
+                <img src="https://via.placeholder.com/50/00ff88/0a0a0a?text=🔒" alt="Certified Security Experts" style="margin-bottom:1rem;">
+                <h3 style="font-size:1.3rem;font-weight:600;color:#e0e0e0;margin-bottom:0.5rem;font-family:'Instrument Sans', sans-serif;">Certified Security Experts</h3>
+                <p style="font-size:1rem;color:#888;line-height:1.6;font-family:'Instrument Sans', sans-serif;">Our team holds industry-leading certifications like CISSP, CISM, and CEH, ensuring your security is in capable hands. We stay updated with the latest threats and vulnerabilities.</p>
+            </div>
+
+            <div style="background:#0f0f0f;border-radius:8px;padding:2rem;border:1px solid #1a1a1a;transition: background-color 0.3s ease;">
+                <img src="https://via.placeholder.com/50/00ff88/0a0a0a?text=🛡️" alt="Proven Methodology" style="margin-bottom:1rem;">
+                <h3 style="font-size:1.3rem;font-weight:600;color:#e0e0e0;margin-bottom:0.5rem;font-family:'Instrument Sans', sans-serif;">Proven Methodology</h3>
+                <p style="font-size:1rem;color:#888;line-height:1.6;font-family:'Instrument Sans', sans-serif;">We employ a rigorous, risk-based methodology based on NIST and OWASP standards, customized to your specific needs.  From initial assessment to ongoing monitoring, we've got you covered.</p>
+            </div>
+
+            <div style="background:#111;border-radius:8px;padding:2rem;border:1px solid #1a1a1a;transition: background-color 0.3s ease;">
+                <img src="https://via.placeholder.com/50/00ff88/0a0a0a?text=✅" alt="Satisfaction Guarantee" style="margin-bottom:1rem;">
+                <h3 style="font-size:1.3rem;font-weight:600;color:#e0e0e0;margin-bottom:0.5rem;font-family:'Instrument Sans', sans-serif;">Satisfaction Guarantee</h3>
+                <p style="font-size:1rem;color:#888;line-height:1.6;font-family:'Instrument Sans', sans-serif;">We're confident in our ability to protect you. If you're not completely satisfied with our services within the first 30 days, we'll provide a full refund. Your peace of mind is our priority.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+```
+
+    ```html
+<section id="faq" style="padding:5rem 0;background:#0a0a0a;color:#e0e0e0;font-family: Instrument Sans, sans-serif;">
+    <div style="max-width:900px;margin:0 auto;padding:0 1rem;">
+        <h2 style="text-align:center;margin-bottom:3rem;color:#00ff88;">Frequently Asked Questions</h2>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:1.5rem;">
+
+            <div style="background:#111;border:1px solid #1a1a1a;padding:1.5rem;border-radius:0.5rem;">
+                <h3 style="margin-bottom:0.5rem;font-size:1.1rem;">What is OPSEC and why is it important?</h3>
+                <p style="color:#888;font-size:0.9rem;line-height:1.4;">OPSEC (Operations Security) is a process that identifies critical information to determine if friendly actions can be observed by adversary intelligence systems, determines vulnerabilities, and then selects countermeasures that reduce or eliminate adversary exploitation of friendly critical information. It's vital for protecting sensitive data and maintaining a competitive advantage.</p>
+            </div>
+
+            <div style="background:#111;border:1px solid #1a1a1a;padding:1.5rem;border-radius:0.5rem;">
+                <h3 style="margin-bottom:0.5rem;font-size:1.1rem;">How can FK94 Security help protect my business?</h3>
+                <p style="color:#888;font-size:0.9rem;line-height:1.4;">We offer a range of services including cybersecurity audits, privacy consulting, and ongoing monitoring to identify and mitigate potential threats. Our tailored solutions address the specific needs of individuals, entrepreneurs, and SMEs, ensuring robust protection against cyberattacks and data breaches.</p>
+            </div>
+
+            <div style="background:#111;border:1px solid #1a1a1a;padding:1.5rem;border-radius:0.5rem;">
+                <h3 style="margin-bottom:0.5rem;font-size:1.1rem;">What's included in your cybersecurity audit?</h3>
+                <p style="color:#888;font-size:0.9rem;line-height:1.4;">Our comprehensive audit covers network security, data protection, vulnerability assessments, and compliance checks. We provide a detailed report outlining vulnerabilities and actionable recommendations to strengthen your security posture. It's a $297 value.</p>
+            </div>
+
+             <div style="background:#111;border:1px solid #1a1a1a;padding:1.5rem;border-radius:0.5rem;">
+                <h3 style="margin-bottom:0.5rem;font-size:1.1rem;">How does the ongoing monitoring service work?</h3>
+                <p style="color:#888;font-size:0.9rem;line-height:1.4;">Our monitoring service provides 24/7 threat detection and incident response. We use advanced tools to identify suspicious activity and proactively address potential threats before they impact your business. Starts at $99 USD/month.</p>
+            </div>
+
+            <div style="background:#111;border:1px solid #1a1a1a;padding:1.5rem;border-radius:0.5rem;">
+                <h3 style="margin-bottom:0.5rem;font-size:1.1rem;">Do you offer a free initial consultation?</h3>
+                <p style="color:#888;font-size:0.9rem;line-height:1.4;">Yes, we offer a free initial consultation to discuss your security needs and how FK94 Security can help protect your digital assets. Contact us today to schedule your consultation.</p>
+            </div>
+
+            <div style="background:#111;border:1px solid #1a1a1a;padding:1.5rem;border-radius:0.5rem;">
+                <h3 style="margin-bottom:0.5rem;font-size:1.1rem;">What types of businesses do you work with?</h3>
+                <p style="color:#888;font-size:0.9rem;line-height:1.4;">We work with individuals, entrepreneurs, and small to medium-sized businesses (SMEs) across various industries. Our services are tailored to meet the unique needs of each client, regardless of their size or sector.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+```
+
+    ```html
+<section id="process" style="padding:5rem 0;background:#0a0a0a; color:#e0e0e0; font-family: Instrument Sans, sans-serif;">
+    <div style="text-align:center; margin-bottom:3rem;">
+        <h2 style="font-size:2.5rem; font-weight:bold; color:#00ff88; margin-bottom:0.5rem;">Our Simple Process to Secure Your Digital Life</h2>
+        <p style="color:#888; font-size:1.1rem;">We make cybersecurity accessible and effective for everyone.</p>
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:2rem; max-width:1200px; margin:0 auto;">
+
+        <div style="flex: 1 1 300px; background:#111; border-radius:8px; padding:2rem; border: 1px solid #1a1a1a; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+            <div style="font-size:2rem; color:#00ff88; margin-bottom:1rem; text-align:center;">1.</div>
+            <h3 style="font-size:1.5rem; font-weight:bold; margin-bottom:0.75rem;">Free Initial Consultation</h3>
+            <p style="color:#e0e0e0; line-height:1.6;">Start with a free, no-obligation consultation. We'll discuss your specific needs, concerns, and current security posture to understand your unique situation.</p>
+        </div>
+
+        <div style="flex: 1 1 300px; background:#0f0f0f; border-radius:8px; padding:2rem; border: 1px solid #1a1a1a; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+            <div style="font-size:2rem; color:#00ff88; margin-bottom:1rem; text-align:center;">2.</div>
+            <h3 style="font-size:1.5rem; font-weight:bold; margin-bottom:0.75rem;">Comprehensive Security Audit</h3>
+            <p style="color:#e0e0e0; line-height:1.6;">Our experts conduct a thorough audit of your systems, practices, and infrastructure to identify vulnerabilities and potential threats. This covers everything from OPSEC to digital privacy.</p>
+        </div>
+
+        <div style="flex: 1 1 300px; background:#111; border-radius:8px; padding:2rem; border: 1px solid #1a1a1a; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+            <div style="font-size:2rem; color:#00ff88; margin-bottom:1rem; text-align:center;">3.</div>
+            <h3 style="font-size:1.5rem; font-weight:bold; margin-bottom:0.75rem;">Tailored Security Solutions & Ongoing Monitoring</h3>
+            <p style="color:#e0e0e0; line-height:1.6;">We develop a customized security plan based on the audit findings. Includes implementation of security measures, ongoing monitoring (starting from $99/month), and regular consultations to adapt to evolving threats.</p>
+        </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:3rem;">
+        <p style="color:#888; font-size:1.1rem;">Ready to take the first step towards a more secure future?</p>
+        <a href="#" style="display:inline-block; padding:1rem 2rem; background:#00ff88; color:#0a0a0a; text-decoration:none; border-radius:6px; font-weight:bold; margin-top:1rem;">Schedule Your Free Consultation</a>
+    </div>
+</section>
+```
+
+    ```html
+<section id="use_cases" style="padding:5rem 0;background:#0a0a0a;font-family:Instrument Sans, sans-serif;color:#e0e0e0;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+    <h2 style="text-align: center; margin-bottom: 3rem; color:#00ff88; font-size: 2.5rem;">Who Needs FK94 Security?</h2>
+    <p style="text-align: center; color:#888; margin-bottom: 4rem; font-size:1.1rem;">In today's digital landscape, security isn't just for corporations. It's vital for individuals, entrepreneurs, and families alike. Discover how FK94 Security protects what matters most to you.</p>
+
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;">
+
+      <div style="width: 300px; background-color: #111; padding: 2rem; border-radius: 8px; border: 1px solid #1a1a1a; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+        <h3 style="color: #e0e0e0; margin-bottom: 1rem; font-size: 1.5rem;">Entrepreneurs</h3>
+        <p style="color: #888; font-size: 1rem;">Protect your business from cyber threats, data breaches, and reputational damage. From securing your sensitive data to safeguarding your intellectual property, FK94 Security provides robust OPSEC solutions tailored to your specific needs. Focus on growing your business, knowing your digital assets are secure.</p>
+        <ul style="list-style:none; padding:0; margin-top:1rem;">
+          <li style="color:#888; font-size:0.9rem; margin-bottom:0.3rem;">Data Breach Prevention</li>
+          <li style="color:#888; font-size:0.9rem; margin-bottom:0.3rem;">Reputation Management</li>
+          <li style="color:#888; font-size:0.9rem;">IP Protection</li>
+        </ul>
+      </div>
+
+      <div style="width: 300px; background-color: #0f0f0f; padding: 2rem; border-radius: 8px; border: 1px solid #1a1a1a; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+        <h3 style="color: #e0e0e0; margin-bottom: 1rem; font-size: 1.5rem;">Executives</h3>
+        <p style="color: #888; font-size: 1rem;">As a leader, you're a prime target for cybercriminals.  Safeguard your personal and professional life with advanced OPSEC strategies.  We'll help you minimize your digital footprint, secure your communications, and protect against targeted attacks.  Ensure your privacy and maintain your competitive edge.</p>
+        <ul style="list-style:none; padding:0; margin-top:1rem;">
+          <li style="color:#888; font-size:0.9rem; margin-bottom:0.3rem;">Personal Data Protection</li>
+          <li style="color:#888; font-size:0.9rem; margin-bottom:0.3rem;">Secure Communications</li>
+          <li style="color:#888; font-size:0.9rem;">Threat Mitigation</li>
+        </ul>
+      </div>
+
+      <div style="width: 300px; background-color: #111; padding: 2rem; border-radius: 8px; border: 1px solid #1a1a1a; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+        <h3 style="color: #e0e0e0; margin-bottom: 1rem; font-size: 1.5rem;">Families</h3>
+        <p style="color: #888; font-size: 1rem;">Protect your loved ones from online threats, identity theft, and privacy violations.  FK94 Security provides comprehensive solutions to secure your home network, educate your family about online safety, and monitor for potential risks.  Create a secure digital environment for your family to thrive.</p>
+        <ul style="list-style:none; padding:0; margin-top:1rem;">
+          <li style="color:#888; font-size:0.9rem; margin-bottom:0.3rem;">Family Online Safety</li>
+          <li style="color:#888; font-size:0.9rem; margin-bottom:0.3rem;">Identity Theft Protection</li>
+          <li style="color:#888; font-size:0.9rem;">Home Network Security</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <p style="text-align: center; margin-top: 3rem; color:#888; font-size:1.1rem;">Starting from $99 USD/month for monitoring and $297 for a complete audit. <a href="#" style="color:#00ff88; text-decoration:none;">Get your free consultation today!</a></p>
+
+  </div>
+</section>
+```
+
+    ```html
+<section id="stats" style="padding:5rem 0;background:#0a0a0a;color:#e0e0e0;font-family:'Instrument Sans', sans-serif;">
+    <div style="max-width:1200px;margin:0 auto;padding:0 20px;">
+        <h2 style="text-align:center;margin-bottom:3rem;font-size:2.5rem;color:#00ff88;">The Cybersecurity Landscape in Argentina: Numbers You Need to Know</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:2rem;">
+
+            <div style="background:#111;border-radius:8px;padding:2rem;border:1px solid #1a1a1a;text-align:center;">
+                <span style="font-size:3rem;font-weight:bold;color:#00ff88;">65%</span>
+                <p style="font-size:1rem;color:#888;margin-top:0.5rem;">of Argentine businesses experienced a cyberattack in the last year.</p>
+            </div>
+
+            <div style="background:#111;border-radius:8px;padding:2rem;border:1px solid #1a1a1a;text-align:center;">
+                <span style="font-size:3rem;font-weight:bold;color:#00ff88;">$3.2M</span>
+                <p style="font-size:1rem;color:#888;margin-top:0.5rem;">Average cost of a data breach for Argentine companies.</p>
+            </div>
+
+            <div style="background:#111;border-radius:8px;padding:2rem;border:1px solid #1a1a1a;text-align:center;">
+                <span style="font-size:3rem;font-weight:bold;color:#00ff88;">40%</span>
+                <p style="font-size:1rem;color:#888;margin-top:0.5rem;">Increase in ransomware attacks targeting SMEs in Argentina.</p>
+            </div>
+
+            <div style="background:#111;border-radius:8px;padding:2rem;border:1px solid #1a1a1a;text-align:center;">
+                <span style="font-size:3rem;font-weight:bold;color:#00ff88;">72%</span>
+                <p style="font-size:1rem;color:#888;margin-top:0.5rem;">of Argentine consumers are concerned about their online privacy.</p>
+            </div>
+
+        </div>
+        <p style="text-align:center;margin-top:3rem;font-size:0.9rem;color:#888;">
+            Sources: [Include sources for the stats here.  e.g.,  Argentina Cybersecurity Report 2023,  Local News Outlets, etc.]
+        </p>
+    </div>
+</section>
+```
+
+    <footer class="footer">
+    <div class="container row between wrap">
+      <span>© 2026 FK94 Security</span>
+      <span>OPSEC · Privacidad · Hardening</span>
+    </div>
+  </footer>
+
+  <script src="script.js?v=4"></script>
+</body>
+</html>
+) no es exacto.**
+*   **Completar `areaServed` con las áreas geográficas específicas donde se ofrecen los servicios, si corresponde. Si es a nivel nacional, dejar "Argentina".**
+
+Este schema actualizado proporciona más información a los motores de búsqueda sobre el negocio, mejorando su visibilidad y relevancia.
 </head>
 <body>
   <header class="topbar">

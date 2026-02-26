@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phishing Avanzado: Las Nuevas Técnicas y Cómo Reconocerlas - FK94 Security</title>
+<meta name="description" content="El phishing, esa vieja trampa para pescar datos personales, sigue siendo una de las amenazas cibernéticas más efectivas. Pero no se confíen, ya no es solo ...">
+<meta property="og:title" content="Phishing Avanzado: Las Nuevas Técnicas y Cómo Reconocerlas - FK94 Security">
+<meta property="og:description" content="El phishing, esa vieja trampa para pescar datos personales, sigue siendo una de las amenazas cibernéticas más efectivas. Pero no se confíen, ya no es solo ...">
+<meta property="og:url" content="https://fk94.security/docs/blog/2026-02-26-phishing-avanzado-las-nuevas-tecnicas-y-como-reconocerlas.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Phishing Avanzado: Las Nuevas Técnicas y Cómo Reconocerlas - FK94 Security">
+<meta name="twitter:description" content="El phishing, esa vieja trampa para pescar datos personales, sigue siendo una de las amenazas cibernéticas más efectivas. Pero no se confíen, ya no es solo ...">
+<link rel="canonical" href="https://fk94.security/docs/blog/2026-02-26-phishing-avanzado-las-nuevas-tecnicas-y-como-reconocerlas.html">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { background: #0a0a0a; color: #e0e0e0; font-family: 'Instrument Sans', sans-serif; }
+  main { max-width: 800px; margin: 0 auto; padding: 2rem; }
+  h1 { color: #fff; font-size: 2rem; margin-bottom: 0.5rem; }
+  h2 { color: #00ff88; font-size: 1.4rem; margin-top: 2rem; }
+  h3 { color: #10b981; font-size: 1.1rem; margin-top: 1.5rem; }
+  p { line-height: 1.8; margin-bottom: 1rem; }
+  ul, ol { padding-left: 1.5rem; line-height: 1.8; }
+  li { margin-bottom: 0.5rem; }
+  code { background: #1a1a1a; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace; color: #00ff88; }
+  pre { background: #111; padding: 1rem; border-radius: 8px; overflow-x: auto; border: 1px solid #1a1a1a; }
+  blockquote { border-left: 3px solid #00ff88; padding-left: 1rem; color: #aaa; margin: 1rem 0; }
+  a { color: #00ff88; }
+  .meta { color: #888; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<nav style="padding:1rem 2rem;background:#0a0a0a;border-bottom:1px solid #1a1a1a;position:sticky;top:0;z-index:100">
+  <a href="/" style="color:#00ff88;text-decoration:none;font-weight:600">← FK94 Security</a>
+  <span style="color:#444;margin:0 1rem">|</span>
+  <a href="/docs/blog/" style="color:#888;text-decoration:none;font-size:0.9rem">Blog</a>
+</nav>
+<main>
+<article>
+<h1>Phishing Avanzado: Las Nuevas Técnicas y Cómo Reconocerlas</h1>
+<p class="meta" style="color:#888;font-size:0.9rem">16 de Octubre de 2023 · FK94 Security</p>
+
+<p>El phishing, esa vieja trampa para pescar datos personales, sigue siendo una de las amenazas cibernéticas más efectivas. Pero no se confíen, ya no es solo el mail nigeriano prometiendo fortunas. El phishing evolucionó, se sofisticó, y ahora se vale de tácticas mucho más elaboradas. En FK94 Security, vemos a diario cómo estas técnicas engañan incluso a usuarios informados. Por eso, vamos a analizar las nuevas formas de phishing y cómo protegerte, especialmente en el contexto argentino.</p>
+
+<h2>Las Nuevas Caras del Phishing</h2>
+
+<p>El phishing moderno no se limita al correo electrónico. Se extiende a SMS (smishing), llamadas telefónicas (vishing), redes sociales, e incluso falsos avisos en buscadores. La clave está en la ingeniería social: manipularte para que actúes sin pensar.</p>
+
+<h3>Spear Phishing: El Ataque Personalizado</h3>
+
+<p>El <i>spear phishing</i> ("pesca con arpón") es un ataque dirigido a individuos o grupos específicos. Los atacantes investigan a fondo a su víctima, recolectando información de redes sociales, LinkedIn, sitios web de empresas, y hasta registros públicos. Usan esta información para crear mensajes creíbles y personalizados. </p>
+
+<p><b>Ejemplo Argentino:</b> Imaginen que son dueños de una pyme que importa insumos de China. Reciben un mail supuestamente de su despachante de aduana, con el logo de la empresa y su nombre. El mail menciona un "nuevo arancel" para una partida específica que están esperando, y les pide que hagan un pago urgente a una nueva cuenta bancaria.  Si no verifican cuidadosamente, podrían caer en la trampa.</p>
+
+<h3>Pharming: Envenenando el DNS</h3>
+
+<p>El <i>pharming</i> es una técnica más técnica y peligrosa. Los atacantes manipulan los servidores DNS (el "directorio telefónico" de internet) para redirigir el tráfico de un sitio web legítimo a una página falsa.  Aunque escribas la dirección correcta en tu navegador, terminás en el sitio del atacante, que luce idéntico al original. </p>
+
+<p><b>¿Cómo funciona?</b> Imaginen que quieren entrar a la página de su banco. Escriben la dirección correcta, pero un ataque de pharming desvía su navegador a una copia falsa del sitio. Ingresan su usuario y contrase��a, y se los entregan directamente a los delincuentes. </p>
+
+<p><b>Protección:</b> El pharming es difícil de detectar para el usuario final.  Asegúrense de que su proveedor de internet tenga buenas prácticas de seguridad y utilicen un buen antivirus con protección web.</p>
+
+<h3>BEC (Business Email Compromise): El Fraude al CEO</h3>
+
+<p>El <i>Business Email Compromise</i> (BEC) o "Compromiso de Correo Electrónico Empresarial" es un ataque dirigido a empresas, donde los atacantes se hacen pasar por un alto ejecutivo (CEO, CFO, etc.) para engañar a empleados del departamento de finanzas y lograr que realicen transferencias bancarias fraudulentas. </p>
+
+<p><b>Ejemplo:</b> Un empleado de contaduría recibe un mail supuestamente del CEO, con un tono urgente, pidiendo que transfiera una gran suma de dinero a una cuenta en el extranjero para cerrar un "acuerdo confidencial". El mail puede incluir detalles internos de la empresa para hacerlo más creíble. La presión y el respeto por la autoridad pueden llevar al empleado a actuar sin verificar.</p>
+
+<h3>Ingeniería Social en Redes Sociales</h3>
+
+<p>Las redes sociales son un caldo de cultivo para el phishing. Los atacantes crean perfiles falsos, se hacen amigos de sus víctimas, y luego les envían enlaces maliciosos o les piden información personal.  También pueden usar concursos falsos o promociones engañosas para recopilar datos.</p>
+
+<p><b>¡Cuidado con los sorteos!</b>  Muchos sorteos falsos en Instagram o Facebook piden seguir una cuenta, etiquetar amigos, y completar un formulario con datos personales.  Estos datos luego se usan para phishing o para venderlos en el mercado negro.</p>
+
+<h2>Cómo Reconocer el Phishing Avanzado</h2>
+
+<p>La clave para defenderse del phishing es la prevención y la educación.  Deben estar atentos a las siguientes señales de alerta:</p>
+
+*   **Remitente sospechoso:** Verifiquen la dirección de correo electrónico del remitente. ¿Coincide con el dominio de la empresa que dice ser? ¿Tiene errores ortográficos?
+*   **Urgencia y presión:** Los mensajes de phishing suelen crear una sensación de urgencia para que actúen sin pensar.  Desconfíen de los mails que les piden hacer algo "inmediatamente" o que amenazan con consecuencias negativas si no lo hacen.
+*   **Errores gramaticales y ortográficos:** Un mail legítimo de una empresa seria rara vez tendrá errores.  Presten atención a la mala redacción, la ortografía deficiente y el uso incorrecto de la gramática.
+*   **Enlaces sospechosos:** No hagan clic en enlaces que parezcan extraños o que los lleven a sitios web desconocidos.  Antes de hacer clic, pasen el cursor sobre el enlace para ver la dirección real a la que apunta.
+*   **Adjuntos inesperados:** No abran adjuntos de correos electrónicos de remitentes desconocidos o sospechosos.  Los archivos adjuntos pueden contener malware que infecte su computadora.
+*   **Solicitudes inusuales:** Desconfíen de las solicitudes inusuales, como pedidos de contraseñas, números de tarjetas de crédito o transferencias bancarias.  Verifiquen la solicitud por otro medio (por teléfono, en persona) antes de actuar.
+*   **Certificado SSL:** Asegúrense de que el sitio web sea seguro (que tenga "https" en la dirección y un candado cerrado en la barra del navegador). Esto indica que la conexión está encriptada.
+*   **Doble factor de autenticación (2FA):** Activen el 2FA en todas sus cuentas importantes.  Esto agrega una capa extra de seguridad, incluso si su contraseña es comprometida.
+
+<h2>¿Qué Hacer si Sos Víctima de Phishing?</h2>
+
+1.  **Cambiá tus contraseñas:** Cambiá inmediatamente las contraseñas de todas tus cuentas, especialmente las que puedan haber sido comprometidas.
+2.  **Contactá a tu banco:** Si ingresaste información bancaria, contactá a tu banco inmediatamente para cancelar tu tarjeta o bloquear tu cuenta.
+3.  **Denunciá el ataque:** Denunciá el ataque a las autoridades competentes (Unidad Fiscal Especializada en Ciberdelincuencia - UFECI).
+4.  **Informá a la empresa:** Si el ataque se dirigió a tu empresa, informá a todos los empleados para que estén alertas.
+
+<p>En FK94 Security, sabemos que la seguridad digital es un proceso continuo.  No se trata solo de instalar un antivirus, sino de estar atentos, educados y preparados para enfrentar las nuevas amenazas. </p>
+
+<p>¿Necesitás ayuda para proteger tu empresa o tu información personal?  En FK94 Security ofrecemos servicios de consultoría en OPSEC y privacidad, evaluaciones de seguridad, capacitaciones para empleados y mucho más. <a href="#">Contactanos para una consulta sin cargo.</a></p>
+</article>
+
+<hr style="border-color:#1a1a1a;margin:3rem 0">
+<p style="color:#888">¿Querés proteger tu identidad digital? <a href="/" style="color:#00ff88">Consultá con FK94 Security</a> — primera consulta gratis. Mail: info@fk94security.com</p>
+</main>
+</body>
+</html>

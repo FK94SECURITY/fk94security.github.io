@@ -894,6 +894,52 @@ Dado que las meta tags esenciales ya existen, me enfocaré en optimizar el schem
 *   **Completar `areaServed` con las áreas geográficas específicas donde se ofrecen los servicios, si corresponde. Si es a nivel nacional, dejar "Argentina".**
 
 Este schema actualizado proporciona más información a los motores de búsqueda sobre el negocio, mejorando su visibilidad y relevancia.
+```html
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+<meta name="rating" content="general">
+<meta name="language" content="es">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+```
+
+```json
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "FK94 Security",
+  "description": "Consultora argentina de OPSEC, privacidad digital y ciberseguridad para individuos y pymes.",
+  "url": "https://fk94.security",
+  "logo": "https://fk94.security/images/logo.png",
+  "image": "https://fk94.security/images/imagen-destacada.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "AR"
+  },
+  "telephone": "+54 9 11 [Número de teléfono]",
+  "priceRange": "$$",
+  "sameAs": [
+    "https://www.linkedin.com/[URL de LinkedIn]",
+    "https://twitter.com/[URL de Twitter]"
+  ],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "18:00"
+    }
+  ],
+  "areaServed": "Argentina"
+}
+</script>
+```
 </head>
 <body>
   <header class="topbar">
